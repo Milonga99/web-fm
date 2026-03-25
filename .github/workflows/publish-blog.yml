@@ -1,0 +1,227 @@
+name: Publicar artículos de blog
+
+on:
+  schedule:
+    # Semana 2 — Martes 1 Abril 2026 09:00 UTC
+    - cron: '0 9 1 4 2'
+    # Semana 3 — Martes 7 Abril 2026 09:00 UTC
+    - cron: '0 9 7 4 2'
+    # Semana 4 — Martes 14 Abril 2026 09:00 UTC
+    - cron: '0 9 14 4 2'
+    # Semana 5 — Martes 22 Abril 2026 09:00 UTC
+    - cron: '0 9 22 4 2'
+  workflow_dispatch:
+    inputs:
+      semana:
+        description: 'Semana a publicar (2, 3, 4 o 5)'
+        required: true
+        default: '2'
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Determinar semana
+        id: semana
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "num=${{ github.event.inputs.semana }}" >> $GITHUB_OUTPUT
+          else
+            DAY=$(date +%d)
+            MONTH=$(date +%m)
+            if   [ "$MONTH" = "04" ] && [ "$DAY" = "01" ]; then echo "num=2" >> $GITHUB_OUTPUT
+            elif [ "$MONTH" = "04" ] && [ "$DAY" = "07" ]; then echo "num=3" >> $GITHUB_OUTPUT
+            elif [ "$MONTH" = "04" ] && [ "$DAY" = "14" ]; then echo "num=4" >> $GITHUB_OUTPUT
+            elif [ "$MONTH" = "04" ] && [ "$DAY" = "22" ]; then echo "num=5" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      # ── SEMANA 2: calcular precio + vender por WhatsApp ──────────────
+      - name: Semana 2 — agregar artículos
+        if: steps.semana.outputs.num == '2'
+        run: |
+          # Agregar rewrites a vercel.json
+          python3 - <<'PYEOF'
+          import json, re
+          with open('vercel.json') as f: v = json.load(f)
+          new = [
+            {"source": "/blog/como-calcular-precio-arreglo-floral", "destination": "/blog/como-calcular-precio-arreglo-floral.html"},
+            {"source": "/blog/vender-mas-por-whatsapp-floreria",     "destination": "/blog/vender-mas-por-whatsapp-floreria.html"}
+          ]
+          v['rewrites'].extend(new)
+          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
+          PYEOF
+
+          # Agregar al sitemap
+          python3 - <<'PYEOF'
+          txt = open('sitemap.xml').read()
+          insert = """  <!-- Semana 2 -->
+          <url><loc>https://www.floristmanager.com/blog/como-calcular-precio-arreglo-floral</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+          <url><loc>https://www.floristmanager.com/blog/vender-mas-por-whatsapp-floreria</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+        """
+          txt = txt.replace('</urlset>', insert + '</urlset>')
+          open('sitemap.xml','w').write(txt)
+          PYEOF
+
+          # Agregar cards al blog/index.html
+          python3 - <<'PYEOF'
+          txt = open('blog/index.html').read()
+          new_cards = """
+            <a href="/blog/como-calcular-precio-arreglo-floral" class="blog-card">
+              <span class="blog-tag">Precios</span>
+              <h2>Cómo calcular el precio de un arreglo floral sin quedarte corto</h2>
+              <p>Fórmula práctica para costear tus arreglos, cubrir gastos y ganar bien.</p>
+              <span class="blog-read">Leer artículo →</span>
+            </a>
+
+            <a href="/blog/vender-mas-por-whatsapp-floreria" class="blog-card">
+              <span class="blog-tag">Ventas</span>
+              <h2>Cómo vender más flores por WhatsApp sin morir en el intento</h2>
+              <p>Técnicas probadas para responder rápido, cerrar pedidos y no perder clientes en el chat.</p>
+              <span class="blog-read">Leer artículo →</span>
+            </a>
+          """
+          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
+          open('blog/index.html','w').write(txt)
+          PYEOF
+
+      # ── SEMANA 3: errores comunes + San Valentín ─────────────────────
+      - name: Semana 3 — agregar artículos
+        if: steps.semana.outputs.num == '3'
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          with open('vercel.json') as f: v = json.load(f)
+          new = [
+            {"source": "/blog/errores-comunes-gestionar-floreria",       "destination": "/blog/errores-comunes-gestionar-floreria.html"},
+            {"source": "/blog/preparar-floreria-san-valentin-dia-madre", "destination": "/blog/preparar-floreria-san-valentin-dia-madre.html"}
+          ]
+          v['rewrites'].extend(new)
+          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
+          PYEOF
+
+          python3 - <<'PYEOF'
+          txt = open('sitemap.xml').read()
+          insert = """  <!-- Semana 3 -->
+          <url><loc>https://www.floristmanager.com/blog/errores-comunes-gestionar-floreria</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+          <url><loc>https://www.floristmanager.com/blog/preparar-floreria-san-valentin-dia-madre</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+        """
+          txt = txt.replace('</urlset>', insert + '</urlset>')
+          open('sitemap.xml','w').write(txt)
+          PYEOF
+
+          python3 - <<'PYEOF'
+          txt = open('blog/index.html').read()
+          new_cards = """
+            <a href="/blog/errores-comunes-gestionar-floreria" class="blog-card">
+              <span class="blog-tag">Operaciones</span>
+              <h2>Los 7 errores más comunes al gestionar una florería pequeña</h2>
+              <p>Errores que cometen casi todas las florerías y cómo evitarlos antes de que cuesten caro.</p>
+              <span class="blog-read">Leer artículo →</span>
+            </a>
+
+            <a href="/blog/preparar-floreria-san-valentin-dia-madre" class="blog-card">
+              <span class="blog-tag">Planificación</span>
+              <h2>Cómo preparar tu florería para San Valentín y el Día de la Madre</h2>
+              <p>Plan de acción para llegar a las fechas más importantes del año sin improvisar.</p>
+              <span class="blog-read">Leer artículo →</span>
+            </a>
+          """
+          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
+          open('blog/index.html','w').write(txt)
+          PYEOF
+
+      # ── SEMANA 4: precios Chile + online vs local ────────────────────
+      - name: Semana 4 — agregar artículos
+        if: steps.semana.outputs.num == '4'
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          with open('vercel.json') as f: v = json.load(f)
+          new = [
+            {"source": "/blog/cuanto-cobra-floreria-precios-chile", "destination": "/blog/cuanto-cobra-floreria-precios-chile.html"},
+            {"source": "/blog/floreria-online-vs-local",            "destination": "/blog/floreria-online-vs-local.html"}
+          ]
+          v['rewrites'].extend(new)
+          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
+          PYEOF
+
+          python3 - <<'PYEOF'
+          txt = open('sitemap.xml').read()
+          insert = """  <!-- Semana 4 -->
+          <url><loc>https://www.floristmanager.com/blog/cuanto-cobra-floreria-precios-chile</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+          <url><loc>https://www.floristmanager.com/blog/floreria-online-vs-local</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+        """
+          txt = txt.replace('</urlset>', insert + '</urlset>')
+          open('sitemap.xml','w').write(txt)
+          PYEOF
+
+          python3 - <<'PYEOF'
+          txt = open('blog/index.html').read()
+          new_cards = """
+            <a href="/blog/cuanto-cobra-floreria-precios-chile" class="blog-card">
+              <span class="blog-tag">Precios</span>
+              <h2>¿Cuánto cobra una florería en Chile? Guía de precios referenciales</h2>
+              <p>Rangos de precios para ramos, arreglos y eventos. Para saber si estás bien posicionado.</p>
+              <span class="blog-read">Leer artículo →</span>
+            </a>
+
+            <a href="/blog/floreria-online-vs-local" class="blog-card">
+              <span class="blog-tag">Estrategia</span>
+              <h2>Florería online vs local físico: cómo competir teniendo las dos</h2>
+              <p>Qué canal priorizar, cómo integrarlos y por qué la mayoría lo hace al revés.</p>
+              <span class="blog-read">Leer artículo →</span>
+            </a>
+          """
+          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
+          open('blog/index.html','w').write(txt)
+          PYEOF
+
+      # ── SEMANA 5: fidelizar clientes ─────────────────────────────────
+      - name: Semana 5 — agregar artículos
+        if: steps.semana.outputs.num == '5'
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          with open('vercel.json') as f: v = json.load(f)
+          new = [
+            {"source": "/blog/como-fidelizar-clientes-floreria", "destination": "/blog/como-fidelizar-clientes-floreria.html"}
+          ]
+          v['rewrites'].extend(new)
+          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
+          PYEOF
+
+          python3 - <<'PYEOF'
+          txt = open('sitemap.xml').read()
+          insert = """  <!-- Semana 5 -->
+          <url><loc>https://www.floristmanager.com/blog/como-fidelizar-clientes-floreria</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+        """
+          txt = txt.replace('</urlset>', insert + '</urlset>')
+          open('sitemap.xml','w').write(txt)
+          PYEOF
+
+          python3 - <<'PYEOF'
+          txt = open('blog/index.html').read()
+          new_cards = """
+            <a href="/blog/como-fidelizar-clientes-floreria" class="blog-card">
+              <span class="blog-tag">Clientes</span>
+              <h2>Cómo fidelizar clientes en una florería y que vuelvan siempre</h2>
+              <p>Sin programas complicados. Solo atención, memoria y pequeños gestos que marcan diferencia.</p>
+              <span class="blog-read">Leer artículo →</span>
+            </a>
+          """
+          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
+          open('blog/index.html','w').write(txt)
+          PYEOF
+
+      - name: Commit y push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add vercel.json sitemap.xml blog/index.html
+          git diff --staged --quiet || git commit -m "Blog: publicar artículos semana ${{ steps.semana.outputs.num }}"
+          git push
