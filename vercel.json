@@ -6,6 +6,14 @@
     { "source": "/blog/como-organizar-pedidos-floreria", "destination": "/blog/como-organizar-pedidos-floreria.html" },
     { "source": "/blog/control-stock-flores-perecederas", "destination": "/blog/control-stock-flores-perecederas.html" },
     { "source": "/blog/software-floreria-chile", "destination": "/blog/software-floreria-chile.html" },
-    { "source": "/en", "destination": "/en/index.html" }
+    { "source": "/en", "destination": "/en/index.html" },
+    { "source": "/blog/software-para-florerias", "destination": "/blog/software-para-florerias.html" },
+    { "source": "/blog/como-calcular-precio-arreglo-floral", "destination": "/blog/como-calcular-precio-arreglo-floral.html" },
+    { "source": "/blog/vender-mas-por-whatsapp-floreria", "destination": "/blog/vender-mas-por-whatsapp-floreria.html" },
+    { "source": "/blog/errores-comunes-gestionar-floreria", "destination": "/blog/errores-comunes-gestionar-floreria.html" },
+    { "source": "/blog/preparar-floreria-san-valentin-dia-madre", "destination": "/blog/preparar-floreria-san-valentin-dia-madre.html" },
+    { "source": "/blog/cuanto-cobra-floreria-precios-chile", "destination": "/blog/cuanto-cobra-floreria-precios-chile.html" },
+    { "source": "/blog/floreria-online-vs-local", "destination": "/blog/floreria-online-vs-local.html" },
+    { "source": "/blog/como-fidelizar-clientes-floreria", "destination": "/blog/como-fidelizar-clientes-floreria.html" }
   ]
 }
