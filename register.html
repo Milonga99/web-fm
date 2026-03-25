@@ -629,10 +629,8 @@
       }
 
       btn.textContent = 'Redirigiendo...';
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'conversion', { send_to: 'AW-18041424603/mfw5COHW0Y8cENuV6ZpD' });
-      }
-      window.location.href = data.redirectUrl || '/';
+      const dest = encodeURIComponent(data.redirectUrl || '/');
+      window.location.href = '/thank-you?url=' + dest;
     } catch(e) {
       showError('Error de red. Intenta de nuevo.');
       btn.disabled    = false;
