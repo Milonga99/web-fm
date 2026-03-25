@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#2DBD6E"/>
+      <stop offset="50%"  stop-color="#7EE06A"/>
+      <stop offset="100%" stop-color="#F0407A"/>
+    </linearGradient>
+    <clipPath id="circle">
+      <circle cx="50" cy="50" r="50"/>
+    </clipPath>
+  </defs>
+  <!-- White circle background -->
+  <circle cx="50" cy="50" r="50" fill="white"/>
+  <!-- F logo: 3 leaf shapes, zoomed and centered -->
+  <!-- Top leaf -->
+  <path d="M22,18 C32,8 62,8 72,18 C78,24 74,36 64,38 L22,38 C15,38 15,28 18,22 C19,20 20,19 22,18Z" fill="url(#g)"/>
+  <!-- Middle leaf -->
+  <path d="M22,46 C32,36 58,36 65,46 C70,52 66,64 56,65 L22,65 C15,65 15,56 18,50 C19,48 20,47 22,46Z" fill="url(#g)"/>
+  <!-- Vertical stem leaf -->
+  <path d="M18,18 C12,24 13,42 13,52 C13,65 15,82 20,88 C24,93 30,88 30,82 L30,34 C30,24 24,12 18,18Z" fill="url(#g)"/>
+</svg>
