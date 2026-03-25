@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Florist Manager — Gestiona tu florería sin el caos. Pedidos, stock y clientes en un solo lugar.">
+  <title>Florist Manager — Tu florería, sin el caos.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2DBD6E;
+      --green-light: #7EE06A;
+      --pink: #F0407A;
+      --bg: #FFFFFF;
+      --text: #1A1A2E;
+      --gray: #F4F4F6;
+      --gray-text: #6B7280;
+      --grad-green: linear-gradient(135deg, #2DBD6E, #7EE06A);
+      --grad-brand: linear-gradient(135deg, #2DBD6E, #F0407A);
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 32px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.9);
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom-color: rgba(0,0,0,0.06);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .navbar-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+    .navbar-links a:hover { opacity: 1; }
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      display: flex;
+      background: var(--gray);
+      border-radius: 20px;
+      padding: 3px;
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--gray-text);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active {
+      background: white;
+      color: var(--text);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+      line-height: 1;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(0,0,0,0.14);
+      color: var(--text);
+    }
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+    .btn-primary {
+      background: var(--grad-green);
+      color: white;
+      box-shadow: 0 2px 12px rgba(45,189,110,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(45,189,110,0.4); }
+    .btn-brand {
+      background: var(--grad-brand);
+      color: white;
+      box-shadow: 0 2px 12px rgba(45,189,110,0.25);
+    }
+    .btn-brand:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(240,64,122,0.35); }
+    .btn-white {
+      background: white;
+      color: var(--green);
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+    .btn-lg { padding: 15px 32px; font-size: 16px; border-radius: 12px; }
+    .btn-text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      opacity: 0.75;
+      transition: all 0.2s ease;
+    }
+    .btn-text-link:hover { opacity: 1; color: var(--green); }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: white;
+      padding: 16px 24px 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      z-index: 999;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 13px 0;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 16px;
+      border-bottom: 1px solid var(--gray);
+      transition: color 0.2s ease;
+    }
+    .mobile-menu a:hover { color: var(--green); }
+    .mobile-actions { display: flex; gap: 10px; padding-top: 16px; flex-wrap: wrap; }
+
+    /* ── LAYOUT ── */
+    section { padding: 96px 32px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── SECTION LABELS ── */
+    .section-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(45,189,110,0.1), rgba(126,224,106,0.08));
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--gray-text);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 144px;
+      padding-bottom: 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(45,189,110,0.07), rgba(240,64,122,0.07));
+      border: 1px solid rgba(45,189,110,0.18);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #16A34A;
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-size: clamp(42px, 7vw, 76px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      margin-bottom: 22px;
+    }
+    .hero-title .gradient-text {
+      background: var(--grad-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(17px, 2.5vw, 20px);
+      color: var(--gray-text);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .hero-note {
+      font-size: 13px;
+      color: var(--gray-text);
+      margin-bottom: 72px;
+    }
+    .hero-note .dot { margin: 0 8px; opacity: 0.35; }
+
+    /* ── DASHBOARD MOCKUP ── */
+    .mockup-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 64px rgba(0,0,0,0.12);
+      overflow: hidden;
+      display: flex;
+      text-align: left;
+    }
+    .mockup-sidebar {
+      width: 196px;
+      flex-shrink: 0;
+      background: var(--gray);
+      padding: 18px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .mockup-sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px 16px;
+      font-weight: 700;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .mockup-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-text);
+      border-radius: 8px;
+      margin: 0 6px 2px;
+      transition: all 0.15s ease;
+    }
+    .mockup-nav-item.active {
+      background: white;
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .mockup-nav-dot {
+      width: 14px; height: 14px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .mockup-main {
+      flex: 1;
+      padding: 22px;
+      background: #FAFAFA;
+      min-width: 0;
+    }
+    .mockup-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .mockup-page-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .mockup-actions-row { display: flex; gap: 8px; }
+    .mockup-pill {
+      padding: 5px 12px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .mockup-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .mockup-stat {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .mockup-stat-label { font-size: 11px; color: var(--gray-text); font-weight: 500; margin-bottom: 4px; }
+    .mockup-stat-val { font-size: 22px; font-weight: 800; }
+    .mockup-table {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .mockup-table-head {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 110px 80px 88px;
+      padding: 9px 14px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gray-text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--gray);
+    }
+    .mockup-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 110px 80px 88px;
+      padding: 11px 14px;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      font-size: 13px;
+    }
+    .mockup-row:last-child { border-bottom: none; }
+    .order-client { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .order-avatar {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800; color: white; flex-shrink: 0;
+    }
+    .order-name { font-weight: 600; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .order-time { font-size: 10px; color: var(--gray-text); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-green { background: rgba(45,189,110,0.12); color: #16A34A; }
+    .badge-yellow { background: rgba(251,191,36,0.13); color: #B45309; }
+    .badge-pink { background: rgba(240,64,122,0.12); color: #F0407A; }
+    .badge-gray { background: rgba(107,114,128,0.1); color: var(--gray-text); }
+    .order-price { font-weight: 700; font-size: 13px; }
+
+    /* ── PROBLEM ── */
+    #problem { background: var(--gray); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .problem-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+    }
+    .problem-emoji { font-size: 40px; display: block; margin-bottom: 16px; }
+    .problem-card h3 { font-size: 17px; font-weight: 700; line-height: 1.45; }
+
+    /* ── FEATURES ── */
+    #features { background: white; }
+    .features-header { text-align: center; margin-bottom: 80px; }
+    .feature-block {
+      display: flex;
+      gap: 72px;
+      align-items: center;
+      margin-bottom: 88px;
+    }
+    .feature-block:last-child { margin-bottom: 0; }
+    .feature-text { flex: 1; min-width: 0; }
+    .feature-visual {
+      flex: 1;
+      min-width: 0;
+      background: var(--gray);
+      border-radius: var(--radius);
+      padding: 28px;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+    }
+    .feature-block.reverse { flex-direction: row-reverse; }
+    .feature-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .feature-title { font-size: 28px; font-weight: 800; margin-bottom: 14px; line-height: 1.2; letter-spacing: -0.01em; }
+    .feature-desc { font-size: 17px; color: var(--gray-text); line-height: 1.7; }
+
+    /* Feature visuals */
+    .fv-card {
+      background: white;
+      border-radius: 12px;
+      padding: 13px 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .fv-card:last-child { margin-bottom: 0; }
+    .fv-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .fv-content { flex: 1; min-width: 0; }
+    .fv-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .fv-sub { font-size: 11px; color: var(--gray-text); }
+    .progress-bar { background: rgba(0,0,0,0.06); border-radius: 4px; height: 5px; margin-top: 6px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 4px; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--gray); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .t-stars { font-size: 13px; letter-spacing: 2px; color: #F59E0B; margin-bottom: 14px; }
+    .t-quote { font-size: 16px; line-height: 1.65; flex: 1; margin-bottom: 20px; font-style: italic; }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px; color: white; flex-shrink: 0;
+    }
+    .t-name { font-size: 14px; font-weight: 700; }
+    .t-shop { font-size: 12px; color: var(--gray-text); margin-top: 1px; }
+
+    /* ── PRICING ── */
+    #pricing { background: white; }
+    .pricing-header { text-align: center; margin-bottom: 52px; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--green);
+      box-shadow: 0 8px 40px rgba(45,189,110,0.14);
+    }
+    .pricing-popular {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--grad-brand);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 18px;
+      border-radius: 20px;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .pricing-plan-name {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-text);
+      margin-bottom: 10px;
+    }
+    .pricing-price { display: flex; align-items: baseline; gap: 3px; margin-bottom: 6px; }
+    .pricing-amount { font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+    .pricing-mo { font-size: 15px; color: var(--gray-text); font-weight: 500; }
+    .pricing-tagline {
+      font-size: 14px;
+      color: var(--gray-text);
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gray);
+    }
+    .pricing-feats { list-style: none; margin-bottom: 28px; }
+    .pricing-feats li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 15px;
+      margin-bottom: 11px;
+      line-height: 1.4;
+    }
+    .pricing-feats li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 14px;
+      margin-top: 1px;
+    }
+    .pricing-note {
+      text-align: center;
+      font-size: 14px;
+      color: var(--gray-text);
+      margin-top: 32px;
+    }
+
+    /* ── CTA BAND ── */
+    #cta-band {
+      background: var(--grad-green);
+      padding: 96px 32px;
+      text-align: center;
+    }
+    #cta-band .section-title { color: white; margin-bottom: 12px; }
+    #cta-band .section-subtitle { color: rgba(255,255,255,0.85); margin: 0 auto 36px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 32px;
+      border-top: 1px solid var(--gray);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .footer-tagline { font-size: 14px; color: var(--gray-text); }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--gray-text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--green); }
+    .footer-copy { font-size: 13px; color: rgba(107,114,128,0.7); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,26,46,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: white;
+      border-radius: 22px;
+      padding: 40px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalIn 0.28s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.93) translateY(12px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--gray);
+      border: none;
+      border-radius: 50%;
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--gray-text);
+      transition: all 0.2s ease;
+    }
+    .modal-close:hover { background: #E5E7EB; color: var(--text); }
+    .modal-logo { display: flex; align-items: center; gap: 9px; margin-bottom: 22px; }
+    .modal-logo span { font-weight: 700; font-size: 16px; }
+    .modal-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .modal-sub { font-size: 14px; color: var(--gray-text); margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(0,0,0,0.11);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45,189,110,0.1);
+    }
+    .form-input::placeholder { color: #9CA3AF; }
+    .modal-success { display: none; text-align: center; padding: 16px 0; }
+    .modal-success.show { display: block; }
+    .success-emoji { font-size: 52px; margin-bottom: 16px; }
+    .success-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+    .success-sub { font-size: 16px; color: var(--gray-text); line-height: 1.6; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 920px) {
+      .navbar-links { display: none; }
+      .hamburger { display: flex; }
+      .navbar-actions .btn-outline { display: none; }
+
+      .problem-grid,
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+
+      .feature-block,
+      .feature-block.reverse { flex-direction: column; gap: 32px; }
+      .feature-visual { min-height: auto; width: 100%; }
+
+      .mockup-sidebar { display: none; }
+      .mockup-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 64px 20px; }
+      #hero { padding-top: 108px; }
+      .navbar { padding: 0 20px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .mockup-table-head,
+      .mockup-row { grid-template-columns: minmax(0,1fr) 70px 70px; }
+      .mockup-table-head > *:last-child,
+      .mockup-row > *:last-child { display: none; }
+      .mockup-stats { grid-template-columns: 1fr; }
+      .modal-card { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="navbar-logo">
+    <svg viewBox="0 0 32 42" width="26" height="34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lg1" x1="16" y1="0" x2="16" y2="42" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#2DBD6E"/>
+          <stop offset="52%"  stop-color="#7EE06A"/>
+          <stop offset="100%" stop-color="#F0407A"/>
+        </linearGradient>
+      </defs>
+      <!-- Stem leaf (vertical) -->
+      <path d="M2,2 C-1,6 0,20 0,24 C0,30 1,37 4,40 C6,42 10,39 10,35 L10,7 C10,2 6,-1 2,2Z" fill="url(#lg1)"/>
+      <!-- Top bar leaf -->
+      <path d="M6,2 C11,-1 22,-1 27,2 C30,5 28,10 23,11 L6,11 C3,11 3,7 4,5 C5,3 5,3 6,2Z" fill="url(#lg1)"/>
+      <!-- Middle bar leaf -->
+      <path d="M6,17 C11,14 21,14 25,17 C27,19 25,24 21,24 L6,24 C3,24 3,21 4,19 C5,18 5,18 6,17Z" fill="url(#lg1)"/>
+    </svg>
+    <span>Florist Manager</span>
+  </a>
+
+  <ul class="navbar-links">
+    <li><a href="#features" data-i18n="nav_features">Características</a></li>
+    <li><a href="#pricing"  data-i18n="nav_pricing">Precios</a></li>
+    <li><a href="#testimonials" data-i18n="nav_testimonials">Testimonios</a></li>
+  </ul>
+
+  <div class="navbar-actions">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn"        onclick="setLang('en')">EN</button>
+    </div>
+    <a href="https://app.floristmanager.com" target="_blank" rel="noopener"
+       class="btn btn-outline" data-i18n="nav_try">Probar app →</a>
+    <button class="btn btn-primary" onclick="openModal()" data-i18n="nav_cta">Empieza gratis</button>
+  </div>
+
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features"     onclick="closeMenu()" data-i18n="nav_features">Características</a>
+  <a href="#pricing"      onclick="closeMenu()" data-i18n="nav_pricing">Precios</a>
+  <a href="#testimonials" onclick="closeMenu()" data-i18n="nav_testimonials">Testimonios</a>
+  <div class="mobile-actions">
+    <a href="https://app.floristmanager.com" target="_blank" rel="noopener"
+       class="btn btn-outline" data-i18n="nav_try">Probar app →</a>
+    <button class="btn btn-primary" onclick="openModal();closeMenu();" data-i18n="nav_cta">Empieza gratis</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">🌸 <span data-i18n="hero_badge">Hecho para florerías de LATAM</span></div>
+
+    <h1 class="hero-title">
+      <span data-i18n="hero_title_plain">Tu florería,</span><br>
+      <span class="gradient-text" data-i18n="hero_title_grad">sin el caos.</span>
+    </h1>
+
+    <p class="hero-sub" data-i18n="hero_sub">
+      Gestiona pedidos, stock y clientes desde un solo lugar. Hecho para florerías como la tuya.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn btn-brand btn-lg" onclick="openModal()" data-i18n="hero_cta1">Empieza gratis</button>
+      <a href="https://app.floristmanager.com" target="_blank" rel="noopener"
+         class="btn-text-link" data-i18n="hero_cta2">Probar la app →</a>
+    </div>
+
+    <p class="hero-note">
+      <span data-i18n="hero_note1">Sin tarjeta de crédito</span>
+      <span class="dot">·</span>
+      <span data-i18n="hero_note2">Cancela cuando quieras</span>
+    </p>
+
+    <!-- ── DASHBOARD MOCKUP ── -->
+    <div class="mockup-wrapper fade-in">
+      <!-- Sidebar -->
+      <div class="mockup-sidebar">
+        <div class="mockup-sidebar-logo">
+          <svg viewBox="0 0 32 42" width="16" height="21" fill="none">
+            <defs>
+              <linearGradient id="lg2" x1="16" y1="0" x2="16" y2="42" gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#2DBD6E"/>
+                <stop offset="52%"  stop-color="#7EE06A"/>
+                <stop offset="100%" stop-color="#F0407A"/>
+              </linearGradient>
+            </defs>
+            <path d="M2,2 C-1,6 0,20 0,24 C0,30 1,37 4,40 C6,42 10,39 10,35 L10,7 C10,2 6,-1 2,2Z" fill="url(#lg2)"/>
+            <path d="M6,2 C11,-1 22,-1 27,2 C30,5 28,10 23,11 L6,11 C3,11 3,7 4,5 C5,3 5,3 6,2Z" fill="url(#lg2)"/>
+            <path d="M6,17 C11,14 21,14 25,17 C27,19 25,24 21,24 L6,24 C3,24 3,21 4,19 C5,18 5,18 6,17Z" fill="url(#lg2)"/>
+          </svg>
+          Florist Manager
+        </div>
+        <div class="mockup-nav-item active">
+          <div class="mockup-nav-dot" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);"></div>
+          Pedidos
+        </div>
+        <div class="mockup-nav-item">
+          <div class="mockup-nav-dot" style="background:#D1D5DB;"></div>
+          Inventario
+        </div>
+        <div class="mockup-nav-item">
+          <div class="mockup-nav-dot" style="background:#D1D5DB;"></div>
+          Clientes
+        </div>
+        <div class="mockup-nav-item">
+          <div class="mockup-nav-dot" style="background:#D1D5DB;"></div>
+          Reportes
+        </div>
+      </div>
+
+      <!-- Main panel -->
+      <div class="mockup-main">
+        <div class="mockup-top">
+          <div class="mockup-page-title">📦 Pedidos de hoy</div>
+          <div class="mockup-actions-row">
+            <div class="mockup-pill" style="background:var(--gray);color:var(--gray-text);">Filtrar</div>
+            <div class="mockup-pill" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);color:white;">+ Nuevo</div>
+          </div>
+        </div>
+
+        <div class="mockup-stats">
+          <div class="mockup-stat">
+            <div class="mockup-stat-label">Total hoy</div>
+            <div class="mockup-stat-val" style="color:#2DBD6E;">12</div>
+          </div>
+          <div class="mockup-stat">
+            <div class="mockup-stat-label">Pendientes</div>
+            <div class="mockup-stat-val" style="color:#F59E0B;">5</div>
+          </div>
+          <div class="mockup-stat">
+            <div class="mockup-stat-label">Entregados</div>
+            <div class="mockup-stat-val" style="color:#6B7280;">7</div>
+          </div>
+        </div>
+
+        <div class="mockup-table">
+          <div class="mockup-table-head">
+            <div>Cliente</div>
+            <div>Producto</div>
+            <div>Estado</div>
+            <div>Total</div>
+          </div>
+          <div class="mockup-row">
+            <div class="order-client">
+              <div class="order-avatar" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);">MG</div>
+              <div><div class="order-name">María González</div><div class="order-time">Hoy 14:00</div></div>
+            </div>
+            <div style="font-size:13px;">🌹 Rosas x12</div>
+            <div><span class="badge badge-green">Listo</span></div>
+            <div class="order-price">$24.990</div>
+          </div>
+          <div class="mockup-row">
+            <div class="order-client">
+              <div class="order-avatar" style="background:linear-gradient(135deg,#F0407A,#F87BAC);">VT</div>
+              <div><div class="order-name">Valentina Torres</div><div class="order-time">Hoy 16:30</div></div>
+            </div>
+            <div style="font-size:13px;">🌸 Ramo mixto</div>
+            <div><span class="badge badge-yellow">En proceso</span></div>
+            <div class="order-price">$38.500</div>
+          </div>
+          <div class="mockup-row">
+            <div class="order-client">
+              <div class="order-avatar" style="background:linear-gradient(135deg,#7EE06A,#2DBD6E);">CR</div>
+              <div><div class="order-name">Camila Reyes</div><div class="order-time">Retiro tienda</div></div>
+            </div>
+            <div style="font-size:13px;">🌻 Girasoles x6</div>
+            <div><span class="badge badge-pink">Urgente</span></div>
+            <div class="order-price">$18.200</div>
+          </div>
+          <div class="mockup-row">
+            <div class="order-client">
+              <div class="order-avatar" style="background:linear-gradient(135deg,#6366F1,#8B5CF6);">RM</div>
+              <div><div class="order-name">Roberto Muñoz</div><div class="order-time">Mañana 10:00</div></div>
+            </div>
+            <div style="font-size:13px;">🌷 Tulipanes x20</div>
+            <div><span class="badge badge-gray">Pendiente</span></div>
+            <div class="order-price">$52.000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end mockup -->
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PROBLEM
+══════════════════════════════════════ -->
+<section id="problem">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-tag" data-i18n="prob_tag">El problema</div>
+      <h2 class="section-title" data-i18n="prob_title">¿Te suena familiar?</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card fade-in delay-1">
+        <span class="problem-emoji">📋</span>
+        <h3 data-i18n="prob_1">Pedidos anotados en papel o WhatsApp que se pierden</h3>
+      </div>
+      <div class="problem-card fade-in delay-2">
+        <span class="problem-emoji">🌸</span>
+        <h3 data-i18n="prob_2">No sabes qué flores comprar hasta que se te acaban</h3>
+      </div>
+      <div class="problem-card fade-in delay-3">
+        <span class="problem-emoji">💬</span>
+        <h3 data-i18n="prob_3">Clientes que no vuelven porque nadie les dio seguimiento</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FEATURES
+══════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
+    <div class="features-header fade-in">
+      <div class="section-tag" data-i18n="feat_tag">Características</div>
+      <h2 class="section-title" data-i18n="feat_title">Todo lo que necesitas, nada que no.</h2>
+    </div>
+
+    <!-- Feature 1: Orders -->
+    <div class="feature-block fade-in">
+      <div class="feature-text">
+        <div class="feature-num" data-i18n="f1_num">01 — Gestión de pedidos</div>
+        <h3 class="feature-title" data-i18n="f1_title">Gestión de pedidos</h3>
+        <p class="feature-desc"  data-i18n="f1_desc">Crea, edita y rastrea cada pedido en tiempo real. Nunca más pierdas un encargo.</p>
+      </div>
+      <div class="feature-visual">
+        <div style="width:100%;">
+          <div class="fv-card">
+            <div class="fv-dot" style="background:#2DBD6E;"></div>
+            <div class="fv-content">
+              <div class="fv-title">🌹 Ramo de rosas — María G.</div>
+              <div class="fv-sub">Entrega: Hoy 15:00 · <span style="color:#2DBD6E;font-weight:700;">Listo</span></div>
+            </div>
+          </div>
+          <div class="fv-card">
+            <div class="fv-dot" style="background:#F59E0B;"></div>
+            <div class="fv-content">
+              <div class="fv-title">🌸 Ramo mixto — Valentina T.</div>
+              <div class="fv-sub">Entrega: Hoy 17:00 · <span style="color:#F59E0B;font-weight:700;">En proceso</span></div>
+            </div>
+          </div>
+          <div class="fv-card">
+            <div class="fv-dot" style="background:#F0407A;"></div>
+            <div class="fv-content">
+              <div class="fv-title">🌻 Girasoles — Camila R.</div>
+              <div class="fv-sub">Retiro tienda · <span style="color:#F0407A;font-weight:700;">Urgente</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Inventory (reversed) -->
+    <div class="feature-block reverse fade-in">
+      <div class="feature-text">
+        <div class="feature-num" data-i18n="f2_num">02 — Control de stock</div>
+        <h3 class="feature-title" data-i18n="f2_title">Control de stock</h3>
+        <p class="feature-desc"  data-i18n="f2_desc">Sabe exactamente qué tienes y qué necesitas comprar antes de que sea tarde.</p>
+      </div>
+      <div class="feature-visual">
+        <div style="width:100%;">
+          <div style="font-size:11px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px;">Inventario actual</div>
+          <div class="fv-card">
+            <div class="fv-content">
+              <div class="fv-title">🌹 Rosas rojas</div>
+              <div class="progress-bar"><div class="progress-fill" style="width:75%;background:linear-gradient(90deg,#2DBD6E,#7EE06A);"></div></div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#2DBD6E;margin-left:10px;white-space:nowrap;">75 u.</div>
+          </div>
+          <div class="fv-card">
+            <div class="fv-content">
+              <div class="fv-title">🌸 Flores mixtas</div>
+              <div class="progress-bar"><div class="progress-fill" style="width:40%;background:linear-gradient(90deg,#F59E0B,#FCD34D);"></div></div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-left:10px;white-space:nowrap;">40 u.</div>
+          </div>
+          <div class="fv-card">
+            <div class="fv-content">
+              <div class="fv-title">🌻 Girasoles</div>
+              <div class="progress-bar"><div class="progress-fill" style="width:14%;background:linear-gradient(90deg,#F0407A,#F87BAC);"></div></div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#F0407A;margin-left:10px;white-space:nowrap;">⚠ 8 u.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Customers -->
+    <div class="feature-block fade-in">
+      <div class="feature-text">
+        <div class="feature-num" data-i18n="f3_num">03 — Seguimiento de clientes</div>
+        <h3 class="feature-title" data-i18n="f3_title">Seguimiento de clientes</h3>
+        <p class="feature-desc"  data-i18n="f3_desc">Historial completo, preferencias y recordatorios automáticos para fidelizar.</p>
+      </div>
+      <div class="feature-visual">
+        <div style="width:100%;">
+          <div class="fv-card" style="flex-direction:column;align-items:flex-start;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#2DBD6E,#7EE06A);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:13px;flex-shrink:0;">MG</div>
+              <div>
+                <div class="fv-title">María González</div>
+                <div class="fv-sub">Cliente desde 2023 · 14 pedidos</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span class="badge badge-green">🌹 Prefiere rosas</span>
+              <span class="badge badge-green">💝 Aniversario: 15 Jun</span>
+            </div>
+            <div style="font-size:12px;color:var(--gray-text);background:var(--gray);padding:8px 10px;border-radius:8px;width:100%;">
+              🔔 Recordatorio enviado hace 2 días
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:0;">
+            <div class="fv-card" style="flex:1;margin-bottom:0;">
+              <span style="font-size:18px;">💰</span>
+              <div class="fv-content">
+                <div style="font-size:11px;color:var(--gray-text);">LTV total</div>
+                <div style="font-size:15px;font-weight:800;">$284.500</div>
+              </div>
+            </div>
+            <div class="fv-card" style="flex:1;margin-bottom:0;">
+              <span style="font-size:18px;">⭐</span>
+              <div class="fv-content">
+                <div style="font-size:11px;color:var(--gray-text);">NPS</div>
+                <div style="font-size:15px;font-weight:800;">Promotor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS
+     Replace with real testimonials
+══════════════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="fade-in" style="text-align:center;">
+      <div class="section-tag" data-i18n="t_tag">Testimonios</div>
+      <h2 class="section-title" data-i18n="t_title">Florerías que ya trabajan diferente</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in delay-1">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote" data-i18n="t1_q">"Antes perdía pedidos cada semana. Ahora tengo todo en un solo lugar."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);">MG</div>
+          <div>
+            <div class="t-name">María González</div>
+            <div class="t-shop">Florería Primavera, Santiago</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in delay-2">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote" data-i18n="t2_q">"El control de stock me cambió la vida. Compro mejor y gasto menos."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#F0407A,#F87BAC);">VT</div>
+          <div>
+            <div class="t-name">Valentina Torres</div>
+            <div class="t-shop">Flores del Valle, Medellín</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in delay-3">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote" data-i18n="t3_q">"Mis clientes notan la diferencia. Saben que los recuerdo."</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:linear-gradient(135deg,#7EE06A,#2DBD6E);">CR</div>
+          <div>
+            <div class="t-name">Camila Reyes</div>
+            <div class="t-shop">Studio Floral, Buenos Aires</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PRICING
+══════════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-header fade-in">
+      <div class="section-tag" data-i18n="p_tag">Precios</div>
+      <h2 class="section-title" data-i18n="p_title">Simple. Sin sorpresas.</h2>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="pricing-card fade-in delay-1">
+        <div class="pricing-plan-name" data-i18n="p1_name">Plan Gratis</div>
+        <div class="pricing-price">
+          <span class="pricing-amount">$0</span>
+          <span class="pricing-mo">/mo</span>
+        </div>
+        <p class="pricing-tagline" data-i18n="p1_tag">Para empezar sin compromiso</p>
+        <ul class="pricing-feats">
+          <li data-i18n="p1_f1">Hasta 50 pedidos/mes</li>
+          <li data-i18n="p1_f2">1 usuario</li>
+          <li data-i18n="p1_f3">Gestión de pedidos</li>
+          <li data-i18n="p1_f4">Soporte por email</li>
+        </ul>
+        <button class="btn btn-outline" style="width:100%;" onclick="openModal()" data-i18n="p1_cta">Empezar gratis</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card featured fade-in delay-2">
+        <div class="pricing-popular" data-i18n="p2_badge">Más popular</div>
+        <div class="pricing-plan-name">Plan Pro</div>
+        <div class="pricing-price">
+          <span class="pricing-amount">$19</span>
+          <span class="pricing-mo">/mo</span>
+        </div>
+        <p class="pricing-tagline" data-i18n="p2_tag">Para florerías que quieren crecer</p>
+        <ul class="pricing-feats">
+          <li data-i18n="p2_f1">Pedidos ilimitados</li>
+          <li data-i18n="p2_f2">Hasta 3 usuarios</li>
+          <li data-i18n="p2_f3">Stock + clientes + reportes</li>
+          <li data-i18n="p2_f4">Soporte prioritario</li>
+          <li data-i18n="p2_f5">Integraciones próximamente</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%;" onclick="openModal()" data-i18n="p2_cta">Empezar prueba gratis</button>
+      </div>
+    </div>
+
+    <p class="pricing-note fade-in" data-i18n="p_note">Todos los planes incluyen 14 días de prueba gratis.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CTA BAND
+══════════════════════════════════════ -->
+<section id="cta-band">
+  <div class="container fade-in">
+    <h2 class="section-title" data-i18n="cta_title">Empieza hoy. Es gratis.</h2>
+    <p class="section-subtitle" data-i18n="cta_sub">Sin tarjeta de crédito. Sin compromisos. Solo orden.</p>
+    <button class="btn btn-white btn-lg" onclick="openModal()" data-i18n="cta_btn">Empieza gratis</button>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">
+      <svg viewBox="0 0 32 42" width="22" height="29" fill="none">
+        <defs>
+          <linearGradient id="lg3" x1="16" y1="0" x2="16" y2="42" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#2DBD6E"/>
+            <stop offset="52%"  stop-color="#7EE06A"/>
+            <stop offset="100%" stop-color="#F0407A"/>
+          </linearGradient>
+        </defs>
+        <path d="M2,2 C-1,6 0,20 0,24 C0,30 1,37 4,40 C6,42 10,39 10,35 L10,7 C10,2 6,-1 2,2Z" fill="url(#lg3)"/>
+        <path d="M6,2 C11,-1 22,-1 27,2 C30,5 28,10 23,11 L6,11 C3,11 3,7 4,5 C5,3 5,3 6,2Z" fill="url(#lg3)"/>
+        <path d="M6,17 C11,14 21,14 25,17 C27,19 25,24 21,24 L6,24 C3,24 3,21 4,19 C5,18 5,18 6,17Z" fill="url(#lg3)"/>
+      </svg>
+      Florist Manager
+    </a>
+    <p class="footer-tagline" data-i18n="ft_tagline">Hecho para florerías de LATAM 🌸</p>
+    <div class="footer-links">
+      <a href="#" data-i18n="ft_terms">Términos de uso</a>
+      <a href="#" data-i18n="ft_privacy">Privacidad</a>
+      <a href="#" data-i18n="ft_contact">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2025 Florist Manager</p>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     MODAL
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div id="modalForm">
+      <div class="modal-logo">
+        <svg viewBox="0 0 32 42" width="28" height="37" fill="none">
+          <defs>
+            <linearGradient id="lg4" x1="16" y1="0" x2="16" y2="42" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#2DBD6E"/>
+              <stop offset="52%"  stop-color="#7EE06A"/>
+              <stop offset="100%" stop-color="#F0407A"/>
+            </linearGradient>
+          </defs>
+          <path d="M2,2 C-1,6 0,20 0,24 C0,30 1,37 4,40 C6,42 10,39 10,35 L10,7 C10,2 6,-1 2,2Z" fill="url(#lg4)"/>
+          <path d="M6,2 C11,-1 22,-1 27,2 C30,5 28,10 23,11 L6,11 C3,11 3,7 4,5 C5,3 5,3 6,2Z" fill="url(#lg4)"/>
+          <path d="M6,17 C11,14 21,14 25,17 C27,19 25,24 21,24 L6,24 C3,24 3,21 4,19 C5,18 5,18 6,17Z" fill="url(#lg4)"/>
+        </svg>
+        <span>Florist Manager</span>
+      </div>
+
+      <h2 class="modal-title" data-i18n="m_title">Empieza tu prueba gratis</h2>
+      <p class="modal-sub" data-i18n="m_sub">Sin tarjeta de crédito. 14 días gratis.</p>
+
+      <form id="betaForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" data-i18n="m_name_lbl">Nombre</label>
+          <input class="form-input" type="text" required
+                 data-i18n-ph="m_name_ph" placeholder="María González">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" required placeholder="hola@tufloreria.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            WhatsApp
+            <span style="font-weight:400;color:var(--gray-text);" data-i18n="m_optional">(opcional)</span>
+          </label>
+          <input class="form-input" type="tel"
+                 data-i18n-ph="m_wa_ph" placeholder="+56 9 1234 5678">
+        </div>
+        <button type="submit" class="btn btn-brand btn-lg" style="width:100%;" data-i18n="m_submit">
+          Unirme a la beta
+        </button>
+      </form>
+    </div>
+
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-emoji">🌸</div>
+      <h3 class="success-title" data-i18n="m_ok_title">¡Listo!</h3>
+      <p class="success-sub" data-i18n="m_ok_sub">Te contactaremos pronto. 🌸</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+// ── TRANSLATIONS ──────────────────────
+const T = {
+  es: {
+    nav_features: 'Características',
+    nav_pricing: 'Precios',
+    nav_testimonials: 'Testimonios',
+    nav_try: 'Probar app →',
+    nav_cta: 'Empieza gratis',
+
+    hero_badge: 'Hecho para florerías de LATAM',
+    hero_title_plain: 'Tu florería,',
+    hero_title_grad: 'sin el caos.',
+    hero_sub: 'Gestiona pedidos, stock y clientes desde un solo lugar. Hecho para florerías como la tuya.',
+    hero_cta1: 'Empieza gratis',
+    hero_cta2: 'Probar la app →',
+    hero_note1: 'Sin tarjeta de crédito',
+    hero_note2: 'Cancela cuando quieras',
+
+    prob_tag: 'El problema',
+    prob_title: '¿Te suena familiar?',
+    prob_1: 'Pedidos anotados en papel o WhatsApp que se pierden',
+    prob_2: 'No sabes qué flores comprar hasta que se te acaban',
+    prob_3: 'Clientes que no vuelven porque nadie les dio seguimiento',
+
+    feat_tag: 'Características',
+    feat_title: 'Todo lo que necesitas, nada que no.',
+    f1_num: '01 — Gestión de pedidos',
+    f1_title: 'Gestión de pedidos',
+    f1_desc: 'Crea, edita y rastrea cada pedido en tiempo real. Nunca más pierdas un encargo.',
+    f2_num: '02 — Control de stock',
+    f2_title: 'Control de stock',
+    f2_desc: 'Sabe exactamente qué tienes y qué necesitas comprar antes de que sea tarde.',
+    f3_num: '03 — Seguimiento de clientes',
+    f3_title: 'Seguimiento de clientes',
+    f3_desc: 'Historial completo, preferencias y recordatorios automáticos para fidelizar.',
+
+    t_tag: 'Testimonios',
+    t_title: 'Florerías que ya trabajan diferente',
+    t1_q: '"Antes perdía pedidos cada semana. Ahora tengo todo en un solo lugar."',
+    t2_q: '"El control de stock me cambió la vida. Compro mejor y gasto menos."',
+    t3_q: '"Mis clientes notan la diferencia. Saben que los recuerdo."',
+
+    p_tag: 'Precios',
+    p_title: 'Simple. Sin sorpresas.',
+    p1_name: 'Plan Gratis',
+    p1_tag: 'Para empezar sin compromiso',
+    p1_f1: 'Hasta 50 pedidos/mes',
+    p1_f2: '1 usuario',
+    p1_f3: 'Gestión de pedidos',
+    p1_f4: 'Soporte por email',
+    p1_cta: 'Empezar gratis',
+    p2_badge: 'Más popular',
+    p2_tag: 'Para florerías que quieren crecer',
+    p2_f1: 'Pedidos ilimitados',
+    p2_f2: 'Hasta 3 usuarios',
+    p2_f3: 'Stock + clientes + reportes',
+    p2_f4: 'Soporte prioritario',
+    p2_f5: 'Integraciones próximamente',
+    p2_cta: 'Empezar prueba gratis',
+    p_note: 'Todos los planes incluyen 14 días de prueba gratis.',
+
+    cta_title: 'Empieza hoy. Es gratis.',
+    cta_sub: 'Sin tarjeta de crédito. Sin compromisos. Solo orden.',
+    cta_btn: 'Empieza gratis',
+
+    ft_tagline: 'Hecho para florerías de LATAM 🌸',
+    ft_terms: 'Términos de uso',
+    ft_privacy: 'Privacidad',
+    ft_contact: 'Contacto',
+
+    m_title: 'Empieza tu prueba gratis',
+    m_sub: 'Sin tarjeta de crédito. 14 días gratis.',
+    m_name_lbl: 'Nombre',
+    m_name_ph: 'María González',
+    m_optional: '(opcional)',
+    m_wa_ph: '+56 9 1234 5678',
+    m_submit: 'Unirme a la beta',
+    m_ok_title: '¡Listo!',
+    m_ok_sub: 'Te contactaremos pronto. 🌸',
+  },
+  en: {
+    nav_features: 'Features',
+    nav_pricing: 'Pricing',
+    nav_testimonials: 'Testimonials',
+    nav_try: 'Try the app →',
+    nav_cta: 'Start for free',
+
+    hero_badge: 'Built for flower shops in LATAM',
+    hero_title_plain: 'Your flower shop,',
+    hero_title_grad: 'without the chaos.',
+    hero_sub: 'Manage orders, inventory and customers from one place. Built for flower shops like yours.',
+    hero_cta1: 'Start for free',
+    hero_cta2: 'Try the app →',
+    hero_note1: 'No credit card',
+    hero_note2: 'Cancel anytime',
+
+    prob_tag: 'The problem',
+    prob_title: 'Sound familiar?',
+    prob_1: 'Orders written on paper or WhatsApp that get lost',
+    prob_2: "You don't know what to buy until you run out",
+    prob_3: "Customers who don't come back because no one followed up",
+
+    feat_tag: 'Features',
+    feat_title: "Everything you need. Nothing you don't.",
+    f1_num: '01 — Order Management',
+    f1_title: 'Order Management',
+    f1_desc: 'Create, edit and track every order in real time. Never lose an order again.',
+    f2_num: '02 — Inventory Control',
+    f2_title: 'Inventory Control',
+    f2_desc: "Know exactly what you have and what you need to buy before it's too late.",
+    f3_num: '03 — Customer Follow-up',
+    f3_title: 'Customer Follow-up',
+    f3_desc: 'Full history, preferences and automatic reminders to build loyalty.',
+
+    t_tag: 'Testimonials',
+    t_title: 'Flower shops already working smarter',
+    t1_q: '"I used to lose orders every week. Now I have everything in one place."',
+    t2_q: '"Inventory control changed my life. I buy smarter and spend less."',
+    t3_q: '"My customers notice the difference. They know I remember them."',
+
+    p_tag: 'Pricing',
+    p_title: 'Simple. No surprises.',
+    p1_name: 'Free Plan',
+    p1_tag: 'Start with no commitment',
+    p1_f1: 'Up to 50 orders/month',
+    p1_f2: '1 user',
+    p1_f3: 'Order management',
+    p1_f4: 'Email support',
+    p1_cta: 'Start free',
+    p2_badge: 'Most popular',
+    p2_tag: 'For shops ready to grow',
+    p2_f1: 'Unlimited orders',
+    p2_f2: 'Up to 3 users',
+    p2_f3: 'Inventory + customers + reports',
+    p2_f4: 'Priority support',
+    p2_f5: 'Integrations coming soon',
+    p2_cta: 'Start free trial',
+    p_note: 'All plans include a 14-day free trial.',
+
+    cta_title: "Start today. It's free.",
+    cta_sub: 'No credit card. No commitment. Just clarity.',
+    cta_btn: 'Start for free',
+
+    ft_tagline: 'Built for flower shops in LATAM 🌸',
+    ft_terms: 'Terms of use',
+    ft_privacy: 'Privacy',
+    ft_contact: 'Contact',
+
+    m_title: 'Start your free trial',
+    m_sub: 'No credit card. 14 days free.',
+    m_name_lbl: 'Name',
+    m_name_ph: 'Maria González',
+    m_optional: '(optional)',
+    m_wa_ph: '+1 555 123 4567',
+    m_submit: 'Join the beta',
+    m_ok_title: 'Done!',
+    m_ok_sub: "We'll be in touch soon. 🌸",
+  }
+};
+
+let lang = 'es';
+
+function setLang(l) {
+  lang = l;
+  const t = T[l];
+
+  // Text content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+
+  // Placeholders
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.getAttribute('data-i18n-ph');
+    if (t[k] !== undefined) el.placeholder = t[k];
+  });
+
+  // Lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === l.toUpperCase());
+  });
+
+  document.documentElement.lang = l;
+}
+
+// ── NAVBAR SCROLL ──────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+// ── HAMBURGER ─────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// ── MODAL ─────────────────────────────
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modalForm').style.display = 'block';
+  document.getElementById('modalSuccess').classList.remove('show');
+  document.getElementById('betaForm').reset();
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === e.currentTarget) closeModal();
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('modalForm').style.display = 'none';
+  document.getElementById('modalSuccess').classList.add('show');
+  // Refresh translated success text
+  setLang(lang);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── FADE-IN OBSERVER ──────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
