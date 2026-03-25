@@ -869,6 +869,57 @@
       .mockup-stat { padding: 7px 7px; }
       .pricing-card { padding: 24px 18px; }
     }
+
+    /* Blog section */
+    .blog-section { padding: 80px 24px; background: var(--gray-bg); }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .blog-card {
+      background: white;
+      border: 1px solid var(--gray-line);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .blog-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .blog-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .blog-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      line-height: 1.35;
+    }
+    .blog-card p {
+      font-size: 0.83rem;
+      color: var(--gray-text);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .blog-read {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-section { padding: 56px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -887,6 +938,7 @@
   <ul class="navbar-links">
     <li><a href="#features" data-i18n="nav_features">Características</a></li>
     <li><a href="#pricing"  data-i18n="nav_pricing">Precios</a></li>
+    <li><a href="/blog">Blog</a></li>
   </ul>
 
   <div class="navbar-actions">
@@ -1276,6 +1328,40 @@
     <h2 class="section-title" data-i18n="cta_title">Empieza hoy. Es gratis.</h2>
     <p class="section-subtitle" data-i18n="cta_sub">Sin tarjeta de crédito. Sin compromisos. Solo orden.</p>
     <a href="/register" target="_blank" rel="noopener" class="btn btn-white btn-lg" data-i18n="cta_btn">Empieza gratis</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     BLOG
+══════════════════════════════════════ -->
+<section class="blog-section" id="blog">
+  <div style="text-align:center;margin-bottom:40px;">
+    <p class="section-tag">Recursos</p>
+    <h2 class="section-title">Aprende a gestionar<br>mejor tu florería</h2>
+  </div>
+  <div class="blog-grid">
+    <a href="/blog/como-organizar-pedidos-floreria" class="blog-card fade-in">
+      <span class="blog-tag">Operaciones</span>
+      <h3>Cómo organizar los pedidos de tu florería sin perder ninguno</h3>
+      <p>Cuaderno, WhatsApp, papel: los tres enemigos del orden. Te contamos el sistema que usan las florerías más organizadas de LATAM.</p>
+      <span class="blog-read">Leer artículo →</span>
+    </a>
+    <a href="/blog/control-stock-flores-perecederas" class="blog-card fade-in">
+      <span class="blog-tag">Inventario</span>
+      <h3>Control de stock para flores perecederas: guía práctica</h3>
+      <p>Las flores duran días, no meses. Aprende a manejar el inventario de tu florería sin desperdiciar ni quedarte sin stock en el momento clave.</p>
+      <span class="blog-read">Leer artículo →</span>
+    </a>
+    <a href="/blog/software-floreria-chile" class="blog-card fade-in">
+      <span class="blog-tag">Software</span>
+      <h3>Software para florería en Chile: qué considerar antes de elegir</h3>
+      <p>No todos los programas de gestión son iguales. Esto es lo que debes revisar antes de contratar cualquier sistema para tu florería.</p>
+      <span class="blog-read">Leer artículo →</span>
+    </a>
+  </div>
+  <div style="text-align:center;margin-top:36px;">
+    <a href="/blog" style="font-size:0.88rem;font-weight:700;color:var(--green);text-decoration:none;">Ver todos los artículos →</a>
   </div>
 </section>
 

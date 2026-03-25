@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog para Florerías — Recursos y Consejos | Florist Manager</title>
+  <meta name="description" content="Guías y consejos prácticos para dueños de florerías en Chile y LATAM. Gestión de pedidos, control de stock, atención al cliente y más.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #3db853;
+      --green-dark: #2da84a;
+      --bg: #f5faf6;
+      --white: #ffffff;
+      --border: #e5e7eb;
+      --text: #111827;
+      --text2: #4b5563;
+      --muted: #9ca3af;
+    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .nav-logo-img {
+      width: 32px; height: 32px;
+      overflow: hidden;
+    }
+    .nav-logo-img img {
+      width: 170%; height: 170%;
+      object-fit: contain;
+      margin: -35% 0 0 -35%;
+    }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: 0.88rem; color: var(--text2); }
+    .nav-links a:hover { color: var(--text); }
+    .btn-sm {
+      padding: 8px 18px;
+      background: var(--green);
+      color: white;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* Hero */
+    .blog-hero {
+      padding: 64px 24px 48px;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .blog-hero-tag {
+      display: inline-block;
+      background: rgba(61,184,83,0.1);
+      color: var(--green-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .blog-hero h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+    .blog-hero p { font-size: 1rem; color: var(--text2); line-height: 1.6; }
+
+    /* Grid */
+    .blog-container { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .blog-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .blog-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .blog-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+    }
+    .blog-card h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.35; }
+    .blog-card p { font-size: 0.83rem; color: var(--text2); line-height: 1.6; flex: 1; }
+    .blog-read { font-size: 0.8rem; font-weight: 700; color: var(--green); margin-top: 4px; }
+
+    /* CTA band */
+    .blog-cta {
+      background: linear-gradient(135deg, #1d8c38, #3db853);
+      border-radius: 20px;
+      padding: 48px 32px;
+      text-align: center;
+      margin: 0 24px 80px;
+      max-width: 1040px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .blog-cta h2 { font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 8px; }
+    .blog-cta p { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 24px; }
+    .blog-cta a {
+      display: inline-block;
+      background: white;
+      color: var(--green-dark);
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 0.93rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer a:hover { color: var(--text2); }
+
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-hero h1 { font-size: 1.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-img"><img src="/logo.png" alt="Florist Manager"></div>
+    Florist Manager
+  </a>
+  <div class="nav-links">
+    <a href="/#features">Características</a>
+    <a href="/#pricing">Precios</a>
+    <a href="/blog" style="color:var(--green);font-weight:600;">Blog</a>
+    <a href="/register" class="btn-sm">Empieza gratis</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <span class="blog-hero-tag">Recursos gratuitos</span>
+  <h1>Aprende a gestionar mejor tu florería</h1>
+  <p>Guías prácticas para dueños de florerías en Chile y LATAM. Sin tecnicismos, solo lo que sirve.</p>
+</div>
+
+<div class="blog-container">
+  <div class="blog-grid">
+
+    <a href="/blog/como-organizar-pedidos-floreria" class="blog-card">
+      <span class="blog-tag">Operaciones</span>
+      <h2>Cómo organizar los pedidos de tu florería sin perder ninguno</h2>
+      <p>Cuaderno, WhatsApp, papel: los tres enemigos del orden. Te contamos el sistema que usan las florerías más organizadas de LATAM.</p>
+      <span class="blog-read">Leer artículo →</span>
+    </a>
+
+    <a href="/blog/control-stock-flores-perecederas" class="blog-card">
+      <span class="blog-tag">Inventario</span>
+      <h2>Control de stock para flores perecederas: guía práctica</h2>
+      <p>Las flores duran días, no meses. Aprende a manejar el inventario de tu florería sin desperdiciar ni quedarte sin stock en el momento clave.</p>
+      <span class="blog-read">Leer artículo →</span>
+    </a>
+
+    <a href="/blog/software-floreria-chile" class="blog-card">
+      <span class="blog-tag">Software</span>
+      <h2>Software para florería en Chile: qué considerar antes de elegir</h2>
+      <p>No todos los programas de gestión son iguales. Esto es lo que debes revisar antes de contratar cualquier sistema para tu florería.</p>
+      <span class="blog-read">Leer artículo →</span>
+    </a>
+
+  </div>
+</div>
+
+<div class="blog-cta" style="margin-bottom:48px;">
+  <h2>¿Listo para ordenar tu florería?</h2>
+  <p>Prueba Florist Manager gratis. Sin tarjeta de crédito.</p>
+  <a href="/register">Crear mi cuenta gratis</a>
+</div>
+
+<footer>
+  <a href="/">floristmanager.com</a>
+  <a href="/#pricing">Precios</a>
+  <a href="/register">Registro</a>
+  <br><br>
+  © 2025 Florist Manager — Hecho para florerías de LATAM
+</footer>
+
+</body>
+</html>
