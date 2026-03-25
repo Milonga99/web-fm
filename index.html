@@ -508,32 +508,33 @@
     .progress-bar { background: rgba(0,0,0,0.06); border-radius: 4px; height: 5px; margin-top: 6px; overflow: hidden; }
     .progress-fill { height: 100%; border-radius: 4px; }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--gray); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 48px;
+    /* ── BETA BANNER ── */
+    #beta-banner {
+      background: var(--gray);
+      padding: 72px 32px;
+      text-align: center;
     }
-    .testimonial-card {
+    .beta-banner-inner {
+      max-width: 640px;
+      margin: 0 auto;
       background: white;
+      border: 1.5px solid rgba(45,189,110,0.22);
       border-radius: var(--radius);
-      padding: 32px 28px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
+      padding: 48px 40px;
+      box-shadow: 0 4px 32px rgba(45,189,110,0.08);
     }
-    .t-stars { font-size: 13px; letter-spacing: 2px; color: #F59E0B; margin-bottom: 14px; }
-    .t-quote { font-size: 16px; line-height: 1.65; flex: 1; margin-bottom: 20px; font-style: italic; }
-    .t-author { display: flex; align-items: center; gap: 12px; }
-    .t-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 13px; color: white; flex-shrink: 0;
+    .beta-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(45,189,110,0.12), rgba(126,224,106,0.08));
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
     }
-    .t-name { font-size: 14px; font-weight: 700; }
-    .t-shop { font-size: 12px; color: var(--gray-text); margin-top: 1px; }
 
     /* ── PRICING ── */
     #pricing { background: white; }
@@ -783,7 +784,6 @@
   <ul class="navbar-links">
     <li><a href="#features" data-i18n="nav_features">Características</a></li>
     <li><a href="#pricing"  data-i18n="nav_pricing">Precios</a></li>
-    <li><a href="#testimonials" data-i18n="nav_testimonials">Testimonios</a></li>
   </ul>
 
   <div class="navbar-actions">
@@ -804,7 +804,6 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#features"     onclick="closeMenu()" data-i18n="nav_features">Características</a>
   <a href="#pricing"      onclick="closeMenu()" data-i18n="nav_pricing">Precios</a>
-  <a href="#testimonials" onclick="closeMenu()" data-i18n="nav_testimonials">Testimonios</a>
   <div class="mobile-actions">
     <a href="https://app.floristmanager.com/register" target="_blank" rel="noopener"
        class="btn btn-primary" data-i18n="nav_cta">Empieza gratis</a>
@@ -1098,56 +1097,17 @@
 
 
 <!-- ══════════════════════════════════════
-     TESTIMONIALS
+     BETA BANNER
 ══════════════════════════════════════ -->
-<section id="testimonials">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;">
-      <div class="section-tag" data-i18n="t_tag">Testimonios</div>
-      <h2 class="section-title" data-i18n="t_title">Lo que dicen las primeras florerías</h2>
-    </div>
-    <div class="testimonials-grid">
-
-      <!-- TESTIMONIO REAL PENDIENTE -->
-      <div class="testimonial-card fade-in delay-1" style="border:1.5px dashed rgba(45,189,110,0.25);box-shadow:none;background:#FAFAFA;">
-        <p class="t-quote" style="color:var(--gray-text);font-style:normal;" data-i18n="t1_q">"Testimonio real próximamente — estamos en beta activa."</p>
-        <div class="t-author">
-          <div style="width:36px;height:36px;border-radius:50%;background:var(--gray);flex-shrink:0;"></div>
-          <div>
-            <div class="t-name" style="color:var(--gray-text);" data-i18n="t1_name">Florería beta · Chile</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TESTIMONIO REAL PENDIENTE -->
-      <div class="testimonial-card fade-in delay-2" style="border:1.5px dashed rgba(45,189,110,0.25);box-shadow:none;background:#FAFAFA;">
-        <p class="t-quote" style="color:var(--gray-text);font-style:normal;" data-i18n="t2_q">"Testimonio real próximamente — estamos en beta activa."</p>
-        <div class="t-author">
-          <div style="width:36px;height:36px;border-radius:50%;background:var(--gray);flex-shrink:0;"></div>
-          <div>
-            <div class="t-name" style="color:var(--gray-text);" data-i18n="t2_name">Florería beta · Colombia</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TESTIMONIO REAL PENDIENTE -->
-      <div class="testimonial-card fade-in delay-3" style="border:1.5px dashed rgba(45,189,110,0.25);box-shadow:none;background:#FAFAFA;">
-        <p class="t-quote" style="color:var(--gray-text);font-style:normal;" data-i18n="t3_q">"Testimonio real próximamente — estamos en beta activa."</p>
-        <div class="t-author">
-          <div style="width:36px;height:36px;border-radius:50%;background:var(--gray);flex-shrink:0;"></div>
-          <div>
-            <div class="t-name" style="color:var(--gray-text);" data-i18n="t3_name">Florería beta · Argentina</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Banner beta -->
-    <div class="fade-in" style="margin-top:40px;background:linear-gradient(135deg,rgba(45,189,110,0.08),rgba(126,224,106,0.06));border:1.5px solid rgba(45,189,110,0.18);border-radius:var(--radius);padding:28px 32px;text-align:center;">
-      <p style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;" data-i18n="beta_banner_title">🌱 Florist Manager está en beta activa.</p>
-      <p style="font-size:15px;color:var(--gray-text);" data-i18n="beta_banner_sub">Sé de las primeras florerías en usarlo y ayúdanos a construir la herramienta perfecta.</p>
-    </div>
+<section id="beta-banner">
+  <div class="beta-banner-inner fade-in">
+    <div class="beta-pill" data-i18n="beta_pill">Beta activa</div>
+    <h2 style="font-size:clamp(22px,3.5vw,32px);font-weight:800;line-height:1.2;letter-spacing:-0.02em;margin-bottom:12px;" data-i18n="beta_title">
+      Florist Manager está en beta activa.
+    </h2>
+    <p style="font-size:18px;color:var(--gray-text);line-height:1.65;max-width:480px;margin:0 auto;" data-i18n="beta_sub">
+      Sé de las primeras florerías en usarlo.
+    </p>
   </div>
 </section>
 
@@ -1332,16 +1292,9 @@ const T = {
     f3_title: 'Seguimiento de clientes',
     f3_desc: 'Historial completo, preferencias y recordatorios automáticos para fidelizar.',
 
-    t_tag: 'Testimonios',
-    t_title: 'Lo que dicen las primeras florerías',
-    t1_q: 'Testimonio real próximamente — estamos en beta activa.',
-    t1_name: 'Florería beta · Chile',
-    t2_q: 'Testimonio real próximamente — estamos en beta activa.',
-    t2_name: 'Florería beta · Colombia',
-    t3_q: 'Testimonio real próximamente — estamos en beta activa.',
-    t3_name: 'Florería beta · Argentina',
-    beta_banner_title: '🌱 Florist Manager está en beta activa.',
-    beta_banner_sub: 'Sé de las primeras florerías en usarlo y ayúdanos a construir la herramienta perfecta.',
+    beta_pill: 'Beta activa',
+    beta_title: 'Florist Manager está en beta activa.',
+    beta_sub: 'Sé de las primeras florerías en usarlo.',
 
     p_tag: 'Precios',
     p_title: 'Simple. Sin sorpresas.',
@@ -1416,16 +1369,9 @@ const T = {
     f3_title: 'Customer Follow-up',
     f3_desc: 'Full history, preferences and automatic reminders to build loyalty.',
 
-    t_tag: 'Testimonials',
-    t_title: 'What the first flower shops say',
-    t1_q: 'Real testimonial coming soon — we\'re in active beta.',
-    t1_name: 'Beta flower shop · Chile',
-    t2_q: 'Real testimonial coming soon — we\'re in active beta.',
-    t2_name: 'Beta flower shop · Colombia',
-    t3_q: 'Real testimonial coming soon — we\'re in active beta.',
-    t3_name: 'Beta flower shop · Argentina',
-    beta_banner_title: '🌱 Florist Manager is in active beta.',
-    beta_banner_sub: 'Be one of the first flower shops to use it and help us build the perfect tool.',
+    beta_pill: 'Active beta',
+    beta_title: 'Florist Manager is in active beta.',
+    beta_sub: 'Be one of the first flower shops to use it.',
 
     p_tag: 'Pricing',
     p_title: 'Simple. No surprises.',
