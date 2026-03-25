@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo calcular el precio de un arreglo floral | Florist Manager</title>
+  <meta name="description" content="Aprende a calcular el precio de un arreglo floral con una fórmula práctica: costos, margen y cuánto cobrar sin quedar corto ni ahuyentar clientes.">
+  <link rel="canonical" href="https://www.floristmanager.com/blog/como-calcular-precio-arreglo-floral">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Article", "FAQPage"],
+    "headline": "Cómo calcular el precio de un arreglo floral",
+    "description": "Aprende a calcular el precio de un arreglo floral con una fórmula práctica: costos, margen y cuánto cobrar sin quedar corto ni ahuyentar clientes.",
+    "author": { "@type": "Organization", "name": "Florist Manager" },
+    "publisher": { "@type": "Organization", "name": "Florist Manager", "url": "https://www.floristmanager.com" },
+    "inLanguage": "es",
+    "url": "https://www.floristmanager.com/blog/como-calcular-precio-arreglo-floral",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Qué porcentaje de margen debería tener un arreglo floral?", "acceptedAnswer": { "@type": "Answer", "text": "El margen neto recomendable para una florería saludable es de entre 40% y 60% sobre el precio de venta. Si estás por debajo del 35%, probablemente estás cobrando muy poco o tus costos ocultos son altos." } },
+      { "@type": "Question", "name": "¿Cómo calculo el costo de mano de obra en un arreglo?", "acceptedAnswer": { "@type": "Answer", "text": "Divide tu sueldo mensual (o el de quien arma los arreglos) por las horas trabajadas al mes. Eso te da un costo por hora. Luego multiplica por el tiempo real que tardas en hacer cada arreglo. Ese es tu costo de mano de obra por pieza." } },
+      { "@type": "Question", "name": "¿Debo cobrar diferente en fechas como San Valentín?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. En temporada alta los costos de las flores suben, la demanda es mayor y tu tiempo vale más. Es completamente válido ajustar precios según la temporada, siempre siendo transparente con el cliente." } }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --green: #3db853; --green-dark: #2da84a; --bg: #f5faf6; --white: #ffffff; --border: #e5e7eb; --text: #111827; --text2: #374151; --muted: #9ca3af; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); }
+    a { color: var(--green-dark); }
+    nav { background: white; border-bottom: 1px solid var(--border); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--text); text-decoration: none; }
+    .nav-logo-img { width: 32px; height: 32px; overflow: hidden; }
+    .nav-logo-img img { width: 170%; height: 170%; object-fit: contain; margin: -35% 0 0 -35%; }
+    .nav-cta { padding: 8px 18px; background: var(--green); color: white; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.83rem; color: var(--muted); text-decoration: none; margin-bottom: 24px; }
+    .back-link:hover { color: var(--text2); }
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+    .article-tag { display: inline-block; background: rgba(61,184,83,0.1); color: var(--green-dark); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+    h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .article-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .article-body h2 { font-size: 1.3rem; font-weight: 700; margin: 36px 0 14px; }
+    .article-body h3 { font-size: 1.05rem; font-weight: 700; margin: 28px 0 10px; }
+    .article-body p { font-size: 0.97rem; line-height: 1.75; color: var(--text2); margin-bottom: 16px; }
+    .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 16px; }
+    .article-body li { font-size: 0.97rem; line-height: 1.75; color: var(--text2); margin-bottom: 6px; }
+    .highlight-box { background: rgba(61,184,83,0.08); border-left: 3px solid var(--green); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 24px 0; }
+    .highlight-box p { margin: 0; font-weight: 500; color: var(--text); }
+    .faq-section { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 32px; }
+    .faq-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; }
+    .faq-item { margin-bottom: 24px; }
+    .faq-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .faq-item p { font-size: 0.93rem; color: var(--text2); line-height: 1.65; margin: 0; }
+    .cta-box { background: linear-gradient(135deg, #1d8c38, #3db853); border-radius: 16px; padding: 36px 28px; text-align: center; margin-top: 48px; }
+    .cta-box h3 { color: white; font-size: 1.2rem; margin-bottom: 8px; }
+    .cta-box p { color: rgba(255,255,255,0.85); font-size: 0.88rem; margin-bottom: 20px; }
+    .cta-box a { display: inline-block; background: white; color: var(--green-dark); font-weight: 700; padding: 12px 28px; border-radius: 10px; font-size: 0.93rem; text-decoration: none; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted); margin-top: 48px; }
+    footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .article-wrap { padding: 32px 16px 60px; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo"><div class="nav-logo-img"><img src="/logo.png" alt="Florist Manager"></div>Florist Manager</a>
+  <a href="/register" class="nav-cta">Empieza gratis</a>
+</nav>
+<div class="article-wrap">
+  <a href="/blog" class="back-link">← Volver al blog</a>
+  <span class="article-tag">Precios</span>
+  <h1>Cómo calcular el precio de un arreglo floral (sin adivinar)</h1>
+  <p class="article-meta">Por Florist Manager &nbsp;·&nbsp; 6 min de lectura</p>
+  <div class="article-body">
+
+    <p>Saber cómo calcular el precio de un arreglo floral es una de las habilidades más importantes — y más descuidadas — en el negocio de las flores. La mayoría de las floreras y floricultores pone precios a ojo, comparando con la competencia o cobrando "lo que se siente razonable". El resultado casi siempre es el mismo: trabajar mucho para ganar poco.</p>
+
+    <p>En este artículo te mostramos una fórmula clara y aplicable desde hoy para que cada arreglo que hagas te deje un margen real, no solo cubra los materiales.</p>
+
+    <h2>Por qué fijar precios a ojo es un problema serio</h2>
+
+    <p>Cuando fijas el precio comparando con lo que cobra el vecino del barrio, estás ignorando tus propios costos. Quizás ese vecino compra por volumen, no paga arriendo, o simplemente está perdiendo plata sin darse cuenta. Copiarle el precio no te da ninguna garantía de rentabilidad.</p>
+
+    <p>El otro error frecuente es sumar solo el costo de las flores y multiplicar por dos. Eso puede funcionar en algunos casos, pero deja afuera costos que son muy reales: el tiempo que tardas en armar el arreglo, el papel de envoltura, las cintas, el seguro, el arriendo del local, los desechos de flores que se dañaron antes de usarlas.</p>
+
+    <p>Antes de hablar de fórmulas, hay que tener claro qué entra en el costo de un arreglo.</p>
+
+    <h2>Los 4 componentes del costo real de un arreglo</h2>
+
+    <h3>1. Costo de materiales directos</h3>
+    <p>Esto incluye todas las flores, follaje, musgo, soporte, florero o envase (si va incluido), cinta, papel y cualquier elemento decorativo. Suma todo lo que usas físicamente en ese arreglo específico. No promedies — suma lo que va en ese pedido.</p>
+
+    <h3>2. Costo de mano de obra</h3>
+    <p>Divide tu sueldo mensual deseado (o el de quien arma los arreglos) entre las horas productivas del mes. Eso te da un valor por hora. Mide cuánto tiempo demoras en preparar ese arreglo desde que sacas las flores hasta que queda listo para entregar. Multiplica. Ese es tu costo real de mano de obra por pieza.</p>
+
+    <h3>3. Costos indirectos (overhead)</h3>
+    <p>Arriendo, luz, agua, gas, internet, herramientas, packaging adicional, cuotas de software. Suma todos tus costos fijos mensuales y divídelos entre el número de arreglos que produces al mes en promedio. Eso te da el overhead por arreglo.</p>
+
+    <h3>4. Merma</h3>
+    <p>Las flores se dañan, algunas llegan mal del proveedor, otras se quedan sin vender. Una merma estimada de entre 10% y 20% del costo de materiales es normal en una florería. Ese costo también existe y tiene que estar en el precio.</p>
+
+    <div class="highlight-box">
+      <p>Fórmula base: Precio mínimo = (Materiales + Mano de obra + Overhead + Merma) ÷ (1 − margen deseado)</p>
+    </div>
+
+    <h2>Cómo aplicar la fórmula en la práctica</h2>
+
+    <p>Supongamos que un arreglo tiene estos costos (valores referenciales, solo para ilustrar el método):</p>
+    <ul>
+      <li>Materiales: $4.500</li>
+      <li>Mano de obra (30 min de trabajo): $1.200</li>
+      <li>Overhead por arreglo: $800</li>
+      <li>Merma estimada (15% de materiales): $675</li>
+    </ul>
+    <p>Costo total: $7.175. Si quieres un margen del 50% sobre el precio de venta, divides ese costo entre 0,5 y obtienes un precio mínimo de $14.350. Cualquier valor por debajo de eso y estás perdiendo plata o trabajando gratis.</p>
+
+    <p>El margen que elijas depende de tu mercado, tu posicionamiento y la demanda. Lo importante es que sea una decisión consciente, no una intuición.</p>
+
+    <h2>El factor que la mayoría ignora: el valor percibido</h2>
+
+    <p>La fórmula de costos te da el piso del precio. Pero el techo lo define el mercado y cómo presentas tu producto. Un arreglo bien fotografiado, con packaging bonito y entregado a tiempo puede venderse a un precio significativamente mayor que uno idéntico con peor presentación.</p>
+
+    <p>Esto significa que optimizar tus precios no es solo hacer matemáticas — es también invertir en la experiencia que le ofreces al cliente. Una florería que cuida los detalles puede cobrar más, y los clientes lo aceptan con gusto.</p>
+
+    <p>Si tienes dudas sobre qué cobran otras florerías en tu zona como referencia, puedes revisar nuestro artículo sobre <a href="/blog/cuanto-cobra-floreria-precios-chile">cuánto cobra una florería en Chile</a>, que incluye rangos de precios referenciales por tipo de arreglo.</p>
+
+    <h2>Revisá tus precios cada 3 meses</h2>
+
+    <p>Los costos de las flores cambian con las temporadas, los proveedores ajustan tarifas, y el dólar afecta los insumos importados. Un precio que era rentable en marzo puede dejarte en rojo en agosto si no lo revisas.</p>
+
+    <p>El hábito de revisar tu estructura de costos trimestralmente — y ajustar precios cuando corresponde — es lo que separa a las florerías que crecen de las que apenas sobreviven. Si quieres ver cómo otros errores de gestión afectan la rentabilidad, lee también sobre los <a href="/blog/errores-comunes-gestionar-floreria">errores comunes al gestionar una florería</a>.</p>
+
+    <h2>Herramientas que facilitan este proceso</h2>
+
+    <p>Calcular costos arreglo por arreglo a mano es tedioso y se deja de hacer rápidamente. Por eso en Florist Manager incluimos la posibilidad de registrar los materiales usados por pedido, lo que te permite ver en tiempo real cuánto estás gastando por cada venta y si tu margen se mantiene dentro del objetivo.</p>
+
+    <p>Llevar ese control de forma sistemática es lo que te permite tomar decisiones de precios con datos reales, no con suposiciones.</p>
+
+    <h2>Conclusión</h2>
+
+    <p>Saber cómo calcular el precio de un arreglo floral no es opcional si quieres tener un negocio sustentable. La fórmula es simple: suma todos tus costos reales, define un margen objetivo y calcula el precio mínimo. Luego ajusta hacia arriba según el valor percibido de tu producto. Revisa ese cálculo cada temporada y tendrás una florería con precios que realmente funcionan para ti.</p>
+
+    <div class="cta-box">
+      <h3>Controla tus costos con Florist Manager</h3>
+      <p>Registra materiales por pedido, mide tu margen y toma decisiones con datos reales — no con suposiciones.</p>
+      <a href="/register">Empieza gratis</a>
+    </div>
+
+    <div class="faq-section">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-item">
+        <h3>¿Qué porcentaje de margen debería tener un arreglo floral?</h3>
+        <p>El margen neto recomendable para una florería saludable es de entre 40% y 60% sobre el precio de venta. Si estás por debajo del 35%, probablemente estás cobrando muy poco o tus costos ocultos son altos.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Cómo calculo el costo de mano de obra en un arreglo?</h3>
+        <p>Divide tu sueldo mensual (o el de quien arma los arreglos) por las horas trabajadas al mes. Eso te da un costo por hora. Luego multiplica por el tiempo real que tardas en hacer cada arreglo. Ese es tu costo de mano de obra por pieza.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Debo cobrar diferente en fechas como San Valentín?</h3>
+        <p>Sí. En temporada alta los costos de las flores suben, la demanda es mayor y tu tiempo vale más. Es completamente válido ajustar precios según la temporada, siempre siendo transparente con el cliente.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<footer>
+  <a href="/">Inicio</a><a href="/blog">Blog</a><a href="/register">Registro</a>
+  <br><br>© 2025 Florist Manager
+</footer>
+</body>
+</html>
+<!-- INSTAGRAM: ¿Cuánto cobras por tus arreglos? Si la respuesta es "lo que se siente bien"... probablemente estás dejando plata en la mesa 💸🌸 Flores + tiempo + overhead + merma = precio REAL. En el blog te mostramos la fórmula completa para calcular el precio de un arreglo floral sin adivinar. Link en bio. #floreria #preciosflores #negociofloreria #emprendimientofloral #floristaschile #floristmanager -->
