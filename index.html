@@ -774,7 +774,7 @@
 ══════════════════════════════════════ -->
 <nav class="navbar" id="navbar">
   <a href="#" class="navbar-logo">
-    <div style="width:32px;height:32px;overflow:hidden;flex-shrink:0;">
+    <div style="width:44px;height:44px;overflow:hidden;flex-shrink:0;">
       <img src="logo.png" style="width:170%;height:170%;object-fit:contain;margin:-35% 0 0 -35%;" alt="Florist Manager logo">
     </div>
     <span>Florist Manager</span>
@@ -1520,6 +1520,29 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── FAVICON CIRCULAR desde logo real ──
+(function() {
+  const img = new Image();
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64; canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(32, 32, 32, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    // zoom 1.8x para recortar el blanco
+    const size = 64 * 1.8;
+    const off = (64 - size) / 2;
+    ctx.drawImage(img, off, off, size, size);
+    const link = document.querySelector('link[rel="icon"]');
+    if (link) link.href = canvas.toDataURL('image/png');
+  };
+  img.src = 'logo.png';
+})();
 </script>
 </body>
 </html>
