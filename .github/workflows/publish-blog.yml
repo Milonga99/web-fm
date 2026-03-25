@@ -2,20 +2,43 @@ name: Publicar artículos de blog
 
 on:
   schedule:
-    # Semana 2 — Martes 1 Abril 2026 09:00 UTC
-    - cron: '0 9 1 4 2'
-    # Semana 3 — Martes 7 Abril 2026 09:00 UTC
-    - cron: '0 9 7 4 2'
-    # Semana 4 — Martes 14 Abril 2026 09:00 UTC
-    - cron: '0 9 14 4 2'
-    # Semana 5 — Martes 22 Abril 2026 09:00 UTC
-    - cron: '0 9 22 4 2'
+    # ── BATCH ANTERIOR (7 artículos) ─────────────────────────────────────────
+    - cron: '0 15 26 3 *'   # Jue 26 Mar 2026 — como-calcular-precio-arreglo-floral
+    - cron: '0 15 31 3 *'   # Mar 31 Mar 2026 — vender-mas-por-whatsapp-floreria
+    - cron: '0 15 2 4 *'    # Jue 02 Abr 2026 — errores-comunes-gestionar-floreria
+    - cron: '0 15 7 4 *'    # Mar 07 Abr 2026 — preparar-floreria-san-valentin-dia-madre
+    - cron: '0 15 9 4 *'    # Jue 09 Abr 2026 — cuanto-cobra-floreria-precios-chile
+    - cron: '0 15 14 4 *'   # Mar 14 Abr 2026 — floreria-online-vs-local
+    - cron: '0 15 16 4 *'   # Jue 16 Abr 2026 — como-fidelizar-clientes-floreria
+    # ── SEMANAS 1-2: BOFU ────────────────────────────────────────────────────
+    - cron: '0 15 21 4 *'   # Mar 21 Abr 2026 — excel-vs-software-gestion-pedidos-floreria
+    - cron: '0 15 23 4 *'   # Jue 23 Abr 2026 — como-digitalizar-floreria-paso-a-paso
+    - cron: '0 15 28 4 *'   # Mar 28 Abr 2026 — datos-medir-dueno-floreria-cada-semana
+    - cron: '0 15 30 4 *'   # Jue 30 Abr 2026 — escalar-floreria-20-a-100-pedidos
+    - cron: '0 15 5 5 *'    # Mar 05 May 2026 — checklist-floreria-funcione-sin-ti
+    # ── SEMANAS 3-6: MOFU + TOFU intercalado ────────────────────────────────
+    - cron: '0 15 7 5 *'    # Jue 07 May 2026 — dejar-perder-pedidos-whatsapp-floreria
+    - cron: '0 15 12 5 *'   # Mar 12 May 2026 — cuanto-gana-floreria-al-mes
+    - cron: '0 15 14 5 *'   # Jue 14 May 2026 — por-que-floreria-pierde-plata
+    - cron: '0 15 19 5 *'   # Mar 19 May 2026 — como-abrir-floreria-desde-cero
+    - cron: '0 15 21 5 *'   # Jue 21 May 2026 — manejar-floreria-cuando-estas-solo
+    - cron: '0 15 26 5 *'   # Mar 26 May 2026 — flores-que-mas-se-venden-por-temporada
+    - cron: '0 15 28 5 *'   # Jue 28 May 2026 — sobrevivir-dia-madre-floreria-sin-colapsar
+    - cron: '0 15 2 6 *'    # Mar 02 Jun 2026 — como-fijar-precios-floreria
+    - cron: '0 15 4 6 *'    # Jue 04 Jun 2026 — saber-si-floreria-es-rentable
+    - cron: '0 15 9 6 *'    # Mar 09 Jun 2026 — proveedores-flores-al-por-mayor
+    # ── SEMANAS 7-10: MOFU + TOFU restante ──────────────────────────────────
+    - cron: '0 15 11 6 *'   # Jue 11 Jun 2026 — capacitar-empleado-floreria-rapido
+    - cron: '0 15 16 6 *'   # Mar 16 Jun 2026 — como-decorar-floreria-para-vender-mas
+    - cron: '0 15 18 6 *'   # Jue 18 Jun 2026 — manejar-clientes-dificiles-floreria
+    - cron: '0 15 23 6 *'   # Mar 23 Jun 2026 — fechas-clave-floreria-calendario-comercial
+    - cron: '0 15 25 6 *'   # Jue 25 Jun 2026 — capital-para-montar-floreria
+
   workflow_dispatch:
     inputs:
-      semana:
-        description: 'Semana a publicar (2, 3, 4 o 5)'
+      slug:
+        description: 'Slug del artículo a publicar (ej: como-fijar-precios-floreria)'
         required: true
-        default: '2'
 
 jobs:
   publicar:
@@ -25,203 +48,211 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Determinar semana
-        id: semana
+      - name: Determinar artículo a publicar
+        id: pub
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_SLUG: ${{ github.event.inputs.slug }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "num=${{ github.event.inputs.semana }}" >> $GITHUB_OUTPUT
-          else
-            DAY=$(date +%d)
-            MONTH=$(date +%m)
-            if   [ "$MONTH" = "04" ] && [ "$DAY" = "01" ]; then echo "num=2" >> $GITHUB_OUTPUT
-            elif [ "$MONTH" = "04" ] && [ "$DAY" = "07" ]; then echo "num=3" >> $GITHUB_OUTPUT
-            elif [ "$MONTH" = "04" ] && [ "$DAY" = "14" ]; then echo "num=4" >> $GITHUB_OUTPUT
-            elif [ "$MONTH" = "04" ] && [ "$DAY" = "22" ]; then echo "num=5" >> $GITHUB_OUTPUT
-            fi
-          fi
-
-      # ── SEMANA 2: calcular precio + vender por WhatsApp ──────────────
-      - name: Semana 2 — agregar artículos
-        if: steps.semana.outputs.num == '2'
-        run: |
-          # Agregar rewrites a vercel.json
           python3 - <<'PYEOF'
-          import json, re
-          with open('vercel.json') as f: v = json.load(f)
-          new = [
-            {"source": "/blog/como-calcular-precio-arreglo-floral", "destination": "/blog/como-calcular-precio-arreglo-floral.html"},
-            {"source": "/blog/vender-mas-por-whatsapp-floreria",     "destination": "/blog/vender-mas-por-whatsapp-floreria.html"}
-          ]
-          v['rewrites'].extend(new)
-          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
+          import os
+          from datetime import datetime, timezone
+
+          # Mapa completo: fecha → (slug, tag_blog, título_card, descripción_card)
+          SCHEDULE = {
+            # Batch anterior
+            '2026-03-26': ('como-calcular-precio-arreglo-floral', 'Precios',
+              'Cómo calcular el precio de un arreglo floral sin quedarte corto',
+              'Fórmula práctica para costear tus arreglos, cubrir gastos y ganar bien.'),
+            '2026-03-31': ('vender-mas-por-whatsapp-floreria', 'Ventas',
+              'Cómo vender más flores por WhatsApp sin morir en el intento',
+              'Técnicas probadas para responder rápido, cerrar pedidos y no perder clientes en el chat.'),
+            '2026-04-02': ('errores-comunes-gestionar-floreria', 'Operaciones',
+              'Los 7 errores más comunes al gestionar una florería pequeña',
+              'Errores que casi todas las florerías cometen y cómo evitarlos antes de que cuesten caro.'),
+            '2026-04-07': ('preparar-floreria-san-valentin-dia-madre', 'Planificación',
+              'Cómo preparar tu florería para San Valentín y el Día de la Madre',
+              'Plan de acción para llegar a las fechas más importantes del año sin improvisar.'),
+            '2026-04-09': ('cuanto-cobra-floreria-precios-chile', 'Precios',
+              '¿Cuánto cobra una florería? Guía de precios referenciales',
+              'Rangos de precios para ramos, arreglos y eventos. Para saber si estás bien posicionado.'),
+            '2026-04-14': ('floreria-online-vs-local', 'Estrategia',
+              'Florería online vs local físico: cómo competir teniendo las dos',
+              'Qué canal priorizar, cómo integrarlos y por qué la mayoría lo hace al revés.'),
+            '2026-04-16': ('como-fidelizar-clientes-floreria', 'Clientes',
+              'Cómo fidelizar clientes en una florería y que vuelvan siempre',
+              'Sin programas complicados. Solo atención, memoria y pequeños gestos que marcan diferencia.'),
+            # BOFU
+            '2026-04-21': ('excel-vs-software-gestion-pedidos-floreria', 'Software',
+              'Excel vs software de pedidos: por qué el Excel siempre termina mal',
+              'Qué pierde tu florería gestionando pedidos en Excel y qué ofrece un software específico.'),
+            '2026-04-23': ('como-digitalizar-floreria-paso-a-paso', 'Tecnología',
+              'Cómo digitalizar tu florería paso a paso sin gastar mucho',
+              'Qué herramientas elegir, por dónde empezar y cuánto invertir sin arriesgar.'),
+            '2026-04-28': ('datos-medir-dueno-floreria-cada-semana', 'Gestión',
+              'Los 6 números que todo dueño de florería debe revisar cada semana',
+              'Sin complicaciones ni contador. Solo los datos que realmente importan.'),
+            '2026-04-30': ('escalar-floreria-20-a-100-pedidos', 'Crecimiento',
+              'Cómo escalar tu florería de 20 a 100 pedidos al mes',
+              'Qué cambiar en operaciones, equipo y herramientas antes de intentar crecer.'),
+            '2026-05-05': ('checklist-floreria-funcione-sin-ti', 'Operaciones',
+              'Checklist: 20 puntos para que tu florería funcione sin que estés tú',
+              'Si alguno falla, aquí sabes exactamente qué arreglar en tu florería.'),
+            # MOFU + TOFU intercalado
+            '2026-05-07': ('dejar-perder-pedidos-whatsapp-floreria', 'Operaciones',
+              'Cómo dejar de perder pedidos por WhatsApp en tu florería',
+              'El protocolo para que ningún encargo se escape por el chat.'),
+            '2026-05-12': ('cuanto-gana-floreria-al-mes', 'Negocio',
+              'Cuánto gana una florería al mes: realidad vs expectativa',
+              'La diferencia entre lo que se factura y lo que realmente queda después de gastos.'),
+            '2026-05-14': ('por-que-floreria-pierde-plata', 'Finanzas',
+              'Por qué tu florería pierde plata sin que te das cuenta',
+              'Las 6 fugas de dinero más comunes en florerías y cómo cerrarlas.'),
+            '2026-05-19': ('como-abrir-floreria-desde-cero', 'Emprendimiento',
+              'Cómo abrir una florería desde cero: guía completa',
+              'Todo lo que nadie te dice antes de abrir: capital, local, proveedores y el primer día.'),
+            '2026-05-21': ('manejar-floreria-cuando-estas-solo', 'Operaciones',
+              'Cómo manejar tu florería cuando estás solo ese día',
+              'El protocolo para no colapsar y no perder ningún pedido el día que todo recae en ti.'),
+            '2026-05-26': ('flores-que-mas-se-venden-por-temporada', 'Inventario',
+              'Qué flores se venden más por temporada y cómo planificar tus compras',
+              'Guía mensual para comprar bien, reducir merma y maximizar ventas.'),
+            '2026-05-28': ('sobrevivir-dia-madre-floreria-sin-colapsar', 'Planificación',
+              'Cómo sobrevivir el Día de la Madre en tu florería sin que sea un caos',
+              'El plan de 4 semanas para llegar al día más importante del año con todo controlado.'),
+            '2026-06-02': ('como-fijar-precios-floreria', 'Precios',
+              'Cómo fijar precios en una florería para que el trabajo valga',
+              'La fórmula para cubrir costos, pagar tu tiempo y ganar lo que mereces.'),
+            '2026-06-04': ('saber-si-floreria-es-rentable', 'Finanzas',
+              'Cómo saber si tu florería es rentable de verdad',
+              'Tener clientes no es lo mismo que tener ganancias. Los números que debes calcular.'),
+            '2026-06-09': ('proveedores-flores-al-por-mayor', 'Proveedores',
+              'Proveedores de flores al por mayor: cómo encontrarlos y elegirlos bien',
+              'Qué evaluar antes de comprometerte con un mayorista y cómo negociar condiciones.'),
+            # MOFU + TOFU restante
+            '2026-06-11': ('capacitar-empleado-floreria-rapido', 'Equipo',
+              'Cómo capacitar a un nuevo empleado en tu florería desde el día uno',
+              'El método para que arranque bien sin manuales largos ni semanas de supervisión.'),
+            '2026-06-16': ('como-decorar-floreria-para-vender-mas', 'Ventas',
+              'Cómo decorar una florería para que cada metro cuadrado venda',
+              'Entrada, iluminación, exhibición y señalización. Lo que cambia y lo que no.'),
+            '2026-06-18': ('manejar-clientes-dificiles-floreria', 'Clientes',
+              'Cómo manejar clientes difíciles en tu florería',
+              'Los casos más comunes y cómo responder sin perder la calma ni el cliente.'),
+            '2026-06-23': ('fechas-clave-floreria-calendario-comercial', 'Planificación',
+              'El calendario comercial de una florería: las fechas que no puedes ignorar',
+              'Alta, media y baja demanda. Cuándo prepararse y con qué anticipación.'),
+            '2026-06-25': ('capital-para-montar-floreria', 'Emprendimiento',
+              'Cuánto capital necesitas para montar una florería',
+              'Los 5 grupos de gasto y los rangos referenciales para planificar tu inversión inicial.'),
+          }
+
+          event = os.environ.get('EVENT_NAME', '')
+          input_slug = os.environ.get('INPUT_SLUG', '').strip()
+
+          if event == 'workflow_dispatch' and input_slug:
+            entry = next(
+              (v for v in SCHEDULE.values() if v[0] == input_slug),
+              (input_slug, 'Blog', input_slug.replace('-', ' ').title(), '')
+            )
+          else:
+            date_str = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+            entry = SCHEDULE.get(date_str)
+
+          if entry:
+            slug, tag, title, desc = entry
+            out_file = os.environ['GITHUB_OUTPUT']
+            with open(out_file, 'a') as f:
+              f.write(f'slug={slug}\n')
+              f.write(f'tag={tag}\n')
+              f.write(f'title={title}\n')
+              f.write(f'desc={desc}\n')
+              f.write('found=true\n')
           PYEOF
 
-          # Agregar al sitemap
+      - name: Actualizar vercel.json
+        if: steps.pub.outputs.found == 'true'
+        env:
+          SLUG: ${{ steps.pub.outputs.slug }}
+        run: |
           python3 - <<'PYEOF'
+          import json, os
+          slug = os.environ['SLUG']
+          with open('vercel.json') as f:
+            v = json.load(f)
+          rewrite = {"source": f"/blog/{slug}", "destination": f"/blog/{slug}.html"}
+          if rewrite not in v['rewrites']:
+            v['rewrites'].append(rewrite)
+            with open('vercel.json', 'w') as f:
+              json.dump(v, f, indent=2, ensure_ascii=False)
+            print(f"Added rewrite for {slug}")
+          else:
+            print(f"Rewrite already exists for {slug}")
+          PYEOF
+
+      - name: Actualizar sitemap.xml
+        if: steps.pub.outputs.found == 'true'
+        env:
+          SLUG: ${{ steps.pub.outputs.slug }}
+        run: |
+          python3 - <<'PYEOF'
+          import os
+          slug = os.environ['SLUG']
+          url = f'https://www.floristmanager.com/blog/{slug}'
           txt = open('sitemap.xml').read()
-          insert = """  <!-- Semana 2 -->
-          <url><loc>https://www.floristmanager.com/blog/como-calcular-precio-arreglo-floral</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-          <url><loc>https://www.floristmanager.com/blog/vender-mas-por-whatsapp-floreria</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-        """
-          txt = txt.replace('</urlset>', insert + '</urlset>')
-          open('sitemap.xml','w').write(txt)
+          if url not in txt:
+            entry = f'  <url><loc>{url}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>\n'
+            txt = txt.replace('</urlset>', entry + '</urlset>')
+            open('sitemap.xml', 'w').write(txt)
+            print(f"Added sitemap entry for {slug}")
+          else:
+            print(f"Sitemap entry already exists for {slug}")
           PYEOF
 
-          # Agregar cards al blog/index.html
-          python3 - <<'PYEOF'
-          txt = open('blog/index.html').read()
-          new_cards = """
-            <a href="/blog/como-calcular-precio-arreglo-floral" class="blog-card">
-              <span class="blog-tag">Precios</span>
-              <h2>Cómo calcular el precio de un arreglo floral sin quedarte corto</h2>
-              <p>Fórmula práctica para costear tus arreglos, cubrir gastos y ganar bien.</p>
-              <span class="blog-read">Leer artículo →</span>
-            </a>
-
-            <a href="/blog/vender-mas-por-whatsapp-floreria" class="blog-card">
-              <span class="blog-tag">Ventas</span>
-              <h2>Cómo vender más flores por WhatsApp sin morir en el intento</h2>
-              <p>Técnicas probadas para responder rápido, cerrar pedidos y no perder clientes en el chat.</p>
-              <span class="blog-read">Leer artículo →</span>
-            </a>
-          """
-          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
-          open('blog/index.html','w').write(txt)
-          PYEOF
-
-      # ── SEMANA 3: errores comunes + San Valentín ─────────────────────
-      - name: Semana 3 — agregar artículos
-        if: steps.semana.outputs.num == '3'
+      - name: Actualizar blog/index.html
+        if: steps.pub.outputs.found == 'true'
+        env:
+          SLUG: ${{ steps.pub.outputs.slug }}
+          TAG: ${{ steps.pub.outputs.tag }}
+          TITLE: ${{ steps.pub.outputs.title }}
+          DESC: ${{ steps.pub.outputs.desc }}
         run: |
           python3 - <<'PYEOF'
-          import json
-          with open('vercel.json') as f: v = json.load(f)
-          new = [
-            {"source": "/blog/errores-comunes-gestionar-floreria",       "destination": "/blog/errores-comunes-gestionar-floreria.html"},
-            {"source": "/blog/preparar-floreria-san-valentin-dia-madre", "destination": "/blog/preparar-floreria-san-valentin-dia-madre.html"}
-          ]
-          v['rewrites'].extend(new)
-          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
-          PYEOF
+          import os
+          slug = os.environ['SLUG']
+          tag  = os.environ['TAG']
+          title = os.environ['TITLE']
+          desc  = os.environ['DESC']
 
-          python3 - <<'PYEOF'
-          txt = open('sitemap.xml').read()
-          insert = """  <!-- Semana 3 -->
-          <url><loc>https://www.floristmanager.com/blog/errores-comunes-gestionar-floreria</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-          <url><loc>https://www.floristmanager.com/blog/preparar-floreria-san-valentin-dia-madre</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-        """
-          txt = txt.replace('</urlset>', insert + '</urlset>')
-          open('sitemap.xml','w').write(txt)
-          PYEOF
-
-          python3 - <<'PYEOF'
           txt = open('blog/index.html').read()
-          new_cards = """
-            <a href="/blog/errores-comunes-gestionar-floreria" class="blog-card">
-              <span class="blog-tag">Operaciones</span>
-              <h2>Los 7 errores más comunes al gestionar una florería pequeña</h2>
-              <p>Errores que cometen casi todas las florerías y cómo evitarlos antes de que cuesten caro.</p>
+          if f'href="/blog/{slug}"' in txt:
+            print(f"Card already exists for {slug}")
+          else:
+            new_card = f'''
+            <a href="/blog/{slug}" class="blog-card">
+              <span class="blog-tag">{tag}</span>
+              <h2>{title}</h2>
+              <p>{desc}</p>
               <span class="blog-read">Leer artículo →</span>
             </a>
-
-            <a href="/blog/preparar-floreria-san-valentin-dia-madre" class="blog-card">
-              <span class="blog-tag">Planificación</span>
-              <h2>Cómo preparar tu florería para San Valentín y el Día de la Madre</h2>
-              <p>Plan de acción para llegar a las fechas más importantes del año sin improvisar.</p>
-              <span class="blog-read">Leer artículo →</span>
-            </a>
-          """
-          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
-          open('blog/index.html','w').write(txt)
-          PYEOF
-
-      # ── SEMANA 4: precios Chile + online vs local ────────────────────
-      - name: Semana 4 — agregar artículos
-        if: steps.semana.outputs.num == '4'
-        run: |
-          python3 - <<'PYEOF'
-          import json
-          with open('vercel.json') as f: v = json.load(f)
-          new = [
-            {"source": "/blog/cuanto-cobra-floreria-precios-chile", "destination": "/blog/cuanto-cobra-floreria-precios-chile.html"},
-            {"source": "/blog/floreria-online-vs-local",            "destination": "/blog/floreria-online-vs-local.html"}
-          ]
-          v['rewrites'].extend(new)
-          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
-          PYEOF
-
-          python3 - <<'PYEOF'
-          txt = open('sitemap.xml').read()
-          insert = """  <!-- Semana 4 -->
-          <url><loc>https://www.floristmanager.com/blog/cuanto-cobra-floreria-precios-chile</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-          <url><loc>https://www.floristmanager.com/blog/floreria-online-vs-local</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-        """
-          txt = txt.replace('</urlset>', insert + '</urlset>')
-          open('sitemap.xml','w').write(txt)
-          PYEOF
-
-          python3 - <<'PYEOF'
-          txt = open('blog/index.html').read()
-          new_cards = """
-            <a href="/blog/cuanto-cobra-floreria-precios-chile" class="blog-card">
-              <span class="blog-tag">Precios</span>
-              <h2>¿Cuánto cobra una florería en Chile? Guía de precios referenciales</h2>
-              <p>Rangos de precios para ramos, arreglos y eventos. Para saber si estás bien posicionado.</p>
-              <span class="blog-read">Leer artículo →</span>
-            </a>
-
-            <a href="/blog/floreria-online-vs-local" class="blog-card">
-              <span class="blog-tag">Estrategia</span>
-              <h2>Florería online vs local físico: cómo competir teniendo las dos</h2>
-              <p>Qué canal priorizar, cómo integrarlos y por qué la mayoría lo hace al revés.</p>
-              <span class="blog-read">Leer artículo →</span>
-            </a>
-          """
-          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
-          open('blog/index.html','w').write(txt)
-          PYEOF
-
-      # ── SEMANA 5: fidelizar clientes ─────────────────────────────────
-      - name: Semana 5 — agregar artículos
-        if: steps.semana.outputs.num == '5'
-        run: |
-          python3 - <<'PYEOF'
-          import json
-          with open('vercel.json') as f: v = json.load(f)
-          new = [
-            {"source": "/blog/como-fidelizar-clientes-floreria", "destination": "/blog/como-fidelizar-clientes-floreria.html"}
-          ]
-          v['rewrites'].extend(new)
-          with open('vercel.json','w') as f: json.dump(v, f, indent=2, ensure_ascii=False)
-          PYEOF
-
-          python3 - <<'PYEOF'
-          txt = open('sitemap.xml').read()
-          insert = """  <!-- Semana 5 -->
-          <url><loc>https://www.floristmanager.com/blog/como-fidelizar-clientes-floreria</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-        """
-          txt = txt.replace('</urlset>', insert + '</urlset>')
-          open('sitemap.xml','w').write(txt)
-          PYEOF
-
-          python3 - <<'PYEOF'
-          txt = open('blog/index.html').read()
-          new_cards = """
-            <a href="/blog/como-fidelizar-clientes-floreria" class="blog-card">
-              <span class="blog-tag">Clientes</span>
-              <h2>Cómo fidelizar clientes en una florería y que vuelvan siempre</h2>
-              <p>Sin programas complicados. Solo atención, memoria y pequeños gestos que marcan diferencia.</p>
-              <span class="blog-read">Leer artículo →</span>
-            </a>
-          """
-          txt = txt.replace('  </div>\n\n</div>', new_cards + '  </div>\n\n</div>', 1)
-          open('blog/index.html','w').write(txt)
+          '''
+            # Insertar justo antes del cierre del blog-grid
+            marker = '</div>\n</div>\n\n<div class="blog-cta"'
+            if marker in txt:
+              txt = txt.replace(marker, new_card + '</div>\n</div>\n\n<div class="blog-cta"', 1)
+              open('blog/index.html', 'w').write(txt)
+              print(f"Added card for {slug}")
+            else:
+              print("WARNING: marker not found in blog/index.html")
           PYEOF
 
       - name: Commit y push
+        if: steps.pub.outputs.found == 'true'
+        env:
+          SLUG: ${{ steps.pub.outputs.slug }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add vercel.json sitemap.xml blog/index.html
-          git diff --staged --quiet || git commit -m "Blog: publicar artículos semana ${{ steps.semana.outputs.num }}"
+          git diff --staged --quiet || git commit -m "Blog: publicar ${{ steps.pub.outputs.slug }}"
           git push

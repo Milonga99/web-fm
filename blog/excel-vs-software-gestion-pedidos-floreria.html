@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel vs Software de Pedidos para tu Florería | Florist Manager</title>
+  <meta name="description" content="Descubre por qué gestionar pedidos de tu florería en Excel siempre termina en caos. Qué pierde tu negocio y qué ofrece un software específico.">
+  <link rel="canonical" href="https://www.floristmanager.com/blog/excel-vs-software-gestion-pedidos-floreria">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Article", "FAQPage"],
+    "headline": "Por qué gestionar pedidos de florería en Excel siempre termina mal",
+    "description": "Descubre por qué el Excel falla para gestionar pedidos en una florería y qué ofrece un software específico.",
+    "author": { "@type": "Organization", "name": "Florist Manager" },
+    "publisher": { "@type": "Organization", "name": "Florist Manager", "url": "https://www.floristmanager.com" },
+    "inLanguage": "es",
+    "url": "https://www.floristmanager.com/blog/excel-vs-software-gestion-pedidos-floreria",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Puedo seguir usando Excel si mi florería recibe pocos pedidos?", "acceptedAnswer": { "@type": "Answer", "text": "Para volúmenes muy bajos (menos de 5 pedidos por semana) el Excel puede funcionar, pero los problemas aparecen en cuanto hay más de una persona involucrada, se trabaja desde el celular o llega una fecha especial con muchos pedidos a la vez. El costo de la transición es bajo y el beneficio llega rápido." } },
+      { "@type": "Question", "name": "¿Cuánto cuesta un software de gestión para florería?", "acceptedAnswer": { "@type": "Answer", "text": "Los planes de entrada suelen rondar entre $10 y $25 USD al mes para florerías pequeñas. Hay opciones gratuitas para empezar. La mayoría ofrece período de prueba sin tarjeta de crédito." } },
+      { "@type": "Question", "name": "¿Es difícil pasar de Excel a un software en una florería?", "acceptedAnswer": { "@type": "Answer", "text": "No. Si el software está bien diseñado, el equipo debería poder usarlo desde el primer día. La migración de datos históricos es opcional: puedes empezar con pedidos nuevos y el historial queda en Excel como archivo." } }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --green: #3db853; --green-dark: #2da84a; --bg: #f5faf6; --white: #ffffff; --border: #e5e7eb; --text: #111827; --text2: #374151; --muted: #9ca3af; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); }
+    a { color: var(--green-dark); }
+    nav { background: white; border-bottom: 1px solid var(--border); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--text); text-decoration: none; }
+    .nav-logo-img { width: 32px; height: 32px; overflow: hidden; }
+    .nav-logo-img img { width: 170%; height: 170%; object-fit: contain; margin: -35% 0 0 -35%; }
+    .nav-cta { padding: 8px 18px; background: var(--green); color: white; border-radius: 8px; font-weight: 700; font-size: 0.85rem; text-decoration: none; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.83rem; color: var(--muted); text-decoration: none; margin-bottom: 24px; }
+    .back-link:hover { color: var(--text2); }
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+    .article-tag { display: inline-block; background: rgba(61,184,83,0.1); color: var(--green-dark); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+    h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px; color: var(--text); }
+    .article-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .article-body h2 { font-size: 1.3rem; font-weight: 700; margin: 36px 0 14px; color: var(--text); }
+    .article-body h3 { font-size: 1.05rem; font-weight: 700; margin: 28px 0 10px; color: var(--text); }
+    .article-body p { font-size: 0.97rem; line-height: 1.75; color: var(--text2); margin-bottom: 16px; }
+    .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 16px; }
+    .article-body li { font-size: 0.97rem; line-height: 1.75; color: var(--text2); margin-bottom: 6px; }
+    .highlight-box { background: rgba(61,184,83,0.08); border-left: 3px solid var(--green); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 24px 0; }
+    .highlight-box p { margin: 0; font-weight: 500; color: var(--text); }
+    .faq-section { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 32px; }
+    .faq-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; }
+    .faq-item { margin-bottom: 24px; }
+    .faq-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .faq-item p { font-size: 0.93rem; color: var(--text2); line-height: 1.65; margin: 0; }
+    .cta-box { background: linear-gradient(135deg, #1d8c38, #3db853); border-radius: 16px; padding: 36px 28px; text-align: center; margin-top: 48px; }
+    .cta-box h3 { color: white; font-size: 1.2rem; margin-bottom: 8px; }
+    .cta-box p { color: rgba(255,255,255,0.85); font-size: 0.88rem; margin-bottom: 20px; }
+    .cta-box a { display: inline-block; background: white; color: var(--green-dark); font-weight: 700; padding: 12px 28px; border-radius: 10px; font-size: 0.93rem; text-decoration: none; }
+    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted); margin-top: 48px; }
+    footer a { color: var(--muted); margin: 0 8px; text-decoration: none; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } .article-wrap { padding: 32px 16px 60px; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo"><div class="nav-logo-img"><img src="/logo.png" alt="Florist Manager"></div>Florist Manager</a>
+  <a href="/register" class="nav-cta">Empieza gratis</a>
+</nav>
+<div class="article-wrap">
+  <a href="/blog" class="back-link">← Volver al blog</a>
+  <span class="article-tag">Software</span>
+  <h1>Por qué gestionar pedidos de florería en Excel siempre termina mal</h1>
+  <p class="article-meta">Por Florist Manager &nbsp;·&nbsp; 6 min de lectura</p>
+  <div class="article-body">
+
+    <p>El Excel funciona bien… hasta el día que no funciona. Y ese día suele ser el más ocupado del año: San Valentín, el Día de la Madre, una boda de último momento. La gestión de pedidos de florería en Excel parece razonable al principio, pero esconde problemas que solo aparecen cuando ya es tarde para resolverlos.</p>
+
+    <h2>Por qué casi todas las florerías empiezan con Excel</h2>
+
+    <p>Tiene sentido. El Excel está disponible, no cuesta nada extra, y la mayoría ya sabe usarlo. En los primeros meses, cuando los pedidos son pocos y los maneja una sola persona, funciona aceptablemente. Se crea una hoja, se agregan columnas para cliente, fecha, descripción y precio, y listo.</p>
+
+    <p>El problema no es que el Excel sea malo como herramienta. El problema es que no fue diseñado para gestionar el flujo de pedidos de una florería. No tiene estados, no avisa cuando se acerca una entrega, no se sincroniza entre dispositivos, y no permite que dos personas lo usen al mismo tiempo sin crear conflictos.</p>
+
+    <h2>El momento en que el Excel deja de ser suficiente</h2>
+
+    <p>Hay una señal clara de que el Excel dejó de funcionar: cuando alguien tiene que preguntar "¿este pedido ya está listo?" en lugar de poder verlo directamente. Eso indica que la información está fragmentada o que no es visible en tiempo real.</p>
+
+    <p>Otros síntomas frecuentes:</p>
+    <ul>
+      <li>El archivo se abre tarde porque nadie lo cerró bien</li>
+      <li>Hay varias versiones del mismo archivo y nadie sabe cuál es la correcta</li>
+      <li>Los cambios de último momento se hacen en papel porque el Excel "está complicado"</li>
+      <li>En temporada alta, alguien siempre trabaja con una versión desactualizada</li>
+      <li>El celular no carga bien el archivo y la información se pierde</li>
+    </ul>
+
+    <h2>Lo que pierde tu florería cada vez que el sistema falla</h2>
+
+    <p>Un pedido mal registrado o perdido no es solo una venta menos. Es un cliente que no vuelve, una reseña negativa potencial, y el costo de tener que rehacer un arreglo o devolver dinero. En una florería donde el margen ya es ajustado, cada pedido fallido duele dos veces: en el bolsillo y en la reputación.</p>
+
+    <div class="highlight-box">
+      <p>Si quieres entender los datos que realmente importan para no perder rentabilidad, revisa <a href="/blog/datos-medir-dueno-floreria-cada-semana">qué datos debería medir el dueño de una florería cada semana</a>. El sistema de pedidos es el origen de casi todos esos números.</p>
+    </div>
+
+    <p>Además del pedido perdido, hay un costo invisible: el tiempo que se gasta buscando información, confirmando datos con el cliente, o reconstruyendo lo que alguien anotó mal. En una jornada intensa ese tiempo puede sumar horas.</p>
+
+    <h2>Qué diferencia a un software específico para florerías</h2>
+
+    <p>La diferencia principal no es la tecnología: es que un software para florería fue diseñado para resolver exactamente los problemas que el Excel no puede. Para saber <a href="/blog/software-para-florerias">qué funciones necesita realmente un software para florería</a>, el criterio más simple es este: si no puedes ver el estado de todos tus pedidos del día en diez segundos, el sistema no está funcionando.</p>
+
+    <p>Un buen software de gestión de pedidos de florería hace lo siguiente:</p>
+    <ul>
+      <li><strong>Estado visible en tiempo real:</strong> cada pedido tiene un estado (recibido, en preparación, listo, entregado) que cualquier miembro del equipo puede actualizar desde su dispositivo.</li>
+      <li><strong>Acceso desde el celular:</strong> sin archivos que descargar ni versiones que sincronizar. Lo que ves en el celular es lo mismo que ve quien está en la tienda.</li>
+      <li><strong>Alertas por fecha de entrega:</strong> no necesitas revisar manualmente si hay pedidos urgentes. El sistema los muestra primero.</li>
+      <li><strong>Historial por cliente:</strong> cuando un cliente habitual llama, puedes ver en segundos qué pidió la última vez, qué tipo de arreglos prefiere y si tiene pagos pendientes.</li>
+    </ul>
+
+    <h2>Cómo hacer la transición sin perder datos ni tiempo</h2>
+
+    <p>La buena noticia es que migrar de Excel a un software no requiere trasladar historial. Puedes empezar a registrar pedidos nuevos desde el primer día y dejar el Excel como archivo histórico de consulta. En la práctica, nadie consulta el historial de pedidos de hace seis meses, así que la pérdida es mínima.</p>
+
+    <p>El proceso es simple: abre una cuenta, crea los primeros pedidos del día, y haz que el equipo los actualice. En 48 horas el flujo ya está integrado. Para entender el proceso completo, revisa cómo <a href="/blog/como-digitalizar-floreria-paso-a-paso">digitalizar tu florería paso a paso</a> sin complicar lo que ya funciona.</p>
+
+    <h2>Florist Manager: diseñado para el caos del día a día en una florería</h2>
+
+    <p>Florist Manager permite registrar un pedido en menos de un minuto, ver todos los pedidos del día ordenados por hora de entrega, y actualizar estados desde cualquier dispositivo. No tiene funciones que nunca vas a usar ni módulos que requieren capacitación.</p>
+
+    <p>La idea es simple: si en diez minutos de usar la plataforma no ves que es más fácil que tu Excel actual, no vale la pena cambiar. Pero casi nadie vuelve al Excel después de probarlo.</p>
+
+    <h2>Conclusión</h2>
+
+    <p>La gestión de pedidos de florería en Excel no falla porque seas descuidado. Falla porque el Excel no fue diseñado para eso. El momento de cambiar no es cuando ya perdiste un pedido importante: es ahora, antes de que llegue la próxima temporada alta. Si quieres ver cómo queda la operación cuando todo está en orden, revisa el <a href="/blog/checklist-floreria-funcione-sin-ti">checklist para que tu florería funcione sin que estés tú presente</a>.</p>
+
+    <div class="cta-box">
+      <h3>¿Listo para dejar el Excel atrás?</h3>
+      <p>Florist Manager es gratis para empezar. Sin tarjeta de crédito, sin letra chica.</p>
+      <a href="/register">Crear mi cuenta gratis →</a>
+    </div>
+
+    <div class="faq-section">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-item">
+        <h3>¿Puedo seguir usando Excel si mi florería recibe pocos pedidos?</h3>
+        <p>Para volúmenes muy bajos (menos de 5 pedidos por semana) el Excel puede funcionar, pero los problemas aparecen en cuanto hay más de una persona involucrada, se trabaja desde el celular o llega una fecha especial. El costo de la transición es bajo y el beneficio llega rápido.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Cuánto cuesta un software de gestión para florería?</h3>
+        <p>Los planes de entrada suelen rondar entre $10 y $25 USD al mes para florerías pequeñas. Hay opciones gratuitas para empezar. La mayoría ofrece período de prueba sin tarjeta de crédito.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Es difícil pasar de Excel a un software en una florería?</h3>
+        <p>No. Si el software está bien diseñado, el equipo debería poder usarlo desde el primer día. La migración de datos históricos es opcional: puedes empezar con pedidos nuevos y guardar el Excel como archivo de consulta histórica.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<footer>
+  <a href="/">Inicio</a>
+  <a href="/blog">Blog</a>
+  <a href="/register">Registro</a>
+  <br><br>
+  © 2025 Florist Manager
+</footer>
+</body>
+</html>
