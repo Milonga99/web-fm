@@ -5,6 +5,7 @@
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/blog/como-organizar-pedidos-floreria", "destination": "/blog/como-organizar-pedidos-floreria.html" },
     { "source": "/blog/control-stock-flores-perecederas", "destination": "/blog/control-stock-flores-perecederas.html" },
-    { "source": "/blog/software-floreria-chile", "destination": "/blog/software-floreria-chile.html" }
+    { "source": "/blog/software-floreria-chile", "destination": "/blog/software-floreria-chile.html" },
+    { "source": "/en", "destination": "/en/index.html" }
   ]
 }
