@@ -303,6 +303,7 @@
     /* ── DASHBOARD MOCKUP ── */
     .mockup-wrapper {
       max-width: 860px;
+      width: 100%;
       margin: 0 auto;
       background: white;
       border-radius: 20px;
@@ -742,9 +743,8 @@
       .hamburger { display: flex; }
       .navbar-actions .btn-outline { display: none; }
 
-      .problem-grid,
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
 
       .feature-block,
       .feature-block.reverse { flex-direction: column; gap: 32px; }
@@ -755,16 +755,74 @@
     }
 
     @media (max-width: 600px) {
-      section { padding: 64px 20px; }
-      #hero { padding-top: 108px; }
-      .navbar { padding: 0 20px; }
+      /* Navbar */
+      .navbar {
+        padding: 0 16px;
+        height: 56px;
+      }
+      .mobile-menu { top: 56px; }
+      .navbar-logo { font-size: 15px; gap: 8px; }
+      .navbar-logo > div { width: 32px !important; height: 32px !important; }
+      .lang-toggle { display: none; }
+      .navbar-actions .btn { padding: 8px 14px; font-size: 13px; }
+
+      /* Sections */
+      section { padding: 52px 16px; }
+      #hero { padding-top: 92px; padding-bottom: 52px; }
+      #cta-band { padding: 64px 16px; }
+      #beta-banner { padding: 52px 16px; }
+      .beta-banner-inner { padding: 32px 24px; }
+
+      /* Hero */
+      .hero-badge { font-size: 12px; padding: 5px 12px; margin-bottom: 20px; }
+      .hero-sub { font-size: 16px; margin-bottom: 28px; }
+      .hero-note { margin-bottom: 40px; }
       .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { width: 100%; padding: 15px; font-size: 16px; }
+
+      /* Mockup */
+      .mockup-wrapper { border-radius: 12px; overflow-x: hidden; }
+      .mockup-main { padding: 14px; }
+      .mockup-top { margin-bottom: 12px; }
+      .mockup-stats { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .mockup-stat { padding: 8px 10px; }
+      .mockup-stat-label { font-size: 10px; }
+      .mockup-stat-val { font-size: 16px; }
       .mockup-table-head,
-      .mockup-row { grid-template-columns: minmax(0,1fr) 70px 70px; }
+      .mockup-row { grid-template-columns: minmax(0,1fr) 68px 64px; }
       .mockup-table-head > *:last-child,
       .mockup-row > *:last-child { display: none; }
-      .mockup-stats { grid-template-columns: 1fr; }
-      .modal-card { padding: 28px 22px; }
+
+      /* Features */
+      .features-header { margin-bottom: 48px; }
+      .feature-block { margin-bottom: 56px; }
+      .feature-title { font-size: 22px; }
+      .feature-desc { font-size: 15px; }
+      .feature-visual { padding: 20px; }
+
+      /* Pricing */
+      .pricing-grid { gap: 16px; }
+      .pricing-card { padding: 28px 22px; }
+      .pricing-amount { font-size: 40px; }
+
+      /* Beta banner */
+      .beta-banner-inner { border-radius: 12px; }
+
+      /* CTA band */
+      #cta-band .btn { width: 100%; }
+
+      /* Modal */
+      .modal-card { padding: 28px 20px; }
+
+      /* Footer */
+      footer { padding: 36px 16px; }
+    }
+
+    @media (max-width: 390px) {
+      .hero-title { letter-spacing: -0.02em; }
+      .mockup-stats { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+      .mockup-stat { padding: 7px 7px; }
+      .pricing-card { padding: 24px 18px; }
     }
   </style>
 </head>
