@@ -151,6 +151,32 @@
       justify-content: center;
     }
 
+    .form-logo {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.75rem;
+      text-decoration: none;
+    }
+    .form-logo-img {
+      width: 36px; height: 36px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .form-logo-img img {
+      width: 170%; height: 170%;
+      object-fit: contain;
+      margin: -35% 0 0 -35%;
+    }
+    .form-logo-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    @media (max-width: 640px) {
+      .form-logo { display: flex; }
+    }
+
     .form-title {
       font-size: 1.35rem;
       font-weight: 700;
@@ -334,6 +360,12 @@
   </div>
 
   <div class="panel-right">
+    <a href="/" class="form-logo">
+      <div class="form-logo-img">
+        <img src="logo.png" alt="Florist Manager">
+      </div>
+      <span class="form-logo-name">Florist Manager</span>
+    </a>
     <div class="form-title">Crear cuenta</div>
     <div class="form-subtitle">Tu panel estará listo en segundos.</div>
 
