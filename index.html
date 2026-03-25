@@ -827,7 +827,7 @@
     </h1>
 
     <p class="hero-sub" data-i18n="hero_sub">
-      Gestiona pedidos, stock y clientes desde un solo lugar. Hecho para florerías como la tuya.
+      Reemplaza el cuaderno, el WhatsApp y los Post-its con un sistema que no deja caer ningún pedido. Para florerías con local físico que venden por WhatsApp e Instagram.
     </p>
 
     <div class="hero-actions">
@@ -1102,48 +1102,54 @@
 
 <!-- ══════════════════════════════════════
      TESTIMONIALS
-     Replace with real testimonials
 ══════════════════════════════════════ -->
 <section id="testimonials">
   <div class="container">
     <div class="fade-in" style="text-align:center;">
       <div class="section-tag" data-i18n="t_tag">Testimonios</div>
-      <h2 class="section-title" data-i18n="t_title">Florerías que ya trabajan diferente</h2>
+      <h2 class="section-title" data-i18n="t_title">Lo que dicen las primeras florerías</h2>
     </div>
     <div class="testimonials-grid">
-      <div class="testimonial-card fade-in delay-1">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote" data-i18n="t1_q">"Antes perdía pedidos cada semana. Ahora tengo todo en un solo lugar."</p>
+
+      <!-- TESTIMONIO REAL PENDIENTE -->
+      <div class="testimonial-card fade-in delay-1" style="border:1.5px dashed rgba(45,189,110,0.25);box-shadow:none;background:#FAFAFA;">
+        <p class="t-quote" style="color:var(--gray-text);font-style:normal;" data-i18n="t1_q">"Testimonio real próximamente — estamos en beta activa."</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);">MG</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--gray);flex-shrink:0;"></div>
           <div>
-            <div class="t-name">María González</div>
-            <div class="t-shop">Florería Primavera, Santiago</div>
+            <div class="t-name" style="color:var(--gray-text);" data-i18n="t1_name">Florería beta · Chile</div>
           </div>
         </div>
       </div>
-      <div class="testimonial-card fade-in delay-2">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote" data-i18n="t2_q">"El control de stock me cambió la vida. Compro mejor y gasto menos."</p>
+
+      <!-- TESTIMONIO REAL PENDIENTE -->
+      <div class="testimonial-card fade-in delay-2" style="border:1.5px dashed rgba(45,189,110,0.25);box-shadow:none;background:#FAFAFA;">
+        <p class="t-quote" style="color:var(--gray-text);font-style:normal;" data-i18n="t2_q">"Testimonio real próximamente — estamos en beta activa."</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:linear-gradient(135deg,#F0407A,#F87BAC);">VT</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--gray);flex-shrink:0;"></div>
           <div>
-            <div class="t-name">Valentina Torres</div>
-            <div class="t-shop">Flores del Valle, Medellín</div>
+            <div class="t-name" style="color:var(--gray-text);" data-i18n="t2_name">Florería beta · Colombia</div>
           </div>
         </div>
       </div>
-      <div class="testimonial-card fade-in delay-3">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote" data-i18n="t3_q">"Mis clientes notan la diferencia. Saben que los recuerdo."</p>
+
+      <!-- TESTIMONIO REAL PENDIENTE -->
+      <div class="testimonial-card fade-in delay-3" style="border:1.5px dashed rgba(45,189,110,0.25);box-shadow:none;background:#FAFAFA;">
+        <p class="t-quote" style="color:var(--gray-text);font-style:normal;" data-i18n="t3_q">"Testimonio real próximamente — estamos en beta activa."</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:linear-gradient(135deg,#7EE06A,#2DBD6E);">CR</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--gray);flex-shrink:0;"></div>
           <div>
-            <div class="t-name">Camila Reyes</div>
-            <div class="t-shop">Studio Floral, Buenos Aires</div>
+            <div class="t-name" style="color:var(--gray-text);" data-i18n="t3_name">Florería beta · Argentina</div>
           </div>
         </div>
       </div>
+
+    </div>
+
+    <!-- Banner beta -->
+    <div class="fade-in" style="margin-top:40px;background:linear-gradient(135deg,rgba(45,189,110,0.08),rgba(126,224,106,0.06));border:1.5px solid rgba(45,189,110,0.18);border-radius:var(--radius);padding:28px 32px;text-align:center;">
+      <p style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;" data-i18n="beta_banner_title">🌱 Florist Manager está en beta activa.</p>
+      <p style="font-size:15px;color:var(--gray-text);" data-i18n="beta_banner_sub">Sé de las primeras florerías en usarlo y ayúdanos a construir la herramienta perfecta.</p>
     </div>
   </div>
 </section>
@@ -1280,8 +1286,10 @@
 
     <div class="modal-success" id="modalSuccess">
       <div class="success-emoji">🌸</div>
-      <h3 class="success-title" data-i18n="m_ok_title">¡Listo!</h3>
-      <p class="success-sub" data-i18n="m_ok_sub">Te contactaremos pronto. 🌸</p>
+      <h3 class="success-title" data-i18n="m_ok_title">¡Ya puedes entrar!</h3>
+      <p class="success-sub" data-i18n="m_ok_sub">Tu cuenta está lista. Entra a la app y empieza ahora.</p>
+      <a href="https://app.floristmanager.com" target="_blank" rel="noopener"
+         class="btn btn-primary btn-lg" style="margin-top:20px;width:100%;" data-i18n="m_ok_btn">Ir a la app →</a>
     </div>
   </div>
 </div>
@@ -1303,7 +1311,7 @@ const T = {
     hero_badge: 'Hecho para florerías de LATAM',
     hero_title_plain: 'Tu florería,',
     hero_title_grad: 'sin el caos.',
-    hero_sub: 'Gestiona pedidos, stock y clientes desde un solo lugar. Hecho para florerías como la tuya.',
+    hero_sub: 'Reemplaza el cuaderno, el WhatsApp y los Post-its con un sistema que no deja caer ningún pedido. Para florerías con local físico que venden por WhatsApp e Instagram.',
     hero_cta1: 'Empieza gratis',
     hero_cta2: 'Probar la app →',
     hero_note1: 'Sin tarjeta de crédito',
@@ -1328,10 +1336,15 @@ const T = {
     f3_desc: 'Historial completo, preferencias y recordatorios automáticos para fidelizar.',
 
     t_tag: 'Testimonios',
-    t_title: 'Florerías que ya trabajan diferente',
-    t1_q: '"Antes perdía pedidos cada semana. Ahora tengo todo en un solo lugar."',
-    t2_q: '"El control de stock me cambió la vida. Compro mejor y gasto menos."',
-    t3_q: '"Mis clientes notan la diferencia. Saben que los recuerdo."',
+    t_title: 'Lo que dicen las primeras florerías',
+    t1_q: 'Testimonio real próximamente — estamos en beta activa.',
+    t1_name: 'Florería beta · Chile',
+    t2_q: 'Testimonio real próximamente — estamos en beta activa.',
+    t2_name: 'Florería beta · Colombia',
+    t3_q: 'Testimonio real próximamente — estamos en beta activa.',
+    t3_name: 'Florería beta · Argentina',
+    beta_banner_title: '🌱 Florist Manager está en beta activa.',
+    beta_banner_sub: 'Sé de las primeras florerías en usarlo y ayúdanos a construir la herramienta perfecta.',
 
     p_tag: 'Precios',
     p_title: 'Simple. Sin sorpresas.',
@@ -1368,8 +1381,9 @@ const T = {
     m_optional: '(opcional)',
     m_wa_ph: '+56 9 1234 5678',
     m_submit: 'Unirme a la beta',
-    m_ok_title: '¡Listo!',
-    m_ok_sub: 'Te contactaremos pronto. 🌸',
+    m_ok_title: '¡Ya puedes entrar!',
+    m_ok_sub: 'Tu cuenta está lista. Entra a la app y empieza ahora.',
+    m_ok_btn: 'Ir a la app →',
   },
   en: {
     nav_features: 'Features',
@@ -1381,7 +1395,7 @@ const T = {
     hero_badge: 'Built for flower shops in LATAM',
     hero_title_plain: 'Your flower shop,',
     hero_title_grad: 'without the chaos.',
-    hero_sub: 'Manage orders, inventory and customers from one place. Built for flower shops like yours.',
+    hero_sub: 'Replace your notebook, WhatsApp and Post-its with a system that never drops an order. For flower shops with a physical store that sell on WhatsApp and Instagram.',
     hero_cta1: 'Start for free',
     hero_cta2: 'Try the app →',
     hero_note1: 'No credit card',
@@ -1406,10 +1420,15 @@ const T = {
     f3_desc: 'Full history, preferences and automatic reminders to build loyalty.',
 
     t_tag: 'Testimonials',
-    t_title: 'Flower shops already working smarter',
-    t1_q: '"I used to lose orders every week. Now I have everything in one place."',
-    t2_q: '"Inventory control changed my life. I buy smarter and spend less."',
-    t3_q: '"My customers notice the difference. They know I remember them."',
+    t_title: 'What the first flower shops say',
+    t1_q: 'Real testimonial coming soon — we\'re in active beta.',
+    t1_name: 'Beta flower shop · Chile',
+    t2_q: 'Real testimonial coming soon — we\'re in active beta.',
+    t2_name: 'Beta flower shop · Colombia',
+    t3_q: 'Real testimonial coming soon — we\'re in active beta.',
+    t3_name: 'Beta flower shop · Argentina',
+    beta_banner_title: '🌱 Florist Manager is in active beta.',
+    beta_banner_sub: 'Be one of the first flower shops to use it and help us build the perfect tool.',
 
     p_tag: 'Pricing',
     p_title: 'Simple. No surprises.',
@@ -1446,8 +1465,9 @@ const T = {
     m_optional: '(optional)',
     m_wa_ph: '+1 555 123 4567',
     m_submit: 'Join the beta',
-    m_ok_title: 'Done!',
-    m_ok_sub: "We'll be in touch soon. 🌸",
+    m_ok_title: 'You\'re in! 🌸',
+    m_ok_sub: 'Your account is ready. Open the app and start now.',
+    m_ok_btn: 'Go to the app →',
   }
 };
 
