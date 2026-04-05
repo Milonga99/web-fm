@@ -7,6 +7,9 @@
     { "source": "/blog/control-stock-flores-perecederas", "destination": "/blog/control-stock-flores-perecederas.html" },
     { "source": "/blog/software-floreria-chile", "destination": "/blog/software-floreria-chile.html" },
     { "source": "/en", "destination": "/en/index.html" },
-    { "source": "/blog/software-para-florerias", "destination": "/blog/software-para-florerias.html" }
+    { "source": "/blog/software-para-florerias", "destination": "/blog/software-para-florerias.html" },
+    { "source": "/blog/como-calcular-precio-arreglo-floral", "destination": "/blog/como-calcular-precio-arreglo-floral.html" },
+    { "source": "/blog/vender-mas-por-whatsapp-floreria", "destination": "/blog/vender-mas-por-whatsapp-floreria.html" },
+    { "source": "/blog/errores-comunes-gestionar-floreria", "destination": "/blog/errores-comunes-gestionar-floreria.html" }
   ]
 }

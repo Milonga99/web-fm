@@ -237,7 +237,7 @@ jobs:
             </a>
           '''
             # Insertar justo antes del cierre del blog-grid
-            marker = '</div>\n</div>\n\n<div class="blog-cta"'
+            marker = '  </div>\n</div>\n\n<div class="blog-cta"'
             if marker in txt:
               txt = txt.replace(marker, new_card + '</div>\n</div>\n\n<div class="blog-cta"', 1)
               open('blog/index.html', 'w').write(txt)
