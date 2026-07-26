@@ -509,6 +509,34 @@
 
     /* ── DEMO VIDEO ── */
     #demo-video { background: white; text-align: center; }
+    .video-tabs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: var(--gray);
+      border-radius: 30px;
+      padding: 4px;
+      width: fit-content;
+      margin: 0 auto 28px;
+    }
+    .video-tab-btn {
+      padding: 9px 20px;
+      border-radius: 24px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-text);
+      transition: all 0.2s ease;
+    }
+    .video-tab-btn.active {
+      background: white;
+      color: var(--text);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
     .video-wrapper {
       max-width: 860px;
       margin: 0 auto;
@@ -1257,10 +1285,15 @@
     <div class="features-header fade-in">
       <div class="section-tag" data-i18n="video_tag">Video</div>
       <h2 class="section-title" data-i18n="video_title">Mira la sección de pedidos en acción</h2>
-      <p class="section-subtitle" style="margin:0 auto;" data-i18n="video_subtitle">La parte más usada de Florist Manager, en 60 segundos.</p>
+      <p class="section-subtitle" style="margin:0 auto;" data-i18n="video_subtitle">La parte más usada de Florist Manager, en 120 segundos.</p>
+    </div>
+    <!-- Tabs: agrega más botones acá cuando haya video de otras secciones (Inventario, Clientes, etc.)
+         Cada botón necesita data-src (y opcionalmente data-poster); el JS de abajo hace el resto. -->
+    <div class="video-tabs fade-in" id="videoTabs">
+      <button type="button" class="video-tab-btn active" data-src="/videos/demo-pedidos.mp4" data-poster="/videos/demo-pedidos-poster.jpg" onclick="setVideoTab(this)" data-i18n="video_tab_pedidos">Pedidos</button>
     </div>
     <div class="video-wrapper fade-in">
-      <video controls preload="metadata" poster="/videos/demo-pedidos-poster.jpg">
+      <video id="demoVideo" controls preload="metadata" poster="/videos/demo-pedidos-poster.jpg">
         <source src="/videos/demo-pedidos.mp4" type="video/mp4">
       </video>
     </div>
@@ -1712,7 +1745,8 @@ const T = {
 
     video_tag: 'Video',
     video_title: 'Mira la sección de pedidos en acción',
-    video_subtitle: 'La parte más usada de Florist Manager, en 60 segundos.',
+    video_subtitle: 'La parte más usada de Florist Manager, en 120 segundos.',
+    video_tab_pedidos: 'Pedidos',
 
     prob_tag: 'El problema',
     prob_title: '¿Te suena familiar?',
@@ -1817,7 +1851,8 @@ const T = {
 
     video_tag: 'Video',
     video_title: 'See the orders section in action',
-    video_subtitle: 'The most-used part of Florist Manager, in 60 seconds.',
+    video_subtitle: 'The most-used part of Florist Manager, in 120 seconds.',
+    video_tab_pedidos: 'Orders',
 
     prob_tag: 'The problem',
     prob_title: 'Sound familiar?',
@@ -1974,6 +2009,17 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── DEMO VIDEO: tabs ──
+function setVideoTab(btn) {
+  document.querySelectorAll('.video-tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+  const video = document.getElementById('demoVideo');
+  const src = btn.getAttribute('data-src');
+  const poster = btn.getAttribute('data-poster');
+  video.querySelector('source').src = src;
+  if (poster) video.setAttribute('poster', poster);
+  video.load();
+}
 
 // ── PRICING: toggle mensual/anual ──
 let pricingPeriod = 'monthly';
