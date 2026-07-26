@@ -191,6 +191,43 @@
       .form-logo { display: flex; }
     }
 
+    .stepper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .step.active { color: var(--green-dark); }
+    .step.done { color: var(--green-dark); }
+    .step-num {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--text2);
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step.active .step-num, .step.done .step-num {
+      background: var(--green-mid);
+      color: white;
+    }
+    .step-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 32px;
+    }
+
     .form-title {
       font-size: 1.35rem;
       font-weight: 700;
@@ -271,15 +308,6 @@
       height: 100%;
       min-height: 0;
       flex: 1;
-    }
-    .success-icon {
-      width: 40px; height: 40px;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, var(--green-mid), var(--green-light));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 0.6rem;
-      box-shadow: 0 4px 16px rgba(61,184,83,0.3);
     }
     .success-title { flex-shrink: 0; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
     .success-text { flex-shrink: 0; font-size: 0.82rem; color: var(--muted); line-height: 1.4; margin-bottom: 0.75rem; }
@@ -390,6 +418,16 @@
       </div>
       <span class="form-logo-name">Florist Manager</span>
     </a>
+    <div class="stepper" id="stepper">
+      <div class="step active" id="step1">
+        <span class="step-num">1</span> Tus datos
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step2">
+        <span class="step-num">2</span> Elige horario
+      </div>
+    </div>
+
     <div id="formWrap">
       <div class="form-title">Agenda tu llamada de implementación</div>
       <div class="form-subtitle">Cuéntanos de tu floristería y coordinamos contigo por WhatsApp.</div>
@@ -439,11 +477,8 @@
     </div>
 
     <div class="cal-step" id="calStep">
-      <div class="success-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="success-title">¡Listo!</div>
-      <div class="success-text">Revisa tu WhatsApp y elige un horario para tu llamada:</div>
+      <div class="success-title">Un último paso: elige un horario</div>
+      <div class="success-text">Tus datos quedaron guardados. Ahora elige el día y hora que más te acomode para tu llamada:</div>
       <!-- Widget de Calendly: se inicializa por JS (Calendly.initInlineWidget) recién cuando se muestra este paso -->
       <div id="calendlyContainer" class="calendly-container"></div>
     </div>
@@ -500,6 +535,9 @@
       document.getElementById('calStep').style.display = 'flex';
       document.getElementById('layoutEl').classList.add('cal-open');
       document.body.classList.add('locked');
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step1').classList.add('done');
+      document.getElementById('step2').classList.add('active');
       showCalendly();
     } catch(e) {
       showError('Error de red. Intenta de nuevo.');
