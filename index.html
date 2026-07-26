@@ -1278,7 +1278,9 @@
 
 
 <!-- ══════════════════════════════════════
-     DEMO VIDEO (YouTube embed)
+     DEMO VIDEO
+     Coloca el archivo de video en /videos/demo-pedidos.mp4
+     (y opcionalmente un poster en /videos/demo-pedidos-poster.jpg)
 ══════════════════════════════════════ -->
 <section id="demo-video">
   <div class="container">
@@ -1288,12 +1290,14 @@
       <p class="section-subtitle" style="margin:0 auto;" data-i18n="video_subtitle">La parte más usada de Florist Manager, en 120 segundos.</p>
     </div>
     <!-- Tabs: agrega más botones acá cuando haya video de otras secciones (Inventario, Clientes, etc.)
-         Cada botón necesita data-src con el embed de YouTube (https://www.youtube.com/embed/VIDEO_ID); el JS de abajo hace el resto. -->
+         Cada botón necesita data-src (y opcionalmente data-poster); el JS de abajo hace el resto. -->
     <div class="video-tabs fade-in" id="videoTabs">
-      <button type="button" class="video-tab-btn active" data-src="https://www.youtube.com/embed/OC0_0SQMJ4s" onclick="setVideoTab(this)" data-i18n="video_tab_pedidos">Pedidos</button>
+      <button type="button" class="video-tab-btn active" data-src="/videos/demo-pedidos.mp4" data-poster="/videos/demo-pedidos-poster.jpg" onclick="setVideoTab(this)" data-i18n="video_tab_pedidos">Pedidos</button>
     </div>
     <div class="video-wrapper fade-in">
-      <iframe id="demoVideo" src="https://www.youtube.com/embed/OC0_0SQMJ4s" title="Florist Manager — demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <video id="demoVideo" controls preload="metadata" poster="/videos/demo-pedidos-poster.jpg">
+        <source src="/videos/demo-pedidos.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
@@ -2011,7 +2015,12 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 // ── DEMO VIDEO: tabs ──
 function setVideoTab(btn) {
   document.querySelectorAll('.video-tab-btn').forEach(b => b.classList.toggle('active', b === btn));
-  document.getElementById('demoVideo').src = btn.getAttribute('data-src');
+  const video = document.getElementById('demoVideo');
+  const src = btn.getAttribute('data-src');
+  const poster = btn.getAttribute('data-poster');
+  video.querySelector('source').src = src;
+  if (poster) video.setAttribute('poster', poster);
+  video.load();
 }
 
 // ── PRICING: toggle mensual/anual ──
