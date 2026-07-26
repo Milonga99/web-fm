@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Florist management software that organizes your orders, stock and customers in one place. Built for flower shops. Free to start.">
+  <meta name="description" content="Florist management software that organizes your orders, stock and customers in one place. Built for flower shops. 14-day free trial, no credit card.">
   <title>Florist Management Software — Orders, Stock & Customers | Florist Manager</title>
 
   <!-- hreflang -->
@@ -15,7 +15,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.floristmanager.com/en">
   <meta property="og:title" content="Florist Management Software — Orders, Stock & Customers | Florist Manager">
-  <meta property="og:description" content="Manage orders, stock and customers from your flower shop in one place. No paper, no lost messages. Free to start.">
+  <meta property="og:description" content="Manage orders, stock and customers from your flower shop in one place. No paper, no lost messages. 14-day free trial, no credit card.">
   <meta property="og:image" content="https://www.floristmanager.com/og-image.png">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
@@ -34,9 +34,9 @@
     "operatingSystem": "Web",
     "offers": {
       "@type": "Offer",
-      "price": "0",
+      "price": "39",
       "priceCurrency": "USD",
-      "description": "Free plan available"
+      "description": "14-day free trial available, no credit card required"
     },
     "description": "Florist management software that organizes orders, stock and customers in one place. Built for flower shops.",
     "inLanguage": "en",
@@ -589,7 +589,49 @@
 
     /* ── PRICING ── */
     #pricing { background: white; }
-    .pricing-header { text-align: center; margin-bottom: 52px; }
+    .pricing-header { text-align: center; margin-bottom: 32px; }
+
+    /* Monthly/annual toggle */
+    .pricing-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: var(--gray);
+      border-radius: 30px;
+      padding: 4px;
+      width: fit-content;
+      margin: 0 auto 40px;
+    }
+    .pricing-toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 24px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-text);
+      transition: all 0.2s ease;
+    }
+    .pricing-toggle-btn.active {
+      background: white;
+      color: var(--text);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .pricing-toggle-save {
+      background: rgba(45,189,110,0.14);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -661,6 +703,107 @@
       font-size: 14px;
       color: var(--gray-text);
       margin-top: 32px;
+    }
+    .pricing-clp {
+      font-size: 13px;
+      color: var(--gray-text);
+      margin-bottom: 4px;
+    }
+    .pricing-clp small { display: block; font-size: 11px; opacity: 0.8; margin-top: 2px; }
+    .pricing-founder-note {
+      background: linear-gradient(135deg, rgba(45,189,110,0.1), rgba(126,224,106,0.06));
+      border: 1px solid rgba(45,189,110,0.22);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #16A34A;
+      line-height: 1.5;
+      margin: 14px 0 4px;
+    }
+
+    /* ── CTA SECONDARY (agenda) ── */
+    .btn-secondary-outline {
+      background: transparent;
+      border: 1.5px solid rgba(0,0,0,0.14);
+      color: var(--text);
+    }
+    .btn-secondary-outline:hover { border-color: var(--pink); color: var(--pink); }
+
+    /* ── HERO CREDIBILITY ── */
+    .hero-credibility {
+      font-size: 14px;
+      color: var(--gray-text);
+      max-width: 560px;
+      margin: -20px auto 28px;
+      line-height: 1.6;
+    }
+
+    /* ── FOUNDER STORY ── */
+    #founder-story { background: var(--gray); }
+    .founder-story-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .founder-story-inner p {
+      font-size: 19px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    /* ── TESTIMONIALS (placeholder, hidden) ── */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--gray);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+    }
+    .testimonial-quote { font-size: 15px; line-height: 1.65; margin-bottom: 16px; }
+    .testimonial-author { font-size: 13px; font-weight: 700; }
+    .testimonial-shop { font-size: 12px; color: var(--gray-text); }
+
+    /* ── FAQ ── */
+    #faq { background: white; }
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 4px 0;
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 4px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--gray);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--green);
+      transition: transform 0.2s ease;
+    }
+    .faq-item[open] .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      font-size: 15px;
+      color: var(--gray-text);
+      line-height: 1.7;
+      padding: 0 4px 22px;
     }
 
     /* ── CTA BAND ── */
@@ -795,6 +938,7 @@
 
       .problem-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .testimonial-grid { grid-template-columns: 1fr; }
 
       .feature-block,
       .feature-block.reverse { flex-direction: column; gap: 32px; }
@@ -854,9 +998,19 @@
       .pricing-grid { gap: 16px; }
       .pricing-card { padding: 28px 22px; }
       .pricing-amount { font-size: 40px; }
+      .pricing-toggle { width: 100%; }
+      .pricing-toggle-btn { flex: 1; padding: 9px 10px; font-size: 13px; justify-content: center; }
 
       /* Beta banner */
       .beta-banner-inner { border-radius: 12px; }
+
+      /* Founder story / testimonials */
+      .founder-story-inner p { font-size: 16px; }
+      .testimonial-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      /* FAQ */
+      .faq-item summary { font-size: 15px; padding: 16px 2px; }
+      .faq-answer { font-size: 14px; padding: 0 2px 18px; }
 
       /* CTA band */
       #cta-band .btn { width: 100%; }
@@ -952,7 +1106,7 @@
       <button class="lang-btn active">EN</button>
     </div>
     <a href="/register" target="_blank" rel="noopener"
-       class="btn btn-primary" data-i18n="nav_cta">Empieza gratis</a>
+       class="btn btn-primary" data-i18n="nav_cta">14-day free trial</a>
   </div>
 
   <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menú">
@@ -966,7 +1120,7 @@
   <a href="#pricing"      onclick="closeMenu()" data-i18n="nav_pricing">Precios</a>
   <div class="mobile-actions">
     <a href="/register" target="_blank" rel="noopener"
-       class="btn btn-primary" data-i18n="nav_cta">Empieza gratis</a>
+       class="btn btn-primary" data-i18n="nav_cta">14-day free trial</a>
   </div>
 </div>
 
@@ -987,15 +1141,21 @@
       Manage orders, stock and customers in one place. No paper, no lost messages, no forgotten orders.
     </p>
 
+    <p class="hero-credibility" data-i18n="hero_credibility">
+      Built by owners of a real flower shop in Chile — 6 years running it, over 50,000 orders handled.
+    </p>
+
     <div class="hero-actions">
       <a href="/register" target="_blank" rel="noopener"
-         class="btn btn-brand btn-lg" data-i18n="hero_cta1">Empieza gratis</a>
+         class="btn btn-brand btn-lg" data-i18n="hero_cta1">14-day free trial</a>
+      <a href="[LINK_AGENDA]" target="_blank" rel="noopener"
+         class="btn btn-outline btn-lg" data-i18n="hero_cta2">Book 15 min and we'll set it up for you</a>
     </div>
 
     <p class="hero-note">
-      <span data-i18n="hero_note1">Sin tarjeta de crédito</span>
+      <span data-i18n="hero_note1">No credit card</span>
       <span class="dot">·</span>
-      <span data-i18n="hero_note2">Cancela cuando quieras</span>
+      <span data-i18n="hero_note2">Cancel anytime</span>
     </p>
 
     <!-- ── DASHBOARD MOCKUP ── -->
@@ -1257,6 +1417,44 @@
 
 
 <!-- ══════════════════════════════════════
+     FOUNDER STORY
+══════════════════════════════════════ -->
+<section id="founder-story">
+  <div class="container founder-story-inner fade-in">
+    <p data-i18n="founder_story">
+      We're not a software company guessing what a flower shop needs: we've been running a real flower shop in Chile every day for 6 years. Every feature in Florist Manager exists because we needed it first, for our own orders, our own stock and our own customers. We built it for ourselves — and now we're sharing it with you.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TESTIMONIALS (placeholder — hidden until we have real testimonials)
+     Replace [TESTIMONIAL_1], [CUSTOMER_NAME_1], [SHOP_NAME_1], etc.
+     with real content and remove style="display:none" to publish.
+══════════════════════════════════════ -->
+<section id="testimonials" style="display:none;">
+  <div class="container">
+    <div class="features-header fade-in">
+      <div class="section-tag" data-i18n="test_tag">Testimonials</div>
+      <h2 class="section-title" data-i18n="test_title">What flower shops using it already say</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card fade-in delay-1">
+        <p class="testimonial-quote">[TESTIMONIAL_1]</p>
+        <div class="testimonial-author">[CUSTOMER_NAME_1]</div>
+        <div class="testimonial-shop">[SHOP_NAME_1]</div>
+      </div>
+      <div class="testimonial-card fade-in delay-2">
+        <p class="testimonial-quote">[TESTIMONIAL_2]</p>
+        <div class="testimonial-author">[CUSTOMER_NAME_2]</div>
+        <div class="testimonial-shop">[SHOP_NAME_2]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
      BETA BANNER
 ══════════════════════════════════════ -->
 <section id="beta-banner">
@@ -1278,49 +1476,101 @@
 <section id="pricing">
   <div class="container">
     <div class="pricing-header fade-in">
-      <div class="section-tag" data-i18n="p_tag">Precios</div>
-      <h2 class="section-title" data-i18n="p_title">Simple. Sin sorpresas.</h2>
+      <div class="section-tag" data-i18n="p_tag">Pricing</div>
+      <h2 class="section-title" data-i18n="p_title">Simple. No surprises.</h2>
+      <p class="section-subtitle" style="margin:0 auto;" data-i18n="p_subtitle">14-day trial with full access, no card required. Then pick your plan.</p>
+    </div>
+
+    <div class="pricing-toggle fade-in" id="pricingToggle">
+      <button type="button" class="pricing-toggle-btn active" data-period="monthly" onclick="setPricingPeriod('monthly')" data-i18n="p_toggle_monthly">Monthly</button>
+      <button type="button" class="pricing-toggle-btn" data-period="annual" onclick="setPricingPeriod('annual')">
+        <span data-i18n="p_toggle_annual">Annual</span>
+        <span class="pricing-toggle-save" data-i18n="p_toggle_save">2 months free</span>
+      </button>
     </div>
 
     <div class="pricing-grid">
-      <!-- Free -->
-      <div class="pricing-card fade-in delay-1">
-        <div class="pricing-plan-name" data-i18n="p1_name">Plan Gratis</div>
+      <!-- Pro -->
+      <div class="pricing-card featured fade-in delay-1">
+        <div class="pricing-popular" data-i18n="p2_badge">Most popular</div>
+        <div class="pricing-plan-name">Pro</div>
         <div class="pricing-price">
-          <span class="pricing-amount">$0</span>
-          <span class="pricing-mo">USD / mes</span>
+          <span class="pricing-amount" data-monthly="39" data-annual="390">$39</span>
+          <span class="pricing-mo" data-price-suffix data-monthly-label="USD / mo" data-annual-label="USD / yr">USD / mo</span>
         </div>
-        <p class="pricing-tagline" data-i18n="p1_tag">Para empezar sin compromiso</p>
+        <p class="pricing-founder-note" data-i18n="p2_founder_note">🚀 Beta launch price: you lock in $39/mo forever. It goes up to $59 once beta ends.</p>
+        <p class="pricing-tagline" data-i18n="p2_tag">For shops ready to grow</p>
         <ul class="pricing-feats">
-          <li data-i18n="p1_f1">Hasta 50 pedidos/mes</li>
-          <li data-i18n="p1_f2">1 usuario</li>
-          <li data-i18n="p1_f3">Gestión de pedidos</li>
-          <li data-i18n="p1_f4">Soporte por email</li>
+          <li data-i18n="p2_f1">Unlimited orders</li>
+          <li data-i18n="p2_f2">Up to 3 users</li>
+          <li data-i18n="p2_f3">Inventory + customers + reports</li>
+          <li data-i18n="p2_f4">Email support</li>
         </ul>
-        <a href="/register" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;" data-i18n="p1_cta">Empezar gratis</a>
+        <a href="/register" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;" data-i18n="p2_cta">14-day free trial</a>
       </div>
 
-      <!-- Pro -->
-      <div class="pricing-card featured fade-in delay-2">
-        <div class="pricing-popular" data-i18n="p2_badge">Más popular</div>
-        <div class="pricing-plan-name">Plan Pro</div>
+      <!-- Growth -->
+      <div class="pricing-card fade-in delay-2">
+        <div class="pricing-plan-name">Growth</div>
         <div class="pricing-price">
-          <span class="pricing-amount">$19</span>
-          <span class="pricing-mo">USD / mes</span>
+          <span class="pricing-amount" data-monthly="99" data-annual="990">$99</span>
+          <span class="pricing-mo" data-price-suffix data-monthly-label="USD / mo" data-annual-label="USD / yr">USD / mo</span>
         </div>
-        <p class="pricing-tagline" data-i18n="p2_tag">Para florerías que quieren crecer</p>
+        <p class="pricing-tagline" data-i18n="p3_tag">For shops ready to hand it off</p>
         <ul class="pricing-feats">
-          <li data-i18n="p2_f1">Pedidos ilimitados</li>
-          <li data-i18n="p2_f2">Hasta 3 usuarios</li>
-          <li data-i18n="p2_f3">Stock + clientes + reportes</li>
-          <li data-i18n="p2_f4">Soporte prioritario</li>
-          <li data-i18n="p2_f5">Integraciones próximamente</li>
+          <li data-i18n="p3_f1">Everything in Pro</li>
+          <li data-i18n="p3_f2">Unlimited users</li>
+          <li data-i18n="p3_f3">1:1 onboarding — we set everything up with you on a video call</li>
+          <li data-i18n="p3_f4">Priority WhatsApp support</li>
         </ul>
-        <a href="/register" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;" data-i18n="p2_cta">Empezar prueba gratis</a>
+        <a href="/register" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;" data-i18n="p3_cta">14-day free trial</a>
       </div>
     </div>
 
-    <p class="pricing-note fade-in" data-i18n="p_note">Todos los planes incluyen 14 días de prueba gratis.</p>
+    <p class="pricing-note fade-in" data-i18n="p_note">14 days free with full access. No credit card. Cancel anytime.</p>
+
+    <div class="hero-actions fade-in" style="margin-top:28px;">
+      <a href="[LINK_AGENDA]" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="p_agenda_cta">Book 15 min and we'll set it up for you</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FAQ
+══════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="features-header fade-in">
+      <div class="section-tag" data-i18n="faq_tag">FAQ</div>
+      <h2 class="section-title" data-i18n="faq_title">What people ask us most</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item fade-in">
+        <summary><span data-i18n="faq_q1">What happens when the 14 days are over?</span><span class="faq-icon">+</span></summary>
+        <p class="faq-answer" data-i18n="faq_a1">You choose the plan that fits. There's never an automatic charge because we never ask for a card up front — and your data stays saved, nothing is lost.</p>
+      </details>
+      <details class="faq-item fade-in">
+        <summary><span data-i18n="faq_q2">Can I cancel anytime?</span><span class="faq-icon">+</span></summary>
+        <p class="faq-answer" data-i18n="faq_a2">Yes. Cancel with one click from your account, no contract, no minimum commitment.</p>
+      </details>
+      <details class="faq-item fade-in">
+        <summary><span data-i18n="faq_q3">Why is the price in US dollars?</span><span class="faq-icon">+</span></summary>
+        <p class="faq-answer" data-i18n="faq_a3">We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere. We still show a Chilean peso reference for convenience.</p>
+      </details>
+      <details class="faq-item fade-in">
+        <summary><span data-i18n="faq_q4">What happens to my data if I leave?</span><span class="faq-icon">+</span></summary>
+        <p class="faq-answer" data-i18n="faq_a4">You can export it yourself anytime, or we delete it completely if you ask us to.</p>
+      </details>
+      <details class="faq-item fade-in">
+        <summary><span data-i18n="faq_q5">I track everything on paper or WhatsApp today — is it hard to switch?</span><span class="faq-icon">+</span></summary>
+        <p class="faq-answer" data-i18n="faq_a5">It shouldn't be. And if you pick the Growth plan, it includes a setup call where we get everything ready with you, step by step.</p>
+      </details>
+      <details class="faq-item fade-in">
+        <summary><span data-i18n="faq_q6">What does it mean that it's in beta?</span><span class="faq-icon">+</span></summary>
+        <p class="faq-answer" data-i18n="faq_a6">We actively improve the product every week based on feedback from real flower shops. As a thank-you for joining now, your founder price is locked in forever.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -1330,9 +1580,9 @@
 ══════════════════════════════════════ -->
 <section id="cta-band">
   <div class="container fade-in">
-    <h2 class="section-title" data-i18n="cta_title">Empieza hoy. Es gratis.</h2>
-    <p class="section-subtitle" data-i18n="cta_sub">Sin tarjeta de crédito. Sin compromisos. Solo orden.</p>
-    <a href="/register" target="_blank" rel="noopener" class="btn btn-white btn-lg" data-i18n="cta_btn">Empieza gratis</a>
+    <h2 class="section-title" data-i18n="cta_title">Start today. No card required.</h2>
+    <p class="section-subtitle" data-i18n="cta_sub">14-day trial with full access. No commitment. Just clarity.</p>
+    <a href="/register" target="_blank" rel="noopener" class="btn btn-white btn-lg" data-i18n="cta_btn">14-day free trial</a>
   </div>
 </section>
 
@@ -1384,9 +1634,9 @@
     </a>
     <p class="footer-tagline" data-i18n="ft_tagline">Hecho para florerías de LATAM 🌸</p>
     <div class="footer-links">
-      <a href="#" data-i18n="ft_terms">Términos de uso</a>
-      <a href="#" data-i18n="ft_privacy">Privacidad</a>
-      <a href="#" data-i18n="ft_contact">Contacto</a>
+      <a href="/en/terminos.html" data-i18n="ft_terms">Terms of use</a>
+      <a href="/en/privacidad.html" data-i18n="ft_privacy">Privacy</a>
+      <a href="https://wa.me/56995783262?text=Hola%2C%20quiero%20probar%20Florist%20Manager" target="_blank" rel="noopener" data-i18n="ft_contact">Contact</a>
     </div>
     <p class="footer-copy">© 2025 Florist Manager</p>
   </div>
@@ -1430,7 +1680,7 @@
                  data-i18n-ph="m_wa_ph" placeholder="+56 9 1234 5678">
         </div>
         <button type="submit" class="btn btn-brand btn-lg" style="width:100%;" data-i18n="m_submit">
-          Unirme a la beta
+          Start my free trial
         </button>
       </form>
     </div>
@@ -1457,14 +1707,15 @@ const T = {
     nav_pricing: 'Precios',
     nav_testimonials: 'Testimonios',
     nav_try: 'Probar app →',
-    nav_cta: 'Empieza gratis',
+    nav_cta: 'Prueba 14 días gratis',
 
     hero_badge: 'Hecho para florerías de LATAM',
     hero_title_plain: 'El software para florería',
     hero_title_grad: 'que sí funciona.',
     hero_sub: 'Gestiona pedidos, stock y clientes en un solo lugar. Sin papel, sin mensajes perdidos, sin encargos olvidados.',
-    hero_cta1: 'Empieza gratis',
-    hero_cta2: 'Probar la app →',
+    hero_credibility: 'Creado por dueños de una florería en Chile — 6 años operando, más de 50.000 pedidos gestionados.',
+    hero_cta1: 'Prueba 14 días gratis',
+    hero_cta2: 'Agenda 15 min y te lo dejamos configurado',
     hero_note1: 'Sin tarjeta de crédito',
     hero_note2: 'Cancela cuando quieras',
 
@@ -1486,32 +1737,57 @@ const T = {
     f3_title: 'Seguimiento de clientes',
     f3_desc: 'Historial completo, preferencias y recordatorios automáticos para fidelizar.',
 
+    founder_story: 'No somos una empresa de software adivinando qué necesita una florería: operamos una florería en Chile todos los días, hace 6 años. Cada función de Florist Manager nació porque la necesitábamos nosotros primero, para nuestros propios pedidos, nuestro propio stock y nuestros propios clientes. Lo construimos para nosotros — y ahora lo compartimos contigo.',
+
+    test_tag: 'Testimonios',
+    test_title: 'Lo que dicen las florerías que ya lo usan',
+
     beta_pill: 'Beta activa',
     beta_title: 'Florist Manager está en beta activa.',
     beta_sub: 'Sé de las primeras florerías en usarlo.',
 
     p_tag: 'Precios',
     p_title: 'Simple. Sin sorpresas.',
-    p1_name: 'Plan Gratis',
-    p1_tag: 'Para empezar sin compromiso',
-    p1_f1: 'Hasta 50 pedidos/mes',
-    p1_f2: '1 usuario',
-    p1_f3: 'Gestión de pedidos',
-    p1_f4: 'Soporte por email',
-    p1_cta: 'Empezar gratis',
+    p_subtitle: '14 días de prueba con acceso completo, sin tarjeta. Después, eliges tu plan.',
+    p_toggle_monthly: 'Mensual',
+    p_toggle_annual: 'Anual',
+    p_toggle_save: '2 meses gratis',
+    p_clp_note: 'valor referencial, el cobro es en USD',
     p2_badge: 'Más popular',
+    p2_founder_note: '🚀 Precio de lanzamiento en beta: quedas con $39/mes para siempre. Al salir de beta sube a $59.',
     p2_tag: 'Para florerías que quieren crecer',
     p2_f1: 'Pedidos ilimitados',
     p2_f2: 'Hasta 3 usuarios',
     p2_f3: 'Stock + clientes + reportes',
-    p2_f4: 'Soporte prioritario',
-    p2_f5: 'Integraciones próximamente',
-    p2_cta: 'Empezar prueba gratis',
-    p_note: 'Todos los planes incluyen 14 días de prueba gratis.',
+    p2_f4: 'Soporte por email',
+    p2_cta: 'Prueba 14 días gratis',
+    p3_tag: 'Para florerías que quieren delegar',
+    p3_f1: 'Todo lo de Pro',
+    p3_f2: 'Usuarios ilimitados',
+    p3_f3: 'Onboarding 1:1 — te dejamos todo configurado en una videollamada',
+    p3_f4: 'Soporte prioritario por WhatsApp',
+    p3_cta: 'Prueba 14 días gratis',
+    p_note: '14 días gratis con acceso completo. Sin tarjeta. Cancela cuando quieras.',
+    p_agenda_cta: 'Agenda 15 min y te lo dejamos configurado',
 
-    cta_title: 'Empieza hoy. Es gratis.',
-    cta_sub: 'Sin tarjeta de crédito. Sin compromisos. Solo orden.',
-    cta_btn: 'Empieza gratis',
+    faq_tag: 'Preguntas frecuentes',
+    faq_title: 'Lo que más nos preguntan',
+    faq_q1: '¿Qué pasa cuando terminan los 14 días?',
+    faq_a1: 'Eliges el plan que más te acomode. Nunca hay un cobro automático porque no te pedimos tarjeta al partir — y tus datos quedan guardados, no se pierde nada.',
+    faq_q2: '¿Puedo cancelar cuando quiera?',
+    faq_a2: 'Sí. Cancelas con un clic desde tu cuenta, sin contrato ni permanencia mínima.',
+    faq_q3: '¿Por qué el precio está en dólares?',
+    faq_a3: 'Operamos en toda LATAM, así que cobramos en USD para mantener un precio parejo en cualquier país. Igual te mostramos una referencia en pesos chilenos.',
+    faq_q4: '¿Qué pasa con mis datos si me voy?',
+    faq_a4: 'Los exportas tú mismo cuando quieras, o los eliminamos por completo si nos lo pides.',
+    faq_q5: 'Hoy anoto todo en cuaderno o WhatsApp, ¿es difícil partir?',
+    faq_a5: 'No debería. Y si tomas el plan Crecimiento, incluye una llamada de configuración donde te dejamos todo listo contigo, paso a paso.',
+    faq_q6: '¿Qué significa que esté en beta?',
+    faq_a6: 'Que mejoramos el producto activamente cada semana con el feedback de florerías reales. Y como agradecimiento por sumarte ahora, tu precio fundador queda congelado para siempre.',
+
+    cta_title: 'Empieza hoy. Sin tarjeta.',
+    cta_sub: '14 días de prueba con acceso completo. Sin compromisos. Solo orden.',
+    cta_btn: 'Prueba 14 días gratis',
 
     ft_tagline: 'Hecho para florerías de LATAM 🌸',
     ft_terms: 'Términos de uso',
@@ -1524,7 +1800,7 @@ const T = {
     m_name_ph: 'María González',
     m_optional: '(opcional)',
     m_wa_ph: '+56 9 1234 5678',
-    m_submit: 'Unirme a la beta',
+    m_submit: 'Empieza mi prueba gratis',
     m_ok_title: '¡Ya puedes entrar!',
     m_ok_sub: 'Tu cuenta está lista. Entra a la app y empieza ahora.',
     m_ok_btn: 'Ir a la app →',
@@ -1534,14 +1810,15 @@ const T = {
     nav_pricing: 'Pricing',
     nav_testimonials: 'Testimonials',
     nav_try: 'Try the app →',
-    nav_cta: 'Start for free',
+    nav_cta: '14-day free trial',
 
     hero_badge: 'Built for flower shops in LATAM',
     hero_title_plain: 'Florist management software',
     hero_title_grad: 'that actually works.',
     hero_sub: 'Manage orders, stock and customers in one place. No paper, no lost messages, no forgotten orders.',
-    hero_cta1: 'Start for free',
-    hero_cta2: 'Try the app →',
+    hero_credibility: 'Built by owners of a real flower shop in Chile — 6 years running it, over 50,000 orders handled.',
+    hero_cta1: '14-day free trial',
+    hero_cta2: 'Book 15 min and we\'ll set it up for you',
     hero_note1: 'No credit card',
     hero_note2: 'Cancel anytime',
 
@@ -1563,32 +1840,57 @@ const T = {
     f3_title: 'Customer Follow-up',
     f3_desc: 'Full history, preferences and automatic reminders to build loyalty.',
 
+    founder_story: "We're not a software company guessing what a flower shop needs: we've been running a real flower shop in Chile every day for 6 years. Every feature in Florist Manager exists because we needed it first, for our own orders, our own stock and our own customers. We built it for ourselves — and now we're sharing it with you.",
+
+    test_tag: 'Testimonials',
+    test_title: 'What flower shops using it already say',
+
     beta_pill: 'Active beta',
     beta_title: 'Florist Manager is in active beta.',
     beta_sub: 'Be one of the first flower shops to use it.',
 
     p_tag: 'Pricing',
     p_title: 'Simple. No surprises.',
-    p1_name: 'Free Plan',
-    p1_tag: 'Start with no commitment',
-    p1_f1: 'Up to 50 orders/month',
-    p1_f2: '1 user',
-    p1_f3: 'Order management',
-    p1_f4: 'Email support',
-    p1_cta: 'Start free',
+    p_subtitle: '14-day trial with full access, no card required. Then pick your plan.',
+    p_toggle_monthly: 'Monthly',
+    p_toggle_annual: 'Annual',
+    p_toggle_save: '2 months free',
+    p_clp_note: 'reference value only, billed in USD',
     p2_badge: 'Most popular',
+    p2_founder_note: '🚀 Beta launch price: you lock in $39/mo forever. It goes up to $59 once beta ends.',
     p2_tag: 'For shops ready to grow',
     p2_f1: 'Unlimited orders',
     p2_f2: 'Up to 3 users',
     p2_f3: 'Inventory + customers + reports',
-    p2_f4: 'Priority support',
-    p2_f5: 'Integrations coming soon',
-    p2_cta: 'Start free trial',
-    p_note: 'All plans include a 14-day free trial.',
+    p2_f4: 'Email support',
+    p2_cta: '14-day free trial',
+    p3_tag: 'For shops ready to hand it off',
+    p3_f1: 'Everything in Pro',
+    p3_f2: 'Unlimited users',
+    p3_f3: '1:1 onboarding — we set everything up with you on a video call',
+    p3_f4: 'Priority WhatsApp support',
+    p3_cta: '14-day free trial',
+    p_note: '14 days free with full access. No credit card. Cancel anytime.',
+    p_agenda_cta: 'Book 15 min and we\'ll set it up for you',
 
-    cta_title: "Start today. It's free.",
-    cta_sub: 'No credit card. No commitment. Just clarity.',
-    cta_btn: 'Start for free',
+    faq_tag: 'FAQ',
+    faq_title: 'What people ask us most',
+    faq_q1: 'What happens when the 14 days are over?',
+    faq_a1: 'You choose the plan that fits. There\'s never an automatic charge because we never ask for a card up front — and your data stays saved, nothing is lost.',
+    faq_q2: 'Can I cancel anytime?',
+    faq_a2: 'Yes. Cancel with one click from your account, no contract, no minimum commitment.',
+    faq_q3: 'Why is the price in US dollars?',
+    faq_a3: 'We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere. We still show a Chilean peso reference for convenience.',
+    faq_q4: 'What happens to my data if I leave?',
+    faq_a4: 'You can export it yourself anytime, or we delete it completely if you ask us to.',
+    faq_q5: 'I track everything on paper or WhatsApp today — is it hard to switch?',
+    faq_a5: "It shouldn't be. And if you pick the Growth plan, it includes a setup call where we get everything ready with you, step by step.",
+    faq_q6: 'What does it mean that it\'s in beta?',
+    faq_a6: 'We actively improve the product every week based on feedback from real flower shops. As a thank-you for joining now, your founder price is locked in forever.',
+
+    cta_title: 'Start today. No card required.',
+    cta_sub: '14-day trial with full access. No commitment. Just clarity.',
+    cta_btn: '14-day free trial',
 
     ft_tagline: 'Built for flower shops in LATAM 🌸',
     ft_terms: 'Terms of use',
@@ -1601,7 +1903,7 @@ const T = {
     m_name_ph: 'Maria González',
     m_optional: '(optional)',
     m_wa_ph: '+1 555 123 4567',
-    m_submit: 'Join the beta',
+    m_submit: 'Start my free trial',
     m_ok_title: 'You\'re in! 🌸',
     m_ok_sub: 'Your account is ready. Open the app and start now.',
     m_ok_btn: 'Go to the app →',
@@ -1678,6 +1980,21 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// ── PRICING: monthly/annual toggle ──
+let pricingPeriod = 'monthly';
+function setPricingPeriod(period) {
+  pricingPeriod = period;
+  document.querySelectorAll('.pricing-toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-period') === period);
+  });
+  document.querySelectorAll('.pricing-amount[data-monthly]').forEach(el => {
+    el.textContent = '$' + el.getAttribute('data-' + period);
+  });
+  document.querySelectorAll('[data-price-suffix]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + period + '-label');
+  });
+}
+
 // ── FAVICON CIRCULAR desde logo real ──
 (function() {
   const img = new Image();
@@ -1703,7 +2020,7 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 
 <!-- ── WHATSAPP BUTTON ── -->
-<a href="https://wa.me/56995783262" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"
+<a href="https://wa.me/56995783262?text=Hola%2C%20quiero%20probar%20Florist%20Manager" target="_blank" rel="noopener" aria-label="Contact via WhatsApp"
    style="
      position:fixed;
      bottom:24px;
