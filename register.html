@@ -40,6 +40,9 @@
       justify-content: center;
       padding: 1rem;
     }
+    /* Solo se bloquea el scroll de la página mientras se muestra el
+       calendario (única vista que necesita ocupar todo el viewport). */
+    body.locked { height: 100vh; overflow: hidden; }
 
     .layout {
       display: grid;
@@ -53,6 +56,10 @@
       box-shadow: 0 8px 40px rgba(0,0,0,0.08);
       animation: rise 0.35s ease both;
     }
+    /* Cuando se muestra el calendario de Calendly, el panel ocupa todo el
+       alto disponible del viewport para que el widget quepa sin scroll. */
+    .layout.cal-open { height: calc(100vh - 2rem); max-height: calc(100vh - 2rem); }
+    .layout.cal-open .panel-right { height: 100%; }
 
     @keyframes rise {
       from { opacity: 0; transform: translateY(14px); }
@@ -255,28 +262,32 @@
       padding-right: 30px;
     }
 
-    .success-box {
+    .cal-step {
       display: none;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      padding: 1.5rem 0.5rem;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      flex: 1;
     }
     .success-icon {
-      width: 56px; height: 56px;
+      width: 40px; height: 40px;
+      flex-shrink: 0;
       background: linear-gradient(135deg, var(--green-mid), var(--green-light));
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.1rem;
+      margin: 0 auto 0.6rem;
       box-shadow: 0 4px 16px rgba(61,184,83,0.3);
     }
-    .success-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-    .success-text { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
-
-    .cal-embed {
-      margin-top: 1.75rem;
-      padding-top: 1.75rem;
-      border-top: 1px solid var(--border);
+    .success-title { flex-shrink: 0; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    .success-text { flex-shrink: 0; font-size: 0.82rem; color: var(--muted); line-height: 1.4; margin-bottom: 0.75rem; }
+    .calendly-container {
+      width: 100%;
+      flex: 1;
+      min-height: 300px;
     }
-    .cal-embed-title { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; }
 
     .btn-register {
       width: 100%;
@@ -311,16 +322,24 @@
     }
 
     @media (max-width: 640px) {
-      body { padding: 0; align-items: stretch; }
+      /* En mobile se permite scroll normal: el ancho angosto ya obliga al
+         widget de Calendly a apilar sus columnas, y bloquear el scroll
+         acá recortaría contenido en vez de evitarlo. */
+      body, body.locked { height: auto; min-height: 100dvh; overflow: auto; padding: 0; align-items: stretch; }
       .layout {
         grid-template-columns: 1fr;
         border-radius: 0;
         box-shadow: none;
         border: none;
         min-height: 100dvh;
+        max-height: none;
       }
+      .layout.cal-open { height: auto; min-height: 100dvh; }
+      .layout.cal-open .panel-right { height: auto; }
       .panel-left { display: none; }
       .panel-right { padding: 2rem 1.25rem 1.5rem; justify-content: center; }
+      .cal-step { height: auto; }
+      .calendly-container { min-height: 560px; }
       .form-title { font-size: 1.15rem; }
       .form-subtitle { font-size: 0.78rem; margin-bottom: 1.25rem; }
       .form-group { margin-bottom: 0.75rem; }
@@ -329,7 +348,7 @@
 </head>
 <body>
 
-<div class="layout">
+<div class="layout" id="layoutEl">
 
   <div class="panel-left">
     <div class="brand">
@@ -417,25 +436,22 @@
       </button>
 
       <div class="error-box" id="errorBox"></div>
-
-      <div class="cal-embed" id="calEmbed">
-        <div class="cal-embed-title">Elige un horario para tu llamada</div>
-        <!-- Principio del widget integrado de Calendly -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/mbusolich/llamada-de-implementacion-florist-manager" style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Final del widget integrado de Calendly -->
-      </div>
     </div>
 
-    <div class="success-box" id="successBox">
+    <div class="cal-step" id="calStep">
       <div class="success-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="success-title">¡Listo!</div>
-      <div class="success-text">Revisa tu WhatsApp para coordinar tu llamada.</div>
+      <div class="success-text">Revisa tu WhatsApp y elige un horario para tu llamada:</div>
+      <!-- Widget de Calendly: se inicializa por JS (Calendly.initInlineWidget) recién cuando se muestra este paso -->
+      <div id="calendlyContainer" class="calendly-container"></div>
     </div>
   </div>
 </div>
+
+<!-- Se carga una sola vez; el widget se inyecta dinámicamente cuando el usuario termina el formulario -->
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 <script>
   function onHerramientaChange() {
@@ -481,7 +497,10 @@
 
       if (typeof gtag === 'function') gtag('event', 'conversion', { send_to: 'AW-18041424603' });
       document.getElementById('formWrap').style.display = 'none';
-      document.getElementById('successBox').style.display = 'block';
+      document.getElementById('calStep').style.display = 'flex';
+      document.getElementById('layoutEl').classList.add('cal-open');
+      document.body.classList.add('locked');
+      showCalendly();
     } catch(e) {
       showError('Error de red. Intenta de nuevo.');
       btn.disabled    = false;
@@ -497,6 +516,28 @@
 
   function hideError() {
     document.getElementById('errorBox').style.display = 'none';
+  }
+
+  // Inyecta el widget de Calendly recién cuando el usuario termina el
+  // formulario, así la página no carga larga con el iframe desde el inicio.
+  function showCalendly() {
+    const container = document.getElementById('calendlyContainer');
+    if (window.Calendly) {
+      window.Calendly.initInlineWidget({
+        url: 'https://calendly.com/mbusolich/llamada-de-implementacion-florist-manager',
+        parentElement: container,
+      });
+      return;
+    }
+    // El script de Calendly (cargado async) puede no estar listo todavía.
+    const waitForCalendly = setInterval(() => {
+      if (!window.Calendly) return;
+      clearInterval(waitForCalendly);
+      window.Calendly.initInlineWidget({
+        url: 'https://calendly.com/mbusolich/llamada-de-implementacion-florist-manager',
+        parentElement: container,
+      });
+    }, 150);
   }
 </script>
 </body>
