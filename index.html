@@ -507,6 +507,24 @@
     .problem-emoji { font-size: 40px; display: block; margin-bottom: 16px; }
     .problem-card h3 { font-size: 17px; font-weight: 700; line-height: 1.45; }
 
+    /* ── DEMO VIDEO ── */
+    #demo-video { background: white; text-align: center; }
+    .video-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.14);
+      aspect-ratio: 16 / 9;
+      background: #0d0d0d;
+    }
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
     /* ── FEATURES ── */
     #features { background: white; }
     .features-header { text-align: center; margin-bottom: 80px; }
@@ -1230,6 +1248,27 @@
 
 
 <!-- ══════════════════════════════════════
+     DEMO VIDEO
+     Coloca el archivo de video en /videos/demo-pedidos.mp4
+     (y opcionalmente un poster en /videos/demo-pedidos-poster.jpg)
+══════════════════════════════════════ -->
+<section id="demo-video">
+  <div class="container">
+    <div class="features-header fade-in">
+      <div class="section-tag" data-i18n="video_tag">Video</div>
+      <h2 class="section-title" data-i18n="video_title">Mira la sección de pedidos en acción</h2>
+      <p class="section-subtitle" style="margin:0 auto;" data-i18n="video_subtitle">La parte más usada de Florist Manager, en 60 segundos.</p>
+    </div>
+    <div class="video-wrapper fade-in">
+      <video controls preload="metadata" poster="/videos/demo-pedidos-poster.jpg">
+        <source src="/videos/demo-pedidos.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
      PROBLEM
 ══════════════════════════════════════ -->
 <section id="problem">
@@ -1453,9 +1492,11 @@
         <p class="pricing-tagline" data-i18n="p2_tag">Para florerías que quieren crecer</p>
         <ul class="pricing-feats">
           <li data-i18n="p2_f1">Pedidos ilimitados</li>
-          <li data-i18n="p2_f2">Hasta 3 usuarios</li>
-          <li data-i18n="p2_f3">Stock + clientes + reportes</li>
-          <li data-i18n="p2_f4">Soporte por email</li>
+          <li data-i18n="p2_f2">Integración con tienda online</li>
+          <li data-i18n="p2_f3">Hasta 3 usuarios</li>
+          <li data-i18n="p2_f4">Pedidos + Inventario + Finanzas</li>
+          <li data-i18n="p2_f5">Soporte por WhatsApp</li>
+          <li data-i18n="p2_f6">Onboarding 1:1 en videollamada</li>
         </ul>
         <a href="/register" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;" data-i18n="p2_cta">Prueba 14 días gratis</a>
       </div>
@@ -1471,8 +1512,7 @@
         <ul class="pricing-feats">
           <li data-i18n="p3_f1">Todo lo de Pro</li>
           <li data-i18n="p3_f2">Usuarios ilimitados</li>
-          <li data-i18n="p3_f3">Onboarding 1:1 — te dejamos todo configurado en una videollamada</li>
-          <li data-i18n="p3_f4">Soporte prioritario por WhatsApp</li>
+          <li data-i18n="p3_f3">Gestión de suscripciones</li>
         </ul>
         <a href="/register" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;" data-i18n="p3_cta">Prueba 14 días gratis</a>
       </div>
@@ -1507,7 +1547,7 @@
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q3">¿Por qué el precio está en dólares?</span><span class="faq-icon">+</span></summary>
-        <p class="faq-answer" data-i18n="faq_a3">Operamos en toda LATAM, así que cobramos en USD para mantener un precio parejo en cualquier país. Igual te mostramos una referencia en pesos chilenos.</p>
+        <p class="faq-answer" data-i18n="faq_a3">Operamos en toda LATAM, así que cobramos en USD para mantener un precio parejo en cualquier país.</p>
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q4">¿Qué pasa con mis datos si me voy?</span><span class="faq-icon">+</span></summary>
@@ -1515,7 +1555,7 @@
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q5">Hoy anoto todo en cuaderno o WhatsApp, ¿es difícil partir?</span><span class="faq-icon">+</span></summary>
-        <p class="faq-answer" data-i18n="faq_a5">No debería. Y si tomas el plan Crecimiento, incluye una llamada de configuración donde te dejamos todo listo contigo, paso a paso.</p>
+        <p class="faq-answer" data-i18n="faq_a5">No debería — todos los planes incluyen una llamada de onboarding 1:1 donde te dejamos todo listo contigo, paso a paso.</p>
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q6">¿Qué significa que esté en beta?</span><span class="faq-icon">+</span></summary>
@@ -1670,6 +1710,10 @@ const T = {
     hero_note1: 'Sin tarjeta de crédito',
     hero_note2: 'Cancela cuando quieras',
 
+    video_tag: 'Video',
+    video_title: 'Mira la sección de pedidos en acción',
+    video_subtitle: 'La parte más usada de Florist Manager, en 60 segundos.',
+
     prob_tag: 'El problema',
     prob_title: '¿Te suena familiar?',
     prob_1: 'Pedidos anotados en papel o WhatsApp que se pierden',
@@ -1705,15 +1749,16 @@ const T = {
     p2_founder_note: '🚀 Precio de lanzamiento en beta: quedas con $39/mes para siempre. Al salir de beta sube a $59.',
     p2_tag: 'Para florerías que quieren crecer',
     p2_f1: 'Pedidos ilimitados',
-    p2_f2: 'Hasta 3 usuarios',
-    p2_f3: 'Stock + clientes + reportes',
-    p2_f4: 'Soporte por email',
+    p2_f2: 'Integración con tienda online',
+    p2_f3: 'Hasta 3 usuarios',
+    p2_f4: 'Pedidos + Inventario + Finanzas',
+    p2_f5: 'Soporte por WhatsApp',
+    p2_f6: 'Onboarding 1:1 en videollamada',
     p2_cta: 'Prueba 14 días gratis',
     p3_tag: 'Para florerías que quieren delegar',
     p3_f1: 'Todo lo de Pro',
     p3_f2: 'Usuarios ilimitados',
-    p3_f3: 'Onboarding 1:1 — te dejamos todo configurado en una videollamada',
-    p3_f4: 'Soporte prioritario por WhatsApp',
+    p3_f3: 'Gestión de suscripciones',
     p3_cta: 'Prueba 14 días gratis',
     p_note: '14 días gratis con acceso completo. Sin tarjeta. Cancela cuando quieras.',
     p_agenda_cta: 'Agenda 15 min y te lo dejamos configurado',
@@ -1725,11 +1770,11 @@ const T = {
     faq_q2: '¿Puedo cancelar cuando quiera?',
     faq_a2: 'Sí. Cancelas con un clic desde tu cuenta, sin contrato ni permanencia mínima.',
     faq_q3: '¿Por qué el precio está en dólares?',
-    faq_a3: 'Operamos en toda LATAM, así que cobramos en USD para mantener un precio parejo en cualquier país. Igual te mostramos una referencia en pesos chilenos.',
+    faq_a3: 'Operamos en toda LATAM, así que cobramos en USD para mantener un precio parejo en cualquier país.',
     faq_q4: '¿Qué pasa con mis datos si me voy?',
     faq_a4: 'Los exportas tú mismo cuando quieras, o los eliminamos por completo si nos lo pides.',
     faq_q5: 'Hoy anoto todo en cuaderno o WhatsApp, ¿es difícil partir?',
-    faq_a5: 'No debería. Y si tomas el plan Crecimiento, incluye una llamada de configuración donde te dejamos todo listo contigo, paso a paso.',
+    faq_a5: 'No debería — todos los planes incluyen una llamada de onboarding 1:1 donde te dejamos todo listo contigo, paso a paso.',
     faq_q6: '¿Qué significa que esté en beta?',
     faq_a6: 'Que mejoramos el producto activamente cada semana con el feedback de florerías reales. Y como agradecimiento por sumarte ahora, tu precio fundador queda congelado para siempre.',
 
@@ -1770,6 +1815,10 @@ const T = {
     hero_note1: 'No credit card',
     hero_note2: 'Cancel anytime',
 
+    video_tag: 'Video',
+    video_title: 'See the orders section in action',
+    video_subtitle: 'The most-used part of Florist Manager, in 60 seconds.',
+
     prob_tag: 'The problem',
     prob_title: 'Sound familiar?',
     prob_1: 'Orders written on paper or WhatsApp that get lost',
@@ -1805,15 +1854,16 @@ const T = {
     p2_founder_note: '🚀 Beta launch price: you lock in $39/mo forever. It goes up to $59 once beta ends.',
     p2_tag: 'For shops ready to grow',
     p2_f1: 'Unlimited orders',
-    p2_f2: 'Up to 3 users',
-    p2_f3: 'Inventory + customers + reports',
-    p2_f4: 'Email support',
+    p2_f2: 'Online store integration',
+    p2_f3: 'Up to 3 users',
+    p2_f4: 'Orders + Inventory + Finances',
+    p2_f5: 'WhatsApp support',
+    p2_f6: '1:1 onboarding on a video call',
     p2_cta: '14-day free trial',
     p3_tag: 'For shops ready to hand it off',
     p3_f1: 'Everything in Pro',
     p3_f2: 'Unlimited users',
-    p3_f3: '1:1 onboarding — we set everything up with you on a video call',
-    p3_f4: 'Priority WhatsApp support',
+    p3_f3: 'Subscription management',
     p3_cta: '14-day free trial',
     p_note: '14 days free with full access. No credit card. Cancel anytime.',
     p_agenda_cta: 'Book 15 min and we\'ll set it up for you',
@@ -1825,11 +1875,11 @@ const T = {
     faq_q2: 'Can I cancel anytime?',
     faq_a2: 'Yes. Cancel with one click from your account, no contract, no minimum commitment.',
     faq_q3: 'Why is the price in US dollars?',
-    faq_a3: 'We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere. We still show a Chilean peso reference for convenience.',
+    faq_a3: 'We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere.',
     faq_q4: 'What happens to my data if I leave?',
     faq_a4: 'You can export it yourself anytime, or we delete it completely if you ask us to.',
     faq_q5: 'I track everything on paper or WhatsApp today — is it hard to switch?',
-    faq_a5: "It shouldn't be. And if you pick the Growth plan, it includes a setup call where we get everything ready with you, step by step.",
+    faq_a5: "It shouldn't be — every plan includes a 1:1 onboarding call where we get everything set up with you, step by step.",
     faq_q6: 'What does it mean that it\'s in beta?',
     faq_a6: 'We actively improve the product every week based on feedback from real flower shops. As a thank-you for joining now, your founder price is locked in forever.',
 

@@ -507,6 +507,24 @@
     .problem-emoji { font-size: 40px; display: block; margin-bottom: 16px; }
     .problem-card h3 { font-size: 17px; font-weight: 700; line-height: 1.45; }
 
+    /* ── DEMO VIDEO ── */
+    #demo-video { background: white; text-align: center; }
+    .video-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.14);
+      aspect-ratio: 16 / 9;
+      background: #0d0d0d;
+    }
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
     /* ── FEATURES ── */
     #features { background: white; }
     .features-header { text-align: center; margin-bottom: 80px; }
@@ -1062,8 +1080,8 @@
   </a>
 
   <ul class="navbar-links">
-    <li><a href="#features" data-i18n="nav_features">Características</a></li>
-    <li><a href="#pricing"  data-i18n="nav_pricing">Precios</a></li>
+    <li><a href="#features" data-i18n="nav_features">Features</a></li>
+    <li><a href="#pricing"  data-i18n="nav_pricing">Pricing</a></li>
     <li><a href="/blog">Blog</a></li>
   </ul>
 
@@ -1076,15 +1094,15 @@
        class="btn btn-primary" data-i18n="nav_cta">14-day free trial</a>
   </div>
 
-  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menú">
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#features"     onclick="closeMenu()" data-i18n="nav_features">Características</a>
-  <a href="#pricing"      onclick="closeMenu()" data-i18n="nav_pricing">Precios</a>
+  <a href="#features"     onclick="closeMenu()" data-i18n="nav_features">Features</a>
+  <a href="#pricing"      onclick="closeMenu()" data-i18n="nav_pricing">Pricing</a>
   <div class="mobile-actions">
     <a href="/register" target="_blank" rel="noopener"
        class="btn btn-primary" data-i18n="nav_cta">14-day free trial</a>
@@ -1097,7 +1115,7 @@
 ══════════════════════════════════════ -->
 <section id="hero">
   <div class="container">
-    <div class="hero-badge">🌸 <span data-i18n="hero_badge">Hecho para florerías de LATAM</span></div>
+    <div class="hero-badge">🌸 <span data-i18n="hero_badge">Built for flower shops in LATAM</span></div>
 
     <h1 class="hero-title">
       <span data-i18n="hero_title_plain">Florist management software</span><br>
@@ -1137,89 +1155,89 @@
         </div>
         <div class="mockup-nav-item active">
           <div class="mockup-nav-dot" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);"></div>
-          Pedidos
+          Orders
         </div>
         <div class="mockup-nav-item">
           <div class="mockup-nav-dot" style="background:#D1D5DB;"></div>
-          Inventario
+          Inventory
         </div>
         <div class="mockup-nav-item">
           <div class="mockup-nav-dot" style="background:#D1D5DB;"></div>
-          Clientes
+          Customers
         </div>
         <div class="mockup-nav-item">
           <div class="mockup-nav-dot" style="background:#D1D5DB;"></div>
-          Reportes
+          Reports
         </div>
       </div>
 
       <!-- Main panel -->
       <div class="mockup-main">
         <div class="mockup-top">
-          <div class="mockup-page-title">📦 Pedidos de hoy</div>
+          <div class="mockup-page-title">📦 Today's orders</div>
           <div class="mockup-actions-row">
-            <div class="mockup-pill" style="background:var(--gray);color:var(--gray-text);">Filtrar</div>
-            <div class="mockup-pill" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);color:white;">+ Nuevo</div>
+            <div class="mockup-pill" style="background:var(--gray);color:var(--gray-text);">Filter</div>
+            <div class="mockup-pill" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);color:white;">+ New</div>
           </div>
         </div>
 
         <div class="mockup-stats">
           <div class="mockup-stat">
-            <div class="mockup-stat-label">Total hoy</div>
+            <div class="mockup-stat-label">Total today</div>
             <div class="mockup-stat-val" style="color:#2DBD6E;">12</div>
           </div>
           <div class="mockup-stat">
-            <div class="mockup-stat-label">Pendientes</div>
+            <div class="mockup-stat-label">Pending</div>
             <div class="mockup-stat-val" style="color:#F59E0B;">5</div>
           </div>
           <div class="mockup-stat">
-            <div class="mockup-stat-label">Entregados</div>
+            <div class="mockup-stat-label">Delivered</div>
             <div class="mockup-stat-val" style="color:#6B7280;">7</div>
           </div>
         </div>
 
         <div class="mockup-table">
           <div class="mockup-table-head">
-            <div>Cliente</div>
-            <div>Producto</div>
-            <div>Estado</div>
+            <div>Customer</div>
+            <div>Product</div>
+            <div>Status</div>
             <div>Total</div>
           </div>
           <div class="mockup-row">
             <div class="order-client">
               <div class="order-avatar" style="background:linear-gradient(135deg,#2DBD6E,#7EE06A);">MG</div>
-              <div><div class="order-name">María González</div><div class="order-time">Hoy 14:00</div></div>
+              <div><div class="order-name">Maria Gonzalez</div><div class="order-time">Today 2:00pm</div></div>
             </div>
-            <div style="font-size:13px;">🌹 Rosas x12</div>
-            <div><span class="badge badge-green">Listo</span></div>
-            <div class="order-price">$24.990</div>
+            <div style="font-size:13px;">🌹 Roses x12</div>
+            <div><span class="badge badge-green">Ready</span></div>
+            <div class="order-price">$25</div>
           </div>
           <div class="mockup-row">
             <div class="order-client">
               <div class="order-avatar" style="background:linear-gradient(135deg,#F0407A,#F87BAC);">VT</div>
-              <div><div class="order-name">Valentina Torres</div><div class="order-time">Hoy 16:30</div></div>
+              <div><div class="order-name">Valentina Torres</div><div class="order-time">Today 4:30pm</div></div>
             </div>
-            <div style="font-size:13px;">🌸 Ramo mixto</div>
-            <div><span class="badge badge-yellow">En proceso</span></div>
-            <div class="order-price">$38.500</div>
+            <div style="font-size:13px;">🌸 Mixed bouquet</div>
+            <div><span class="badge badge-yellow">In progress</span></div>
+            <div class="order-price">$39</div>
           </div>
           <div class="mockup-row">
             <div class="order-client">
               <div class="order-avatar" style="background:linear-gradient(135deg,#7EE06A,#2DBD6E);">CR</div>
-              <div><div class="order-name">Camila Reyes</div><div class="order-time">Retiro tienda</div></div>
+              <div><div class="order-name">Camila Reyes</div><div class="order-time">Store pickup</div></div>
             </div>
-            <div style="font-size:13px;">🌻 Girasoles x6</div>
-            <div><span class="badge badge-pink">Urgente</span></div>
-            <div class="order-price">$18.200</div>
+            <div style="font-size:13px;">🌻 Sunflowers x6</div>
+            <div><span class="badge badge-pink">Urgent</span></div>
+            <div class="order-price">$18</div>
           </div>
           <div class="mockup-row">
             <div class="order-client">
               <div class="order-avatar" style="background:linear-gradient(135deg,#6366F1,#8B5CF6);">RM</div>
-              <div><div class="order-name">Roberto Muñoz</div><div class="order-time">Mañana 10:00</div></div>
+              <div><div class="order-name">Roberto Munoz</div><div class="order-time">Tomorrow 10:00am</div></div>
             </div>
-            <div style="font-size:13px;">🌷 Tulipanes x20</div>
-            <div><span class="badge badge-gray">Pendiente</span></div>
-            <div class="order-price">$52.000</div>
+            <div style="font-size:13px;">🌷 Tulips x20</div>
+            <div><span class="badge badge-gray">Pending</span></div>
+            <div class="order-price">$52</div>
           </div>
         </div>
       </div>
@@ -1230,26 +1248,47 @@
 
 
 <!-- ══════════════════════════════════════
+     DEMO VIDEO
+     Coloca el archivo de video en /videos/demo-pedidos.mp4
+     (y opcionalmente un poster en /videos/demo-pedidos-poster.jpg)
+══════════════════════════════════════ -->
+<section id="demo-video">
+  <div class="container">
+    <div class="features-header fade-in">
+      <div class="section-tag" data-i18n="video_tag">Video</div>
+      <h2 class="section-title" data-i18n="video_title">See the orders section in action</h2>
+      <p class="section-subtitle" style="margin:0 auto;" data-i18n="video_subtitle">The most-used part of Florist Manager, in 60 seconds.</p>
+    </div>
+    <div class="video-wrapper fade-in">
+      <video controls preload="metadata" poster="/videos/demo-pedidos-poster.jpg">
+        <source src="/videos/demo-pedidos.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
      PROBLEM
 ══════════════════════════════════════ -->
 <section id="problem">
   <div class="container">
     <div class="fade-in">
-      <div class="section-tag" data-i18n="prob_tag">El problema</div>
-      <h2 class="section-title" data-i18n="prob_title">¿Te suena familiar?</h2>
+      <div class="section-tag" data-i18n="prob_tag">The problem</div>
+      <h2 class="section-title" data-i18n="prob_title">Sound familiar?</h2>
     </div>
     <div class="problem-grid">
       <div class="problem-card fade-in delay-1">
         <span class="problem-emoji">📋</span>
-        <h3 data-i18n="prob_1">Pedidos anotados en papel o WhatsApp que se pierden</h3>
+        <h3 data-i18n="prob_1">Orders written on paper or WhatsApp that get lost</h3>
       </div>
       <div class="problem-card fade-in delay-2">
         <span class="problem-emoji">🌸</span>
-        <h3 data-i18n="prob_2">No sabes qué flores comprar hasta que se te acaban</h3>
+        <h3 data-i18n="prob_2">You don't know what to buy until you run out</h3>
       </div>
       <div class="problem-card fade-in delay-3">
         <span class="problem-emoji">💬</span>
-        <h3 data-i18n="prob_3">Clientes que no vuelven porque nadie les dio seguimiento</h3>
+        <h3 data-i18n="prob_3">Customers who don't come back because no one followed up</h3>
       </div>
     </div>
   </div>
@@ -1262,38 +1301,38 @@
 <section id="features">
   <div class="container">
     <div class="features-header fade-in">
-      <div class="section-tag" data-i18n="feat_tag">Características</div>
-      <h2 class="section-title" data-i18n="feat_title">Todo lo que necesitas, nada que no.</h2>
+      <div class="section-tag" data-i18n="feat_tag">Features</div>
+      <h2 class="section-title" data-i18n="feat_title">Everything you need. Nothing you don't.</h2>
     </div>
 
     <!-- Feature 1: Orders -->
     <div class="feature-block fade-in">
       <div class="feature-text">
-        <div class="feature-num" data-i18n="f1_num">01 — Gestión de pedidos</div>
-        <h3 class="feature-title" data-i18n="f1_title">Gestión de pedidos</h3>
-        <p class="feature-desc"  data-i18n="f1_desc">Crea, edita y rastrea cada pedido en tiempo real. Nunca más pierdas un encargo.</p>
+        <div class="feature-num" data-i18n="f1_num">01 — Order Management</div>
+        <h3 class="feature-title" data-i18n="f1_title">Order Management</h3>
+        <p class="feature-desc"  data-i18n="f1_desc">Create, edit and track every order in real time. Never lose an order again.</p>
       </div>
       <div class="feature-visual">
         <div style="width:100%;">
           <div class="fv-card">
             <div class="fv-dot" style="background:#2DBD6E;"></div>
             <div class="fv-content">
-              <div class="fv-title">🌹 Ramo de rosas — María G.</div>
-              <div class="fv-sub">Entrega: Hoy 15:00 · <span style="color:#2DBD6E;font-weight:700;">Listo</span></div>
+              <div class="fv-title">🌹 Rose bouquet — Maria G.</div>
+              <div class="fv-sub">Delivery: Today 3:00pm · <span style="color:#2DBD6E;font-weight:700;">Ready</span></div>
             </div>
           </div>
           <div class="fv-card">
             <div class="fv-dot" style="background:#F59E0B;"></div>
             <div class="fv-content">
-              <div class="fv-title">🌸 Ramo mixto — Valentina T.</div>
-              <div class="fv-sub">Entrega: Hoy 17:00 · <span style="color:#F59E0B;font-weight:700;">En proceso</span></div>
+              <div class="fv-title">🌸 Mixed bouquet — Valentina T.</div>
+              <div class="fv-sub">Delivery: Today 5:00pm · <span style="color:#F59E0B;font-weight:700;">In progress</span></div>
             </div>
           </div>
           <div class="fv-card">
             <div class="fv-dot" style="background:#F0407A;"></div>
             <div class="fv-content">
-              <div class="fv-title">🌻 Girasoles — Camila R.</div>
-              <div class="fv-sub">Retiro tienda · <span style="color:#F0407A;font-weight:700;">Urgente</span></div>
+              <div class="fv-title">🌻 Sunflowers — Camila R.</div>
+              <div class="fv-sub">Store pickup · <span style="color:#F0407A;font-weight:700;">Urgent</span></div>
             </div>
           </div>
         </div>
@@ -1303,33 +1342,33 @@
     <!-- Feature 2: Inventory (reversed) -->
     <div class="feature-block reverse fade-in">
       <div class="feature-text">
-        <div class="feature-num" data-i18n="f2_num">02 — Control de stock</div>
-        <h3 class="feature-title" data-i18n="f2_title">Control de stock</h3>
-        <p class="feature-desc"  data-i18n="f2_desc">Sabe exactamente qué tienes y qué necesitas comprar antes de que sea tarde.</p>
+        <div class="feature-num" data-i18n="f2_num">02 — Inventory Control</div>
+        <h3 class="feature-title" data-i18n="f2_title">Inventory Control</h3>
+        <p class="feature-desc"  data-i18n="f2_desc">Know exactly what you have and what you need to buy before it's too late.</p>
       </div>
       <div class="feature-visual">
         <div style="width:100%;">
-          <div style="font-size:11px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px;">Inventario actual</div>
+          <div style="font-size:11px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px;">Current inventory</div>
           <div class="fv-card">
             <div class="fv-content">
-              <div class="fv-title">🌹 Rosas rojas</div>
+              <div class="fv-title">🌹 Red roses</div>
               <div class="progress-bar"><div class="progress-fill" style="width:75%;background:linear-gradient(90deg,#2DBD6E,#7EE06A);"></div></div>
             </div>
-            <div style="font-size:13px;font-weight:700;color:#2DBD6E;margin-left:10px;white-space:nowrap;">75 u.</div>
+            <div style="font-size:13px;font-weight:700;color:#2DBD6E;margin-left:10px;white-space:nowrap;">75 units</div>
           </div>
           <div class="fv-card">
             <div class="fv-content">
-              <div class="fv-title">🌸 Flores mixtas</div>
+              <div class="fv-title">🌸 Mixed flowers</div>
               <div class="progress-bar"><div class="progress-fill" style="width:40%;background:linear-gradient(90deg,#F59E0B,#FCD34D);"></div></div>
             </div>
-            <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-left:10px;white-space:nowrap;">40 u.</div>
+            <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-left:10px;white-space:nowrap;">40 units</div>
           </div>
           <div class="fv-card">
             <div class="fv-content">
-              <div class="fv-title">🌻 Girasoles</div>
+              <div class="fv-title">🌻 Sunflowers</div>
               <div class="progress-bar"><div class="progress-fill" style="width:14%;background:linear-gradient(90deg,#F0407A,#F87BAC);"></div></div>
             </div>
-            <div style="font-size:13px;font-weight:700;color:#F0407A;margin-left:10px;white-space:nowrap;">⚠ 8 u.</div>
+            <div style="font-size:13px;font-weight:700;color:#F0407A;margin-left:10px;white-space:nowrap;">⚠ 8 units</div>
           </div>
         </div>
       </div>
@@ -1338,9 +1377,9 @@
     <!-- Feature 3: Customers -->
     <div class="feature-block fade-in">
       <div class="feature-text">
-        <div class="feature-num" data-i18n="f3_num">03 — Seguimiento de clientes</div>
-        <h3 class="feature-title" data-i18n="f3_title">Seguimiento de clientes</h3>
-        <p class="feature-desc"  data-i18n="f3_desc">Historial completo, preferencias y recordatorios automáticos para fidelizar.</p>
+        <div class="feature-num" data-i18n="f3_num">03 — Customer Follow-up</div>
+        <h3 class="feature-title" data-i18n="f3_title">Customer Follow-up</h3>
+        <p class="feature-desc"  data-i18n="f3_desc">Full history, preferences and automatic reminders to build loyalty.</p>
       </div>
       <div class="feature-visual">
         <div style="width:100%;">
@@ -1348,31 +1387,31 @@
             <div style="display:flex;align-items:center;gap:10px;">
               <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#2DBD6E,#7EE06A);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:13px;flex-shrink:0;">MG</div>
               <div>
-                <div class="fv-title">María González</div>
-                <div class="fv-sub">Cliente desde 2023 · 14 pedidos</div>
+                <div class="fv-title">Maria Gonzalez</div>
+                <div class="fv-sub">Customer since 2023 · 14 orders</div>
               </div>
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;">
-              <span class="badge badge-green">🌹 Prefiere rosas</span>
-              <span class="badge badge-green">💝 Aniversario: 15 Jun</span>
+              <span class="badge badge-green">🌹 Prefers roses</span>
+              <span class="badge badge-green">💝 Anniversary: Jun 15</span>
             </div>
             <div style="font-size:12px;color:var(--gray-text);background:var(--gray);padding:8px 10px;border-radius:8px;width:100%;">
-              🔔 Recordatorio enviado hace 2 días
+              🔔 Reminder sent 2 days ago
             </div>
           </div>
           <div style="display:flex;gap:10px;margin-top:0;">
             <div class="fv-card" style="flex:1;margin-bottom:0;">
               <span style="font-size:18px;">💰</span>
               <div class="fv-content">
-                <div style="font-size:11px;color:var(--gray-text);">LTV total</div>
-                <div style="font-size:15px;font-weight:800;">$284.500</div>
+                <div style="font-size:11px;color:var(--gray-text);">Total LTV</div>
+                <div style="font-size:15px;font-weight:800;">$285</div>
               </div>
             </div>
             <div class="fv-card" style="flex:1;margin-bottom:0;">
               <span style="font-size:18px;">⭐</span>
               <div class="fv-content">
                 <div style="font-size:11px;color:var(--gray-text);">NPS</div>
-                <div style="font-size:15px;font-weight:800;">Promotor</div>
+                <div style="font-size:15px;font-weight:800;">Promoter</div>
               </div>
             </div>
           </div>
@@ -1453,9 +1492,11 @@
         <p class="pricing-tagline" data-i18n="p2_tag">For shops ready to grow</p>
         <ul class="pricing-feats">
           <li data-i18n="p2_f1">Unlimited orders</li>
-          <li data-i18n="p2_f2">Up to 3 users</li>
-          <li data-i18n="p2_f3">Inventory + customers + reports</li>
-          <li data-i18n="p2_f4">Email support</li>
+          <li data-i18n="p2_f2">Online store integration</li>
+          <li data-i18n="p2_f3">Up to 3 users</li>
+          <li data-i18n="p2_f4">Orders + Inventory + Finances</li>
+          <li data-i18n="p2_f5">WhatsApp support</li>
+          <li data-i18n="p2_f6">1:1 onboarding on a video call</li>
         </ul>
         <a href="/register" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;" data-i18n="p2_cta">14-day free trial</a>
       </div>
@@ -1471,8 +1512,7 @@
         <ul class="pricing-feats">
           <li data-i18n="p3_f1">Everything in Pro</li>
           <li data-i18n="p3_f2">Unlimited users</li>
-          <li data-i18n="p3_f3">1:1 onboarding — we set everything up with you on a video call</li>
-          <li data-i18n="p3_f4">Priority WhatsApp support</li>
+          <li data-i18n="p3_f3">Subscription management</li>
         </ul>
         <a href="/register" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;" data-i18n="p3_cta">14-day free trial</a>
       </div>
@@ -1507,7 +1547,7 @@
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q3">Why is the price in US dollars?</span><span class="faq-icon">+</span></summary>
-        <p class="faq-answer" data-i18n="faq_a3">We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere. We still show a Chilean peso reference for convenience.</p>
+        <p class="faq-answer" data-i18n="faq_a3">We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere.</p>
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q4">What happens to my data if I leave?</span><span class="faq-icon">+</span></summary>
@@ -1515,7 +1555,7 @@
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q5">I track everything on paper or WhatsApp today — is it hard to switch?</span><span class="faq-icon">+</span></summary>
-        <p class="faq-answer" data-i18n="faq_a5">It shouldn't be. And if you pick the Growth plan, it includes a setup call where we get everything ready with you, step by step.</p>
+        <p class="faq-answer" data-i18n="faq_a5">It shouldn't be — every plan includes a 1:1 onboarding call where we get everything set up with you, step by step.</p>
       </details>
       <details class="faq-item fade-in">
         <summary><span data-i18n="faq_q6">What does it mean that it's in beta?</span><span class="faq-icon">+</span></summary>
@@ -1538,38 +1578,7 @@
 </section>
 
 
-<!-- ══════════════════════════════════════
-     BLOG
-══════════════════════════════════════ -->
-<section class="blog-section" id="blog">
-  <div style="text-align:center;margin-bottom:40px;">
-    <p class="section-tag">Recursos</p>
-    <h2 class="section-title">Aprende a gestionar<br>mejor tu florería</h2>
-  </div>
-  <div class="blog-grid">
-    <a href="/blog/como-organizar-pedidos-floreria" class="blog-card fade-in">
-      <span class="blog-tag">Operaciones</span>
-      <h3>Cómo organizar los pedidos de tu florería sin perder ninguno</h3>
-      <p>Cuaderno, WhatsApp, papel: los tres enemigos del orden. Te contamos el sistema que usan las florerías más organizadas de LATAM.</p>
-      <span class="blog-read">Leer artículo →</span>
-    </a>
-    <a href="/blog/control-stock-flores-perecederas" class="blog-card fade-in">
-      <span class="blog-tag">Inventario</span>
-      <h3>Control de stock para flores perecederas: guía práctica</h3>
-      <p>Las flores duran días, no meses. Aprende a manejar el inventario de tu florería sin desperdiciar ni quedarte sin stock en el momento clave.</p>
-      <span class="blog-read">Leer artículo →</span>
-    </a>
-    <a href="/blog/software-floreria-chile" class="blog-card fade-in">
-      <span class="blog-tag">Software</span>
-      <h3>Software para florería en Chile: qué considerar antes de elegir</h3>
-      <p>No todos los programas de gestión son iguales. Esto es lo que debes revisar antes de contratar cualquier sistema para tu florería.</p>
-      <span class="blog-read">Leer artículo →</span>
-    </a>
-  </div>
-  <div style="text-align:center;margin-top:36px;">
-    <a href="/blog" style="font-size:0.88rem;font-weight:700;color:var(--green);text-decoration:none;">Ver todos los artículos →</a>
-  </div>
-</section>
+<!-- Blog teaser intentionally omitted on the EN page: the blog only exists in Spanish. -->
 
 
 <!-- ══════════════════════════════════════
@@ -1583,7 +1592,7 @@
       </div>
       Florist Manager
     </a>
-    <p class="footer-tagline" data-i18n="ft_tagline">Hecho para florerías de LATAM 🌸</p>
+    <p class="footer-tagline" data-i18n="ft_tagline">Built for flower shops in LATAM 🌸</p>
     <div class="footer-links">
       <a href="/en/terminos.html" data-i18n="ft_terms">Terms of use</a>
       <a href="/en/privacidad.html" data-i18n="ft_privacy">Privacy</a>
@@ -1609,12 +1618,12 @@
         <span>Florist Manager</span>
       </div>
 
-      <h2 class="modal-title" data-i18n="m_title">Empieza tu prueba gratis</h2>
-      <p class="modal-sub" data-i18n="m_sub">Sin tarjeta de crédito. 14 días gratis.</p>
+      <h2 class="modal-title" data-i18n="m_title">Start your free trial</h2>
+      <p class="modal-sub" data-i18n="m_sub">No credit card. 14 days free.</p>
 
       <form id="betaForm" onsubmit="handleSubmit(event)">
         <div class="form-group">
-          <label class="form-label" data-i18n="m_name_lbl">Nombre</label>
+          <label class="form-label" data-i18n="m_name_lbl">Name</label>
           <input class="form-input" type="text" required
                  data-i18n-ph="m_name_ph" placeholder="María González">
         </div>
@@ -1625,7 +1634,7 @@
         <div class="form-group">
           <label class="form-label">
             WhatsApp
-            <span style="font-weight:400;color:var(--gray-text);" data-i18n="m_optional">(opcional)</span>
+            <span style="font-weight:400;color:var(--gray-text);" data-i18n="m_optional">(optional)</span>
           </label>
           <input class="form-input" type="tel"
                  data-i18n-ph="m_wa_ph" placeholder="+56 9 1234 5678">
@@ -1638,10 +1647,10 @@
 
     <div class="modal-success" id="modalSuccess">
       <div class="success-emoji">🌸</div>
-      <h3 class="success-title" data-i18n="m_ok_title">¡Ya puedes entrar!</h3>
-      <p class="success-sub" data-i18n="m_ok_sub">Tu cuenta está lista. Entra a la app y empieza ahora.</p>
+      <h3 class="success-title" data-i18n="m_ok_title">You're in! 🌸</h3>
+      <p class="success-sub" data-i18n="m_ok_sub">Your account is ready. Open the app and start now.</p>
       <a href="/register" target="_blank" rel="noopener"
-         class="btn btn-primary btn-lg" style="margin-top:20px;width:100%;" data-i18n="m_ok_btn">Ir a la app →</a>
+         class="btn btn-primary btn-lg" style="margin-top:20px;width:100%;" data-i18n="m_ok_btn">Go to the app →</a>
     </div>
   </div>
 </div>
@@ -1669,6 +1678,10 @@ const T = {
     hero_cta2: 'Agenda 15 min y te lo dejamos configurado',
     hero_note1: 'Sin tarjeta de crédito',
     hero_note2: 'Cancela cuando quieras',
+
+    video_tag: 'Video',
+    video_title: 'Mira la sección de pedidos en acción',
+    video_subtitle: 'La parte más usada de Florist Manager, en 60 segundos.',
 
     prob_tag: 'El problema',
     prob_title: '¿Te suena familiar?',
@@ -1705,15 +1718,16 @@ const T = {
     p2_founder_note: '🚀 Precio de lanzamiento en beta: quedas con $39/mes para siempre. Al salir de beta sube a $59.',
     p2_tag: 'Para florerías que quieren crecer',
     p2_f1: 'Pedidos ilimitados',
-    p2_f2: 'Hasta 3 usuarios',
-    p2_f3: 'Stock + clientes + reportes',
-    p2_f4: 'Soporte por email',
+    p2_f2: 'Integración con tienda online',
+    p2_f3: 'Hasta 3 usuarios',
+    p2_f4: 'Pedidos + Inventario + Finanzas',
+    p2_f5: 'Soporte por WhatsApp',
+    p2_f6: 'Onboarding 1:1 en videollamada',
     p2_cta: 'Prueba 14 días gratis',
     p3_tag: 'Para florerías que quieren delegar',
     p3_f1: 'Todo lo de Pro',
     p3_f2: 'Usuarios ilimitados',
-    p3_f3: 'Onboarding 1:1 — te dejamos todo configurado en una videollamada',
-    p3_f4: 'Soporte prioritario por WhatsApp',
+    p3_f3: 'Gestión de suscripciones',
     p3_cta: 'Prueba 14 días gratis',
     p_note: '14 días gratis con acceso completo. Sin tarjeta. Cancela cuando quieras.',
     p_agenda_cta: 'Agenda 15 min y te lo dejamos configurado',
@@ -1725,11 +1739,11 @@ const T = {
     faq_q2: '¿Puedo cancelar cuando quiera?',
     faq_a2: 'Sí. Cancelas con un clic desde tu cuenta, sin contrato ni permanencia mínima.',
     faq_q3: '¿Por qué el precio está en dólares?',
-    faq_a3: 'Operamos en toda LATAM, así que cobramos en USD para mantener un precio parejo en cualquier país. Igual te mostramos una referencia en pesos chilenos.',
+    faq_a3: 'Operamos en toda LATAM, así que cobramos en USD para mantener un precio parejo en cualquier país.',
     faq_q4: '¿Qué pasa con mis datos si me voy?',
     faq_a4: 'Los exportas tú mismo cuando quieras, o los eliminamos por completo si nos lo pides.',
     faq_q5: 'Hoy anoto todo en cuaderno o WhatsApp, ¿es difícil partir?',
-    faq_a5: 'No debería. Y si tomas el plan Crecimiento, incluye una llamada de configuración donde te dejamos todo listo contigo, paso a paso.',
+    faq_a5: 'No debería — todos los planes incluyen una llamada de onboarding 1:1 donde te dejamos todo listo contigo, paso a paso.',
     faq_q6: '¿Qué significa que esté en beta?',
     faq_a6: 'Que mejoramos el producto activamente cada semana con el feedback de florerías reales. Y como agradecimiento por sumarte ahora, tu precio fundador queda congelado para siempre.',
 
@@ -1770,6 +1784,10 @@ const T = {
     hero_note1: 'No credit card',
     hero_note2: 'Cancel anytime',
 
+    video_tag: 'Video',
+    video_title: 'See the orders section in action',
+    video_subtitle: 'The most-used part of Florist Manager, in 60 seconds.',
+
     prob_tag: 'The problem',
     prob_title: 'Sound familiar?',
     prob_1: 'Orders written on paper or WhatsApp that get lost',
@@ -1805,15 +1823,16 @@ const T = {
     p2_founder_note: '🚀 Beta launch price: you lock in $39/mo forever. It goes up to $59 once beta ends.',
     p2_tag: 'For shops ready to grow',
     p2_f1: 'Unlimited orders',
-    p2_f2: 'Up to 3 users',
-    p2_f3: 'Inventory + customers + reports',
-    p2_f4: 'Email support',
+    p2_f2: 'Online store integration',
+    p2_f3: 'Up to 3 users',
+    p2_f4: 'Orders + Inventory + Finances',
+    p2_f5: 'WhatsApp support',
+    p2_f6: '1:1 onboarding on a video call',
     p2_cta: '14-day free trial',
     p3_tag: 'For shops ready to hand it off',
     p3_f1: 'Everything in Pro',
     p3_f2: 'Unlimited users',
-    p3_f3: '1:1 onboarding — we set everything up with you on a video call',
-    p3_f4: 'Priority WhatsApp support',
+    p3_f3: 'Subscription management',
     p3_cta: '14-day free trial',
     p_note: '14 days free with full access. No credit card. Cancel anytime.',
     p_agenda_cta: 'Book 15 min and we\'ll set it up for you',
@@ -1825,11 +1844,11 @@ const T = {
     faq_q2: 'Can I cancel anytime?',
     faq_a2: 'Yes. Cancel with one click from your account, no contract, no minimum commitment.',
     faq_q3: 'Why is the price in US dollars?',
-    faq_a3: 'We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere. We still show a Chilean peso reference for convenience.',
+    faq_a3: 'We operate across all of LATAM, so we bill in USD to keep pricing consistent everywhere.',
     faq_q4: 'What happens to my data if I leave?',
     faq_a4: 'You can export it yourself anytime, or we delete it completely if you ask us to.',
     faq_q5: 'I track everything on paper or WhatsApp today — is it hard to switch?',
-    faq_a5: "It shouldn't be. And if you pick the Growth plan, it includes a setup call where we get everything ready with you, step by step.",
+    faq_a5: "It shouldn't be — every plan includes a 1:1 onboarding call where we get everything set up with you, step by step.",
     faq_q6: 'What does it mean that it\'s in beta?',
     faq_a6: 'We actively improve the product every week based on feedback from real flower shops. As a thank-you for joining now, your founder price is locked in forever.',
 
