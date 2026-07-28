@@ -14,6 +14,7 @@
     { "source": "/blog/como-calcular-precio-de-un-ramo-de-flores", "destination": "/blog/como-calcular-precio-de-un-ramo-de-flores.html" },
     { "source": "/blog/cuanto-cobra-floreria-precios-chile", "destination": "/blog/cuanto-cobra-floreria-precios-chile.html" },
     { "source": "/blog/como-fidelizar-clientes-floreria", "destination": "/blog/como-fidelizar-clientes-floreria.html" },
-    { "source": "/blog/sistema-para-floristerias", "destination": "/blog/sistema-para-floristerias.html" }
+    { "source": "/blog/sistema-para-floristerias", "destination": "/blog/sistema-para-floristerias.html" },
+    { "source": "/blog/inventario-de-flores", "destination": "/blog/inventario-de-flores.html" }
   ]
 }
